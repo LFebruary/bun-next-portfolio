@@ -1,6 +1,6 @@
 import theme from "@/constants/theme";
 import { Fade, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface CoolTextProps {
     text: string;
