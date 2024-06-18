@@ -1,11 +1,11 @@
 import { TimelineItem, TimelineOppositeContent, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, Timeline } from "@mui/lab";
 import moment from "moment";
-import { format } from "path";
 import { FC, ReactNode, useState } from "react";
 import { WorkExperience, WorkExperienceProps } from "../work-experience/work-experience";
-import { Fade, Typography } from "@mui/material";
 import theme from "@/constants/theme";
+import { Fade, Typography } from "@mui/material";
 import { useInView } from "react-intersection-observer";
+
 
 const formatDate = (date: Date) => (moment(date)).format('MMM YYYY');
 
@@ -77,6 +77,8 @@ export const WorkExperienceTimeline: FC<{ items: ReactNode[] }> = (props) => {
 
 export const PresentTimelineItem: FC<{}> = () => {
     const [inViewState, setInViewState] = useState(false);
+
+
 
     const [ref, inView, entry] = useInView({
         onChange: (inView) => setInViewState(inView),

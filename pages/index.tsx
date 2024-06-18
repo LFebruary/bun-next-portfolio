@@ -1,11 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '@/styles/Home.module.scss'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { MyAvatar } from '@/components/my-avatar/my-avatar';
 import { CoolText } from '@/components/cool-text/cool-text';
-import { Fade, Grid, Typography } from '@mui/material';
-import { WorkExperience, WorkExperienceProps } from '@/components/work-experience/work-experience';
+import { Fade, Typography } from '@mui/material';
+import { WorkExperienceProps } from '@/components/work-experience/work-experience';
 import { WorkExperienceTimeline, WorkExperienceTimelineItem } from '@/components/work-experience-timeline-item/work-experience-timeline-item';
 
 

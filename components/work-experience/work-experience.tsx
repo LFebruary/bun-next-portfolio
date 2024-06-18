@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, Chip, Divider, ListItem, Paper, Typography } from "@mui/material";
+import { Card, CardContent, Typography, Chip } from "@mui/material";
 import moment from "moment";
 
 export interface WorkExperienceProps {

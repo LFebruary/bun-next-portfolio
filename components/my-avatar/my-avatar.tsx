@@ -1,7 +1,6 @@
 import theme from "@/constants/theme";
-import { Avatar, Paper } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
-import { CSSTransition } from 'react-transition-group';
+import { Avatar } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const smallSize = 192;
 const bigSize = 256;
