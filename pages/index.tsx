@@ -1,11 +1,36 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/Home.module.scss'
+import { useState, useEffect } from 'react'
+import { MyAvatar } from '@/components/my-avatar/my-avatar';
+import { CoolText } from '@/components/cool-text/cool-text';
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [repositories, setRepositories] = useState<any[]>([]);
+  const [error, setError] = useState<string | undefined>(undefined);
+
+  // useEffect(() => {
+  //   const fetchRepositories = async () => {
+  //     try {
+  //       const response = await fetch('/api/github/repositories');
+  //       if (!response.ok) {
+  //         throw new Error(`API responded with status: ${response.status}`);
+  //       }
+  //       const data: any = await response.json();
+  //       setRepositories(data);
+  //     } catch (error) {
+  //       setError(error as string | undefined);
+  //     }
+  //   };
+
+  //   fetchRepositories();
+  // }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <>
       <Head>
@@ -14,109 +39,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
+      <main>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 24, flexDirection: 'column' }}>
+          <MyAvatar />
+          <div style={{ paddingTop: 24 }}>
+            <CoolText text='Lyle' inline caption='Apparently means "island" or "from the island"' /> &nbsp;
+            <CoolText text='February' inline caption='The second month of the year, in the northern hemisphere usually considered the last month of winter.' />
           </div>
         </div>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+        <ul>
+          {repositories.map(repo => (
+            <li key={repo.id}>
+              <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
+                {repo.name}
+              </a> - {repo.description}
+            </li>
+          ))}
+        </ul>
       </main>
     </>
   )
