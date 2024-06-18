@@ -31,7 +31,14 @@ export const CoolText: React.FC<CoolTextProps> = (props: CoolTextProps = { text:
         <div
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            style={{ display: 'inline-flex', flexDirection: 'column', width: isHovering ? 40 * (props.text.length) : undefined, transition: 'width .5s ease' }}>
+            style={{
+                display: props.inline ? 'inline-flex' : 'flex',
+                flexDirection: 'column',
+                justifyContent: !props.inline ? 'center' : undefined,
+                alignItems: !props.inline ? 'center' : undefined,
+                width: props.inline && isHovering ? 40 * (props.text.length) : undefined,
+                transition: 'width .5s ease'
+            }}>
             <Typography
                 variant="h2"
                 sx={{

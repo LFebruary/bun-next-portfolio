@@ -4,28 +4,97 @@ import styles from '@/styles/Home.module.scss'
 import { useState, useEffect } from 'react'
 import { MyAvatar } from '@/components/my-avatar/my-avatar';
 import { CoolText } from '@/components/cool-text/cool-text';
+import { Fade, Grid, Typography } from '@mui/material';
+import { WorkExperience, WorkExperienceProps } from '@/components/work-experience/work-experience';
+import { WorkExperienceTimeline, WorkExperienceTimelineItem } from '@/components/work-experience-timeline-item/work-experience-timeline-item';
 
 
 export default function Home() {
   const [repositories, setRepositories] = useState<any[]>([]);
   const [error, setError] = useState<string | undefined>(undefined);
+  const [avatarHovered, setIsAvatarHovered] = useState(false);
+  let workExperiences: WorkExperienceProps[] = [
+    {
+      startDate: new Date(2020, 6, 1),
+      endDate: new Date(2022, 5, 31),
+      companyName: 'Farsoft Solutions',
+      languages: [
+        {
+          languageName: 'C#',
+          frameworks: [
+            'WPF',
+            'Avalonia (Linux)',
+            'Xamarin',
+            'Ranorex'
+          ],
+        },
+        {
+          languageName: 'Kotlin',
+          frameworks: [
+            'Native Android'
+          ]
+        },
+        {
+          languageName: 'Dart',
+          frameworks: [
+            'Flutter Web'
+          ]
+        }
+      ],
+      companyDescription: 'Farsoft develops and supports information systems for the fresh produce industry, focusing largely on international fruit exports.'
+    },
+    {
+      startDate: new Date(2022, 5, 1),
+      endDate: new Date(2024, 5, 31),
+      companyName: 'Mediclinic',
+      languages: [
+        {
+          languageName: 'C#',
+          frameworks: [
+            '.NET MVC',
+            '.NET API',
+            'Blazor',
+          ],
+        },
+        {
+          languageName: 'Dart',
+          frameworks: [
+            'Flutter Mobile'
+          ]
+        },
+        {
+          languageName: 'JavaScript',
+          frameworks: [
+            'jQuery',
+            'AJAX',
+          ]
+        }
+      ],
+      companyDescription: 'Mediclinic Southern Africa operates a range of multi-disciplinary acute care private hospitals in South Africa and Namibia and focuses on providing value to our patients through safe, quality care in a patient friendly environment.'
+    }
+    ,
+    {
+      startDate: new Date(2024, 5, 1),
+      companyName: 'DotDigital',
+      languages: [
+        {
+          languageName: 'C#',
+          frameworks: [
+            '.NET',
+          ],
+        },
+        {
+          languageName: 'Typescript',
+          frameworks: [
+            'Angular'
+          ]
+        },
+      ],
+      companyDescription: 'dotDigital Group PLC is a software-as-a-service technology company. The company provides software as an omnichannel service and managed services to digital marketing professionals.'
+    }
+  ];
 
-  // useEffect(() => {
-  //   const fetchRepositories = async () => {
-  //     try {
-  //       const response = await fetch('/api/github/repositories');
-  //       if (!response.ok) {
-  //         throw new Error(`API responded with status: ${response.status}`);
-  //       }
-  //       const data: any = await response.json();
-  //       setRepositories(data);
-  //     } catch (error) {
-  //       setError(error as string | undefined);
-  //     }
-  //   };
-
-  //   fetchRepositories();
-  // }, []);
+  workExperiences = workExperiences.sort((a, b) => b.startDate.getUTCFullYear() - a.startDate.getUTCFullYear());
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -40,12 +109,42 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 24, flexDirection: 'column' }}>
-          <MyAvatar />
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingTop: 24,
+          flexDirection: 'column',
+          minHeight: 440,
+        }}>
+          <MyAvatar isHoveringCallback={setIsAvatarHovered} />
+          {avatarHovered &&
+            <Fade in={avatarHovered} timeout={1500} style={{ paddingTop: 24 }}>
+              <Typography
+                variant="body1">
+                Your friendly neighborhood IT nerd 🤓
+              </Typography>
+            </Fade>
+          }
           <div style={{ paddingTop: 24 }}>
             <CoolText text='Lyle' inline caption='Apparently means "island" or "from the island"' /> &nbsp;
-            <CoolText text='February' inline caption='The second month of the year, in the northern hemisphere usually considered the last month of winter.' />
+            <CoolText text='February' inline caption='Second best month of the year or something.' />
           </div>
+        </div>
+        <CoolText
+          text="Work experience" />
+
+        <div style={{ marginInline: 128 }}>
+
+          <WorkExperienceTimeline items={workExperiences.map((workExperience, index) =>
+            <WorkExperienceTimelineItem key={index}
+              startDate={workExperience.startDate}
+              endDate={workExperience.endDate}
+              companyDescription={workExperience.companyDescription}
+              companyName={workExperience.companyName}
+              languages={workExperience.languages}
+              index={index} />
+          )} />
         </div>
 
         <ul>
