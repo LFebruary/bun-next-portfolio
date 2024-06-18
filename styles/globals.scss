@@ -1,0 +1,19 @@
+.timeline-connector-present {
+    background-color: #29b6f6;
+}
+
+.MuiCard-root {
+    transition: 'all .75s ease';
+}
+
+.MuiCard-root.applyShadow {
+    box-shadow: 0 0 8px 4px #FFF;
+
+}
+
+.MuiCard-root.present {
+    border: 1px solid transparent;
+    /* Optional: To maintain structure if border is removed */
+    box-shadow: 0 0 8px 4px #29b6f6;
+    /* Adjust the spread and color */
+}

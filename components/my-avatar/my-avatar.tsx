@@ -6,18 +6,24 @@ import { CSSTransition } from 'react-transition-group';
 const smallSize = 192;
 const bigSize = 256;
 
-export const MyAvatar: React.FC = ({ }) => {
+export interface MyAvatarProps {
+    isHoveringCallback?: ((hovered: boolean) => void) | undefined
+}
+
+export const MyAvatar: React.FC<MyAvatarProps> = (props: MyAvatarProps) => {
     const [isHovering, setIsHovered] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
 
     const onMouseEnter = () => {
         setIsHovered(true);
         setIsTransitioning(true);
+        props.isHoveringCallback && props.isHoveringCallback(true);
     };
 
     const onMouseLeave = () => {
         setIsHovered(false);
         setIsTransitioning(true);
+        props.isHoveringCallback && props.isHoveringCallback(false);
     };
 
     useEffect(() => {
