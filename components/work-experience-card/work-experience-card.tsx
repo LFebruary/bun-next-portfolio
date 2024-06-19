@@ -1,20 +1,10 @@
-import { Card, CardContent, Typography, Chip } from "@mui/material";
-import moment from "moment";
+import { WorkExperience } from "@/interfaces";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
 
-export interface WorkExperienceProps {
-    startDate: Date;
-    endDate?: Date | undefined;
-    companyName: string;
-    companyDescription: string;
-    languages: Language[] | undefined;
-}
-
-interface Language {
-    languageName: string;
-    frameworks: string[];
-}
-
-export interface WorkExperienceComponentProps extends WorkExperienceProps {
+interface WorkExperienceCardProps extends WorkExperience {
     minHeight?: boolean;
     margin?: boolean;
     maxWidth?: boolean;
@@ -22,9 +12,7 @@ export interface WorkExperienceComponentProps extends WorkExperienceProps {
     shadow?: boolean;
 }
 
-const formatDate = (date: Date) => (moment(date)).format('DD MMM YYYY');
-
-export const WorkExperience: React.FC<WorkExperienceComponentProps> = ({
+const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({
     startDate,
     companyDescription,
     endDate,
@@ -35,7 +23,7 @@ export const WorkExperience: React.FC<WorkExperienceComponentProps> = ({
     languages,
     justifyContent,
     shadow,
-}: WorkExperienceComponentProps) => {
+}: WorkExperienceCardProps) => {
     const current = !endDate;
 
     let classes = "";
@@ -89,20 +77,9 @@ export const WorkExperience: React.FC<WorkExperienceComponentProps> = ({
                         );
                     }))}
                 </div>
-
-
-                {/* {endDate &&
-                    <Typography>
-                        {formatDate(startDate)} - {formatDate(endDate)}
-                    </Typography>
-                }
-
-                {!endDate &&
-                    <Typography>
-                        {formatDate(startDate)} - Present
-                    </Typography>
-                } */}
             </CardContent>
         </Card >
     );
 };
+
+export default WorkExperienceCard;
