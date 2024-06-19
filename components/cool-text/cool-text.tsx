@@ -1,23 +1,32 @@
 import theme from "@/constants/theme";
 import { Fade, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface CoolTextProps {
     text: string;
     inline?: boolean;
     caption?: string;
+    forcedHoverState?: boolean;
 }
 
-export const CoolText: React.FC<CoolTextProps> = (props: CoolTextProps = { text: '', inline: true }) => {
+const CoolText: React.FC<CoolTextProps> = (props: CoolTextProps = { text: '', inline: true, forcedHoverState: false, }) => {
     const [isHovering, setIsHovered] = useState(false);
 
+    useEffect(() => {
+        if (props.forcedHoverState === true) {
+            setIsHovered(true);
+        }
+    }, [props.forcedHoverState]);
+
     const onMouseEnter = () => {
-        setIsHovered(true);
+        setIsHovered(props.forcedHoverState || true);
     };
 
     const onMouseLeave = () => {
-        setIsHovered(false);
+        setIsHovered(props.forcedHoverState || false);
     };
+
+
 
     const rawFontSize = theme.typography.h2.fontSize;
 
@@ -64,3 +73,5 @@ export const CoolText: React.FC<CoolTextProps> = (props: CoolTextProps = { text:
 
     );
 };
+
+export default CoolText;
