@@ -3,6 +3,8 @@ import { useState } from 'react'
 import projects from '@/data/projects.data';
 import workExperiences from '@/data/workExperiences.data';
 import { AvatarSection, ProjectsSection, WorkExperienceSection } from '@/components/home';
+import Container from '@mui/material/Container';
+import styles from '@/styles/Home.module.scss';
 
 export default function Home() {
   const [repositories, setRepositories] = useState<any[]>([]);
@@ -12,6 +14,8 @@ export default function Home() {
     return <div>Error: {error}</div>;
   }
 
+  console.log(styles);
+
   return (
     <>
       <Head>
@@ -20,10 +24,18 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <AvatarSection />
-        <WorkExperienceSection workExperiences={workExperiences} />
-        <ProjectsSection projects={projects} />
+      <div className={styles.stars}>
+        {[...Array(32)].map((x, i) =>
+          <div key={i} className={styles.star}></div>
+        )}
+      </div>
+      <main className={styles.styledBackground}>
+        <Container maxWidth="lg">
+          <AvatarSection />
+          <WorkExperienceSection workExperiences={workExperiences} />
+          <ProjectsSection projects={projects} />
+        </Container>
+
         <ul>
           {repositories.map(repo => (
             <li key={repo.id}>

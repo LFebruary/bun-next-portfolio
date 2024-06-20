@@ -6,6 +6,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
+import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
@@ -17,7 +18,7 @@ const ProjectLinkButton: FC<{ link: ProjectLink }> = ({ link }) => {
     switch (link.linkType) {
         case ProjectLinkType.github:
             return (
-                <IconButton href={link.link} aria-label="Github repository">
+                <IconButton target="_blank" href={link.link} aria-label="Github repository" size="large">
                     <GitHub />
                 </IconButton>
             );
@@ -29,22 +30,24 @@ const ProjectLinkButton: FC<{ link: ProjectLink }> = ({ link }) => {
 const ProjectCard: FC<{ project: Project }> = ({ project }) => {
     return (
         <Card variant="outlined">
-            <CardContent>
+            <CardContent sx={{ paddingBlockEnd: .25 }}>
                 <Typography variant="h5" component="div">
                     {project.name}
                 </Typography>
                 <Typography sx={{ fontSize: 14, minHeight: 128 }} color="text.secondary" gutterBottom>
                     {project.description}
                 </Typography>
-                <Stack direction="row" spacing={1} flexWrap="wrap">
+                <Grid container spacing={.5}>
                     {project.technologies.map((technology, index) => {
                         return (
-                            <Chip size="small" key={index} label={technology} variant="outlined" />
+                            <Grid key={index} item>
+                                <Chip size="small" label={technology} variant="outlined" />
+                            </Grid>
                         );
                     })}
-                </Stack>
+                </Grid>
             </CardContent>
-            <CardActions>
+            <CardActions sx={{ paddingBlockStart: 0 }}>
                 {project.links.map((projectLink, index) => {
                     return <ProjectLinkButton key={index} link={projectLink} />
                 })}
@@ -67,11 +70,11 @@ const ProjectsSection: FC<{ projects: Project[] }> = ({ projects }) => {
             <CoolText
                 text="Personal Projects"
                 forcedHoverState={inViewState} />
-            <div style={{ marginInline: 128, marginTop: 32 }} ref={ref}>
+            <div style={{ marginTop: 32, marginInline: 32 }} ref={ref}>
                 <Grid container spacing={2}>
                     {projects.map((project, index) => {
                         return (
-                            <Grid key={index} item xs={4}>
+                            <Grid key={index} item lg={4} md={6} xs={12}>
                                 <ProjectCard project={project} />
                             </Grid>
                         );

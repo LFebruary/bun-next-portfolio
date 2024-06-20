@@ -10,7 +10,7 @@ const WorkExperienceSection: FC<{ workExperiences: WorkExperience[] }> = ({ work
 
     const [ref] = useInView({
         onChange: (inView) => setInViewState(inView),
-        threshold: 0.25,
+        threshold: 0.4,
     });
 
     return (
@@ -18,7 +18,7 @@ const WorkExperienceSection: FC<{ workExperiences: WorkExperience[] }> = ({ work
             <CoolText
                 text="Work experience"
                 forcedHoverState={inViewState} />
-            <div style={{ marginInline: 128 }} ref={ref}>
+            <div style={{ marginInline: 32 }} ref={ref}>
                 <WorkExperienceTimeline items={workExperiences.map((workExperience, index) =>
                     <WorkExperienceTimelineItem key={index}
                         startDate={workExperience.startDate}

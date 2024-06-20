@@ -15,7 +15,7 @@ const projects: Project[] = [
     },
     {
         name: 'JSHelpers',
-        description: 'A collection of useful JavaScript classes that can be used in various projects.',
+        description: 'A versatile JavaScript library offering utility classes for enhanced DOM manipulation and interaction. JSHelpers includes features for observing class changes, mutating elements, and validating form fields, streamlining complex operations in web projects.',
         technologies: ['JavaScript', 'Web'],
         links: [
             {
@@ -26,8 +26,8 @@ const projects: Project[] = [
     },
     {
         name: 'AvaloniaSerialToSocket',
-        description: 'An Avalonia desktop application that reads code from COM/Serial port and broadcasts it via socket connection.',
-        technologies: ['C#', 'Desktop', 'Avalonia', 'Serial Ports', 'Sockets'],
+        description: 'An Avalonia desktop application that reads data from a COM/Serial port and broadcasts it via a socket connection. It includes comprehensive utilities for network and serial port operations, ensuring efficient data transmission and communication.',
+        technologies: ['C#', 'Desktop', 'Avalonia', 'Serial', 'Socket'],
         links: [
             {
                 link: 'https://github.com/LFebruary/AvaloniaSerialToSocket',
@@ -48,7 +48,7 @@ const projects: Project[] = [
     },
     {
         name: 'XamarinSocketClient',
-        description: 'Xamarin application that receives string-values from server companion via socket connection.',
+        description: 'A Xamarin application that receives string values from a server companion via a socket connection. It efficiently handles data reception and updates the UI, ensuring smooth communication between client and server.',
         technologies: ['C#', 'Xamarin', 'Android'],
         links: [
             {
