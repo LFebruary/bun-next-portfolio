@@ -2,7 +2,7 @@ import theme from "@/constants/theme";
 import { WorkExperience } from "@/interfaces"
 import { useInView } from "react-intersection-observer";
 import { DateFormatter } from "@/utils";
-import WorkExperienceCard from "@/components/work-experience-card/work-experience-card";
+import WorkExperienceCard from "@/components/work-experience-card";
 import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import TimelineItem from "@mui/lab/TimelineItem";

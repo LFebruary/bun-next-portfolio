@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-
 import { DocumentHeadTags, DocumentHeadTagsProps, documentGetInitialProps } from '@mui/material-nextjs/v14-pagesRouter';
 
 export default function Document(props: DocumentHeadTagsProps) {
