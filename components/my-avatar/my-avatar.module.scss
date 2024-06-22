@@ -1,0 +1,36 @@
+$shortDuration: 0.3s;
+$longDuration: 1s;
+$defaultDimension: 192px;
+$focusedDimension: 256px;
+
+.avatar {
+    transition: width $shortDuration ease, height $shortDuration ease, transform $longDuration ease, box-shadow $shortDuration ease;
+    box-shadow: none;
+    height: $defaultDimension;
+    width: $defaultDimension;
+
+    &:hover {
+        box-shadow: 0 0 16px 4px #FFF;
+        height: $focusedDimension;
+        width: $focusedDimension;
+        animation: avatar-animation 500ms 100ms linear;
+    }
+}
+
+@keyframes avatar-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(-3deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

@@ -12,7 +12,6 @@ const AvatarSection: FC<{}> = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            paddingTop: 24,
             flexDirection: 'column',
             minHeight: 440,
         }}>

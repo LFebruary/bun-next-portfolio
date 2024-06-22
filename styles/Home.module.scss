@@ -7,6 +7,8 @@
 .styledBackground {
     z-index: 5;
     backdrop-filter: blur(12px);
+    padding-bottom: 32px;
+    padding-top: 32px;
 }
 
 @function random_range($min, $max) {
@@ -27,7 +29,7 @@
 }
 
 .star {
-    $star-count: 32; // Reduce the number of stars
+    $star-count: 40; // Reduce the number of stars
     --star-color: var(--primary-color);
     --star-tail-length: 4em; // Reduced tail length
     --star-tail-height: 1px; // Reduced tail height
