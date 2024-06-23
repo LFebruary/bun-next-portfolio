@@ -1,5 +1,6 @@
 import DefaultLayout from "@/components/layouts/default-layout"
 import { useAuthContext } from "@/context/authContext"
+import { useSnackbar } from "@/context/snackbarContext"
 import signIn from "@/firebase/auth/signIn"
 import LoadingButton from "@mui/lab/LoadingButton"
 import Card from "@mui/material/Card"
@@ -14,6 +15,9 @@ export default function Admin() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const { user, setUser } = useAuthContext();
+    const [successfulLogin, setSuccessfulLogin] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const { showSnackbar } = useSnackbar();
 
     useEffect(() => {
         if (user) {
@@ -32,6 +36,7 @@ export default function Admin() {
 
         if (!email || !password) {
             setLoading(false);
+            setErrorMessage('Email and password is required for login.');
             return;
         }
 
@@ -39,13 +44,15 @@ export default function Admin() {
 
         setLoading(false);
 
-        if (response.result) {
-            setUser(response.result.user);
+        if (response.result && !response.error) {
+            showSnackbar('Login successful', undefined, 'success');
+            setSuccessfulLogin(true);
+            setUser(response?.result?.user);
             router.push('/admin');
         } else {
-            // Handle errors
+            setErrorMessage('Invalid credentials. Please try again.');
+            showSnackbar('Login failed', undefined, 'error');
         }
-
 
     }
 
@@ -71,6 +78,7 @@ export default function Admin() {
                             label="Username"
                             type='email'
                             variant="outlined"
+                            error={!!errorMessage}
                             margin="normal" />
                         <TextField
                             fullWidth
@@ -78,7 +86,9 @@ export default function Admin() {
                             label="Password"
                             type='password'
                             variant="outlined"
-                            margin="normal" />
+                            margin="normal"
+                            error={!!errorMessage}
+                            helperText={errorMessage} />
                     </CardContent>
                     <CardActions sx={{ justifyContent: 'center', paddingBottom: 2 }}>
                         <LoadingButton loading={loading} variant="outlined" type="submit">
