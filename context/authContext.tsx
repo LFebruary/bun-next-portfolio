@@ -12,26 +12,26 @@ const auth = getAuth(firebaseApp);
 
 // Define the shape of the AuthContext
 interface AuthContextType {
-    user: User | null;
+    user: User | undefined;
     loading: boolean;
-    setUser: (user: User | null) => void;
+    setUser: (user: User | undefined) => void;
 }
 
 // Create the AuthContext with an initial value of null for user, true for loading, and an empty function for setUser
-const AuthContext = createContext<AuthContextType>({ user: null, loading: true, setUser: () => { } });
+const AuthContext = createContext<AuthContextType>({ user: undefined, loading: true, setUser: () => { } });
 
 // Custom hook to use the AuthContext
 export const useAuthContext = () => useContext(AuthContext);
 
 // AuthContextProvider component
 export const AuthContextProvider: FC<{ children: ReactElement }> = ({ children }) => {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<User | undefined>(undefined);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Subscribe to Firebase Auth state changes
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
+            setUser(user === null ? undefined : user);
             setLoading(false);
         });
 
