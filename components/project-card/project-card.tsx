@@ -10,7 +10,7 @@ import { Project, ProjectLink } from "@/interfaces";
 import { FC } from "react";
 import { ProjectLinkType } from "@/enums";
 import styles from './project-card.module.scss';
-
+import Link from "next/link";
 
 const ProjectLinkButton: FC<{ link: ProjectLink }> = ({ link }) => {
     switch (link.linkType) {
@@ -20,39 +20,54 @@ const ProjectLinkButton: FC<{ link: ProjectLink }> = ({ link }) => {
                     <GitHub />
                 </IconButton>
             );
+        default:
+            return null;
     }
-
-    return <></>;
 };
 
-const ProjectCard: FC<{ project: Project }> = ({ project }) => {
-    return (
-        <Card variant="outlined">
+const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({ project, maxDescriptionHeight }) => {
+    const githubLink = project.links.find((link) => link.linkType === ProjectLinkType.github);
+
+    const card = (
+        <Card className={styles.projectCard} variant="outlined">
             <CardContent className={styles.projectCardContent}>
                 <Typography variant="h5" component="div">
                     {project.name}
                 </Typography>
-                <Typography className={styles.projectDescription} color="text.secondary" gutterBottom>
+                <Typography
+                    id={`description-${project.name}`}
+                    className={styles.projectDescription}
+                    style={{ minHeight: maxDescriptionHeight }}
+                    color="text.secondary"
+                    gutterBottom
+                >
                     {project.description}
                 </Typography>
-                <Grid container spacing={.5}>
-                    {project.technologies.map((technology, index) => {
-                        return (
-                            <Grid key={index} item>
-                                <Chip size="small" label={technology} variant="outlined" />
-                            </Grid>
-                        );
-                    })}
+                <Grid container spacing={0.5}>
+                    {project.technologies.map((technology, index) => (
+                        <Grid key={index} item>
+                            <Chip size="small" label={technology} variant="outlined" />
+                        </Grid>
+                    ))}
                 </Grid>
             </CardContent>
             <CardActions className={styles.projectCardActions}>
-                {project.links.map((projectLink, index) => {
-                    return <ProjectLinkButton key={index} link={projectLink} />
-                })}
+                {project.links.map((projectLink, index) => (
+                    <ProjectLinkButton key={index} link={projectLink} />
+                ))}
             </CardActions>
         </Card>
+    );
 
-    )
-}
+    if (githubLink) {
+        return (
+            <Link className={styles.customLink} href={githubLink.link} target="_blank">
+                {card}
+            </Link>
+        );
+    } else {
+        return card;
+    }
+};
 
 export default ProjectCard;

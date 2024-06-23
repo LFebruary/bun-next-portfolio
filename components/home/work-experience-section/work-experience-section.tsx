@@ -20,7 +20,8 @@ const WorkExperienceSection: FC<{ workExperiences: WorkExperience[] }> = ({ work
                 forcedHoverState={inViewState} />
             <div style={{ marginInline: 32 }} ref={ref}>
                 <WorkExperienceTimeline items={workExperiences.map((workExperience, index) =>
-                    <WorkExperienceTimelineItem key={index}
+                    <WorkExperienceTimelineItem
+                        key={index}
                         startDate={workExperience.startDate}
                         endDate={workExperience.endDate}
                         companyDescription={workExperience.companyDescription}

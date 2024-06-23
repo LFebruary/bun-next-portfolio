@@ -1,4 +1,5 @@
 import theme from '@/constants/theme';
+import { AuthContextProvider } from '@/context/authContext';
 import '@/styles/globals.scss'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { AppCacheProvider } from '@mui/material-nextjs/v14-pagesRouter';
@@ -9,7 +10,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <AppCacheProvider {...pageProps}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <AuthContextProvider>
+          <Component {...pageProps} />
+        </AuthContextProvider>
       </ThemeProvider>
     </AppCacheProvider>
   );
