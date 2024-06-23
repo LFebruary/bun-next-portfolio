@@ -4,7 +4,6 @@ import projects from '@/data/projects.data';
 import workExperiences from '@/data/workExperiences.data';
 import { AvatarSection, ProjectsSection, WorkExperienceSection } from '@/components/home';
 import Container from '@mui/material/Container';
-import styles from '@/styles/Home.module.scss';
 import DefaultLayout from '@/components/layouts/default-layout';
 
 export default function Home() {
@@ -15,7 +14,6 @@ export default function Home() {
     return <div>Error: {error}</div>;
   }
 
-  console.log(styles);
 
   return (
     <>

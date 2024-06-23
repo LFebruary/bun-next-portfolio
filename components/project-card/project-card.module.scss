@@ -1,3 +1,19 @@
+$shortDuration: 0.3s;
+
+.customLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.projectCard {
+    transition: box-shadow $shortDuration ease;
+
+    &:hover {
+        box-shadow: 0 0 8px 2px #FFF;
+    }
+}
+
+
 .projectCardContent {
     padding-block-end: 2px;
 }
