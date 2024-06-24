@@ -3,6 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
+import { Fragment } from "react";
 
 interface WorkExperienceCardProps extends WorkExperience {
     minHeight?: boolean;
@@ -35,6 +36,7 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({
 
     return (
         <Card
+            key={companyName.replace(' ', '')}
             className={classes}
             sx={{ minWidth: 275, marginBlock: margin ? 2 : undefined, maxWidth: maxWidth ? 256 : undefined }} variant="outlined">
             <CardContent>
@@ -47,8 +49,8 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({
                     </Typography>
                 </div>
                 <div style={{ marginBlock: .5, marginBlockStart: 2 }}>
-                    {languages && languages.map((language => {
-                        return (<>
+                    {languages && languages.map(((language, index) => {
+                        return (<Fragment key={index}>
                             <Typography variant="caption" component="div" sx={{ paddingTop: 1, marginInline: .5, fontWeight: 900 }}>
                                 {language.languageName}
                             </Typography>
@@ -73,7 +75,7 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({
                                 })}
 
                             </div>
-                        </>
+                        </Fragment>
                         );
                     }))}
                 </div>

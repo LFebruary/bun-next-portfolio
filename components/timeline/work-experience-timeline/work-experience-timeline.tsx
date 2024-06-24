@@ -5,7 +5,7 @@ import Timeline from "@mui/lab/Timeline";
 const WorkExperienceTimeline: FC<{ items: ReactNode[] }> = (props) => {
     return (
         <Timeline position="alternate-reverse">
-            <PresentTimelineItem />
+            <PresentTimelineItem key="present" />
             {props.items.map((item) => item)}
         </Timeline>
     );

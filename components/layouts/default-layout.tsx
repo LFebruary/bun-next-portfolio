@@ -15,20 +15,18 @@ const DefaultLayout: FC<{ children: ReactNode }> = ({ children }) => {
 
     return (
         <>
-            <Fade in={true} timeout={1000}>
-                <div>
-                    <div className={styles.stars}>
-                        {[...Array(40)].map((_, i) =>
-                            <div key={i} className={styles.star}></div>
-                        )}
-                    </div>
-                    <main className={styles.styledBackground}>
-                        <Container maxWidth="lg">
-                            {children}
-                        </Container>
-                    </main>
+            <div>
+                <div className={styles.stars}>
+                    {[...Array(40)].map((_, i) =>
+                        <div key={i} className={styles.star}></div>
+                    )}
                 </div>
-            </Fade>
+                <main className={styles.styledBackground}>
+                    <Container maxWidth="lg">
+                        {children}
+                    </Container>
+                </main>
+            </div>
             {snackbar &&
                 <Snackbar
                     open={snackbar.open}
