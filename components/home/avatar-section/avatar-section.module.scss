@@ -1,0 +1,18 @@
+.avatarSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .avatarSection {
+        min-height: 320px;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .avatarSection {
+        min-height: 440px;
+    }
+  }

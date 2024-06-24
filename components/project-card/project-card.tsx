@@ -59,15 +59,16 @@ const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({ p
         </Card>
     );
 
-    if (githubLink) {
-        return (
-            <Link className={styles.customLink} href={githubLink.link} target="_blank">
-                {card}
-            </Link>
-        );
-    } else {
-        return card;
-    }
+    return card;
+    // if (githubLink) {
+    //     return (
+    //         <Link className={styles.customLink} href={githubLink.link} target="_blank">
+    //             {card}
+    //         </Link>
+    //     );
+    // } else {
+        
+    // }
 };
 
 export default ProjectCard;

@@ -11,6 +11,23 @@ interface CoolTextProps {
 
 const CoolText: React.FC<CoolTextProps> = (props: CoolTextProps = { text: '', inline: true, forcedHoverState: false, }) => {
     const [isHovering, setIsHovered] = useState(false);
+    const [smallScreen, setSmallScreen] = useState(false);
+
+    const smallScreenListener = () => {
+        const smallWidth = window.screen.width < 769;
+        if (smallScreen !== smallWidth) {
+            setSmallScreen(smallWidth);
+        }
+    };
+
+    useEffect(() => {
+        smallScreenListener();
+        window.addEventListener('resize', smallScreenListener);
+
+        return () => {
+            window.removeEventListener('resize', smallScreenListener);
+        };
+    }, [smallScreenListener]);
 
     useEffect(() => {
         if (props.forcedHoverState === true) {
@@ -25,8 +42,6 @@ const CoolText: React.FC<CoolTextProps> = (props: CoolTextProps = { text: '', in
     const onMouseLeave = () => {
         setIsHovered(props.forcedHoverState || false);
     };
-
-
 
     const rawFontSize = theme.typography.h2.fontSize;
 
@@ -45,7 +60,7 @@ const CoolText: React.FC<CoolTextProps> = (props: CoolTextProps = { text: '', in
                 flexDirection: 'column',
                 justifyContent: !props.inline ? 'center' : undefined,
                 alignItems: !props.inline ? 'center' : undefined,
-                width: props.inline && isHovering ? 40 * (props.text.length) : undefined,
+                width: props.inline && isHovering ? (smallScreen ? 25 : 40) * (props.text.length) : undefined,
                 transition: 'width .5s ease'
             }}>
             <Typography
@@ -56,7 +71,7 @@ const CoolText: React.FC<CoolTextProps> = (props: CoolTextProps = { text: '', in
                     // transform: isHovering ? 'rotate(-5deg)' : 'rotate(0deg)',
                     textShadow: isHovering ? `0 0 10px ${theme.palette.common.white}` : 'none',
                     fontWeight: isHovering ? 'bold' : 'normal',
-                    fontSize: isHovering ? `${fontSize * 1.25}rem` : `${fontSize}rem`
+                    fontSize: isHovering ? `${fontSize * 1.2}rem` : `${fontSize}rem`
                 }}>
                 {props.text}
             </Typography>
