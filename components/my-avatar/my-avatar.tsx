@@ -1,7 +1,6 @@
 import { Avatar } from "@mui/material";
 import { useState } from "react";
 import styles from './my-avatar.module.scss';
-import avatarPicture from "../../public/me.jpeg";
 
 interface MyAvatarProps {
     isHoveringCallback?: ((hovered: boolean) => void) | undefined
@@ -24,7 +23,7 @@ const MyAvatar: React.FC<MyAvatarProps> = (props: MyAvatarProps) => {
         <Avatar
             className={styles.avatar}
             alt="Lyle february"
-            src={avatarPicture.src}
+            src="/me.jpeg"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave} />
 
