@@ -7,10 +7,11 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { Project, ProjectLink } from "@/interfaces";
-import { FC } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { ProjectLinkType } from "@/enums";
 import styles from './project-card.module.scss';
 import Link from "next/link";
+import { useInView } from "react-intersection-observer";
 
 const ProjectLinkButton: FC<{ link: ProjectLink }> = ({ link }) => {
     switch (link.linkType) {
@@ -28,8 +29,32 @@ const ProjectLinkButton: FC<{ link: ProjectLink }> = ({ link }) => {
 const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({ project, maxDescriptionHeight }) => {
     const githubLink = project.links.find((link) => link.linkType === ProjectLinkType.github);
 
+    const [inViewState, setInViewState] = useState(false);
+    const [smallScreen, setSmallScreen] = useState(false);
+
+    const [ref, inView] = useInView({
+        onChange: (inView) => setInViewState(inView),
+        threshold: 1,
+    });
+
+    const smallScreenListener = useCallback(() => {
+        const smallWidth = window.screen.width < 769;
+        if (smallScreen !== smallWidth) {
+            setSmallScreen(smallWidth);
+        }
+    }, [smallScreen]);
+
+    useEffect(() => {
+        smallScreenListener();
+        window.addEventListener('resize', smallScreenListener);
+
+        return () => {
+            window.removeEventListener('resize', smallScreenListener);
+        };
+    }, [smallScreenListener]);
+
     const card = (
-        <Card className={styles.projectCard} variant="outlined">
+        <Card ref={ref} className={`${styles.projectCard} ${inViewState && smallScreen ? styles.forcedHover : ''}`} variant="outlined">
             <CardContent className={styles.projectCardContent}>
                 <Typography variant="h5" component="div">
                     {project.name}
