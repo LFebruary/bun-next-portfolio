@@ -22,6 +22,9 @@ export default function Home() {
         <meta name="twitter:description" content="Discover Lyle February's portfolio, a Full Stack Developer with expertise in C#, TypeScript, and Flutter. Explore his notable projects, including custom-logger, JSHelpers, AvaloniaSerialToSocket, AvaloniaToolbox, and XamarinSocketClient." />
         {/* <meta name="twitter:image" content="https://example.com/lyle-february-portfolio-image.jpg" /> */}
         <link rel="icon" href="/favicon.ico" />
+        <script>
+          let FF_FOUC_FIX;
+        </script>
       </Head>
       <DefaultLayout>
         <AvatarSection />
