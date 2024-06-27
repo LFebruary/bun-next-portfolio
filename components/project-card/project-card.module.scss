@@ -11,6 +11,10 @@ $shortDuration: 0.3s;
     &:hover {
         box-shadow: 0 0 8px 2px #FFF;
     }
+
+    &.forcedHover {
+        box-shadow: 0 0 8px 2px #FFF;
+    }
 }
 
 
