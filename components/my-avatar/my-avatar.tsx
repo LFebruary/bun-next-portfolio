@@ -1,6 +1,6 @@
 import { Avatar } from "@mui/material";
 import { useState } from "react";
-import Image from 'next/image';
+import myImage from "../../public/me.jpg";
 import styles from './my-avatar.module.scss';
 
 interface MyAvatarProps {
@@ -24,7 +24,7 @@ const MyAvatar: React.FC<MyAvatarProps> = (props: MyAvatarProps) => {
         <Avatar
             className={styles.avatar}
             alt="Lyle february"
-            src="/me.jpeg"
+            src={myImage.src}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}>
         </Avatar>
