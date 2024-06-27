@@ -1,6 +1,6 @@
 import theme from "@/constants/theme";
 import { Fade, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface CoolTextProps {
     text: string;
@@ -13,12 +13,12 @@ const CoolText: React.FC<CoolTextProps> = (props: CoolTextProps = { text: '', in
     const [isHovering, setIsHovered] = useState(false);
     const [smallScreen, setSmallScreen] = useState(false);
 
-    const smallScreenListener = () => {
+    const smallScreenListener = useCallback(() => {
         const smallWidth = window.screen.width < 769;
         if (smallScreen !== smallWidth) {
             setSmallScreen(smallWidth);
         }
-    };
+    }, [smallScreen]);
 
     useEffect(() => {
         smallScreenListener();

@@ -3,7 +3,7 @@ import MobileTimeline from "@/components/timeline/mobile/mobile-timeline";
 import WorkExperienceTimeline from "@/components/timeline/work-experience-timeline";
 import WorkExperienceTimelineItem from "@/components/timeline/work-experience-timeline-item";
 import { WorkExperience } from "@/interfaces";
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 const WorkExperienceSection: FC<{ workExperiences: WorkExperience[] }> = ({ workExperiences }) => {
@@ -15,12 +15,12 @@ const WorkExperienceSection: FC<{ workExperiences: WorkExperience[] }> = ({ work
         threshold: 0.4,
     });
 
-    const smallScreenListener = () => {
+    const smallScreenListener = useCallback(() => {
         const smallWidth = window.screen.width < 769;
         if (smallScreen !== smallWidth) {
             setSmallScreen(smallWidth);
         }
-    };
+    }, [smallScreen]);
 
     useEffect(() => {
         smallScreenListener();

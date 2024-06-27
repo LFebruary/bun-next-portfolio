@@ -24,10 +24,10 @@ const MyAvatar: React.FC<MyAvatarProps> = (props: MyAvatarProps) => {
         <Avatar
             className={styles.avatar}
             alt="Lyle february"
+            src="/me.jpeg"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}>
-                <Image src="/me.jpeg" alt="Lyle February" width={40} height={40} />
-            </Avatar>
+        </Avatar>
 
     );
 };
