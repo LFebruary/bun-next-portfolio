@@ -1,16 +1,15 @@
-import { useRouter } from "next/router";
-import { useAuthContext } from "@/context/authContext";
-import { ComponentType, useEffect } from "react";
-import React from "react";
+import {useRouter} from "next/router";
+import {useAuthContext} from "@/context/authContext";
+import React, {ComponentType, useCallback} from "react";
 
 const withAuth = (WrappedComponent: ComponentType) => {
-    const ComponentWithAuth = (props: any) => {
-        const { user, loading } = useAuthContext();
+    return (props: any) => {
+        const {user, loading} = useAuthContext();
         const router = useRouter();
 
-        useEffect(() => {
+        useCallback(async () => {
             if (!loading && user == null) {
-                router.push("/admin/login");
+                await router.push("/admin/login");
             }
         }, [user, loading, router]);
 
@@ -20,8 +19,6 @@ const withAuth = (WrappedComponent: ComponentType) => {
 
         return <WrappedComponent {...props} />;
     };
-
-    return ComponentWithAuth;
 };
 
 export default withAuth;

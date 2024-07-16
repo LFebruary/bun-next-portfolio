@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { FC, useState } from "react";
 import styles from "./avatar-section.module.scss";
 
-const AvatarSection: FC<{}> = () => {
+const AvatarSection: FC = () => {
     const [avatarHovered, setIsAvatarHovered] = useState(false);
 
     return (

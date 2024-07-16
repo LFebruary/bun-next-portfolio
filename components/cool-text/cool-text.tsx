@@ -1,6 +1,6 @@
 import theme from "@/constants/theme";
 import { Fade, Typography } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 
 interface CoolTextProps {
     text: string;
@@ -9,7 +9,7 @@ interface CoolTextProps {
     forcedHoverState?: boolean;
 }
 
-const CoolText: React.FC<CoolTextProps> = (props: CoolTextProps = { text: '', inline: true, forcedHoverState: false, }) => {
+const CoolText: FC<CoolTextProps> = (props: CoolTextProps = { text: '', inline: true, forcedHoverState: false, }) => {
     const [isHovering, setIsHovered] = useState(false);
     const [smallScreen, setSmallScreen] = useState(false);
 

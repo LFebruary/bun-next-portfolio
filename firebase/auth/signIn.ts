@@ -1,9 +1,10 @@
-import firebaseApp from "../config";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
-
-const auth = getAuth(firebaseApp);
+import getFBApp from "../config";
 
 export default async function signIn(email: string, password: string) {
+    const firebaseApp = getFBApp();
+    const auth = getAuth(firebaseApp);
+    
     let result = undefined, error = undefined;
     try {
         result = await signInWithEmailAndPassword(auth, email, password);

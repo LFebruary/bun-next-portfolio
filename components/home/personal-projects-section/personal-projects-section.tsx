@@ -2,14 +2,14 @@ import CoolText from "@/components/cool-text";
 import ProjectCard from "@/components/project-card";
 import { Project } from "@/interfaces";
 import Grid from "@mui/material/Grid";
-import { FC, useCallback, useEffect, useRef, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 const ProjectsSection: FC<{ projects: Project[] }> = ({ projects }) => {
     const [inViewState, setInViewState] = useState(false);
     const [maxDescriptionHeight, setMaxDescriptionHeight] = useState<number>(0);
     const [ref] = useInView({
-        onChange: (inView) => setInViewState(inView),
+        onChange: setInViewState,
         threshold: 0.6,
     });
 

@@ -29,7 +29,7 @@ const WorkExperienceTimelineItem: FC<WorkExperienceTimelineItemProps> = (props) 
     const current = !props.endDate;
 
     const [ref] = useInView({
-        onChange: (inView) => setInViewState(inView),
+        onChange: setInViewState,
         threshold: 0.8,
     });
 
