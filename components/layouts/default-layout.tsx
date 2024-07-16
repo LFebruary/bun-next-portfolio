@@ -1,17 +1,10 @@
 import { Alert, Container, Snackbar } from "@mui/material"
-import Fade from "@mui/material/Fade";
 import styles from '@/styles/Home.module.scss';
 import { FC, ReactNode } from "react"
 import { useSnackbar } from "@/context/snackbarContext";
-import Slide, { SlideProps } from '@mui/material/Slide';
-import { TransitionProps } from '@mui/material/transitions';
 
 const DefaultLayout: FC<{ children: ReactNode }> = ({ children }) => {
     const { snackbar, hideSnackbar } = useSnackbar();
-
-    function SlideTransition(props: TransitionProps) {
-        return <Slide {...(props as SlideProps)} direction="up" />;
-    }
 
     return (
         <>
@@ -32,7 +25,6 @@ const DefaultLayout: FC<{ children: ReactNode }> = ({ children }) => {
                     open={snackbar.open}
                     autoHideDuration={snackbar.autoHideDuration}
                     onClose={hideSnackbar}
-                    TransitionComponent={SlideTransition}
                 >
                     <Alert
                         severity={snackbar.severity}

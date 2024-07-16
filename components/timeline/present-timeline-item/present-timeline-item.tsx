@@ -4,11 +4,11 @@ import { Typography } from "@mui/material";
 import { FC, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-const PresentTimelineItem: FC<{}> = () => {
+const PresentTimelineItem: FC = () => {
     const [inViewState, setInViewState] = useState(false);
 
     const [ref] = useInView({
-        onChange: (inView) => setInViewState(inView),
+        onChange: setInViewState,
     });
 
     return (

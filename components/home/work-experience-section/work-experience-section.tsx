@@ -11,7 +11,7 @@ const WorkExperienceSection: FC<{ workExperiences: WorkExperience[] }> = ({ work
     const [smallScreen, setSmallScreen] = useState(false);
 
     const [ref] = useInView({
-        onChange: (inView) => setInViewState(inView),
+        onChange: setInViewState,
         threshold: 0.4,
     });
 

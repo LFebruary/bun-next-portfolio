@@ -2,26 +2,35 @@ import DefaultLayout from "@/components/layouts/default-layout"
 import { useAuthContext } from "@/context/authContext"
 import { useSnackbar } from "@/context/snackbarContext"
 import signIn from "@/firebase/auth/signIn"
+import generateFBApp from "@/firebase/config"
 import LoadingButton from "@mui/lab/LoadingButton"
 import Card from "@mui/material/Card"
 import CardActions from "@mui/material/CardActions"
 import CardContent from "@mui/material/CardContent"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
+import { getAuth, Auth } from "firebase/auth"
+import { GetStaticProps, InferGetStaticPropsType } from "next"
 import { useRouter } from "next/router"
-import { FormEvent, useEffect, useState } from "react"
+import {FormEvent, useCallback, useEffect, useState} from "react"
 
-export default function Admin() {
+export default function Admin({
+    auth,
+  }: InferGetStaticPropsType<typeof getStaticProps>) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
-    const { user, setUser } = useAuthContext();
-    const [successfulLogin, setSuccessfulLogin] = useState(false);
+    const { user, setUser, setAuth } = useAuthContext();
+    const [_, setSuccessfulLogin] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const { showSnackbar } = useSnackbar();
 
     useEffect(() => {
+        setAuth(auth);
+      },[auth]);
+
+    useCallback(async () => {
         if (user) {
-            router.push('/admin');
+            await router.push('/admin');
         }
     }, [user, router]);
 
@@ -48,7 +57,7 @@ export default function Admin() {
             showSnackbar('Login successful', undefined, 'success');
             setSuccessfulLogin(true);
             setUser(response?.result?.user);
-            router.push('/admin');
+            await router.push('/admin');
         } else {
             setErrorMessage('Invalid credentials. Please try again.');
             showSnackbar('Login failed', undefined, 'error');
@@ -100,3 +109,12 @@ export default function Admin() {
         </DefaultLayout>
     )
 }
+
+export const getStaticProps = (async (_: any) => {
+    const firebaseApp = generateFBApp();
+    const auth = getAuth(firebaseApp);
+    return { props: { auth } };
+  }) satisfies GetStaticProps<{
+    auth: Auth,
+  }>
+  

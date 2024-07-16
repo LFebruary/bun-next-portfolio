@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
-import { Fragment } from "react";
+import {FC, Fragment} from "react";
 
 interface WorkExperienceCardProps extends WorkExperience {
     minHeight?: boolean;
@@ -13,7 +13,7 @@ interface WorkExperienceCardProps extends WorkExperience {
     shadow?: boolean;
 }
 
-const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({
+const WorkExperienceCard: FC<WorkExperienceCardProps> = ({
     startDate,
     companyDescription,
     endDate,

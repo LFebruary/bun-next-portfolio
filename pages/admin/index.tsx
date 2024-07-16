@@ -25,7 +25,6 @@ const projectRows = projects.map((project) => {
 
 function ProtectedPage() {
     return (
-
         <DefaultLayout>
             <Typography variant="h3">
                 Admin

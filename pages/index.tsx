@@ -3,8 +3,21 @@ import projects from '@/data/projects.data';
 import workExperiences from '@/data/workExperiences.data';
 import { AvatarSection, ProjectsSection, WorkExperienceSection } from '@/components/home';
 import DefaultLayout from '@/components/layouts/default-layout';
+import generateFBApp from '@/firebase/config';
+import { getAuth, Auth } from 'firebase/auth';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { useAuthContext } from '@/context/authContext';
+import { useEffect } from 'react';
 
-export default function Home() {
+export default function Home({
+  auth,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+
+  const { setAuth } = useAuthContext();
+  useEffect(() => {
+    setAuth(auth);
+  },[auth]);
+
   return (
     <>
       <Head>
@@ -34,3 +47,11 @@ export default function Home() {
     </>
   )
 }
+
+export const getStaticProps = (async (context: any) => {
+  const firebaseApp = generateFBApp();
+  const auth = getAuth(firebaseApp);
+  return { props: { auth } };
+}) satisfies GetStaticProps<{
+  auth: Auth,
+}>
