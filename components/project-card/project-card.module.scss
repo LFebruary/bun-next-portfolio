@@ -9,14 +9,13 @@ $shortDuration: 0.3s;
     transition: box-shadow $shortDuration ease;
 
     &:hover {
-        box-shadow: 0 0 8px 2px #FFF;
+        box-shadow: 0 0 8px 2px #fff;
     }
 
     &.forcedHover {
-        box-shadow: 0 0 8px 2px #FFF;
+        box-shadow: 0 0 8px 2px #fff;
     }
 }
-
 
 .projectCardContent {
     padding-block-end: 2px;

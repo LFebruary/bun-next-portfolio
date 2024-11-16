@@ -1,5 +1,3 @@
-import { ProjectLinkType } from "./projectLinkType";
+import { ProjectLinkType } from './projectLinkType';
 
-export {
-    ProjectLinkType
-}
+export { ProjectLinkType };

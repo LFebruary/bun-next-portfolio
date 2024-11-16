@@ -1,22 +1,27 @@
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Chip from "@mui/material/Chip";
-import GitHub from "@mui/icons-material/GitHub";
-import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import {Project, ProjectLink} from "@/interfaces";
-import {FC, useCallback, useEffect, useState} from "react";
-import {ProjectLinkType} from "@/enums";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Chip from '@mui/material/Chip';
+import GitHub from '@mui/icons-material/GitHub';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { Project, ProjectLink } from '@/interfaces';
+import { FC, useCallback, useEffect, useState } from 'react';
+import { ProjectLinkType } from '@/enums';
 import styles from './project-card.module.scss';
-import {useInView} from "react-intersection-observer";
+import { useInView } from 'react-intersection-observer';
 
 const ProjectLinkButton: FC<{ link: ProjectLink }> = ({ link }) => {
     switch (link.linkType) {
         case ProjectLinkType.github:
             return (
-                <IconButton target="_blank" href={link.link} aria-label="Github repository" size="large">
+                <IconButton
+                    target="_blank"
+                    href={link.link}
+                    aria-label="Github repository"
+                    size="large"
+                >
                     <GitHub />
                 </IconButton>
             );
@@ -25,13 +30,16 @@ const ProjectLinkButton: FC<{ link: ProjectLink }> = ({ link }) => {
     }
 };
 
-const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({ project, maxDescriptionHeight }) => {
+const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({
+    project,
+    maxDescriptionHeight,
+}) => {
     // const githubLink = project.links.find((link) => link.linkType === ProjectLinkType.github);
 
     const [inViewState, setInViewState] = useState(false);
     const [smallScreen, setSmallScreen] = useState(false);
 
-    const [ref, _] = useInView({
+    const { ref } = useInView({
         onChange: setInViewState,
         threshold: 1,
     });
@@ -53,8 +61,11 @@ const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({ p
     }, [smallScreenListener]);
 
     return (
-        <Card ref={ref} className={`${styles.projectCard} ${inViewState && smallScreen ? styles.forcedHover : ''}`}
-              variant="outlined">
+        <Card
+            ref={ref}
+            className={`${styles.projectCard} ${inViewState && smallScreen ? styles.forcedHover : ''}`}
+            variant="outlined"
+        >
             <CardContent className={styles.projectCardContent}>
                 <Typography variant="h5" component="div">
                     {project.name}
@@ -62,7 +73,7 @@ const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({ p
                 <Typography
                     id={`description-${project.name}`}
                     className={styles.projectDescription}
-                    style={{minHeight: maxDescriptionHeight}}
+                    style={{ minHeight: maxDescriptionHeight }}
                     color="text.secondary"
                     gutterBottom
                 >
@@ -71,14 +82,14 @@ const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({ p
                 <Grid container spacing={0.5}>
                     {project.technologies.map((technology, index) => (
                         <Grid key={index} item>
-                            <Chip size="small" label={technology} variant="outlined"/>
+                            <Chip size="small" label={technology} variant="outlined" />
                         </Grid>
                     ))}
                 </Grid>
             </CardContent>
             <CardActions className={styles.projectCardActions}>
                 {project.links.map((projectLink, index) => (
-                    <ProjectLinkButton key={index} link={projectLink}/>
+                    <ProjectLinkButton key={index} link={projectLink} />
                 ))}
             </CardActions>
         </Card>
@@ -90,7 +101,7 @@ const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({ p
     //         </Link>
     //     );
     // } else {
-        
+
     // }
 };
 

@@ -2,92 +2,92 @@
 $color-1: black;
 $color-2: white;
 $color-3: #29b6f6;
-$color-4: #3F3F3F;
+$color-4: #3f3f3f;
 
 /* Styling */
 .timeline {
-  margin: 4em auto;
-  position: relative;
-  max-width: 46em;
-  list-style-type: none;
+    margin: 4em auto;
+    position: relative;
+    max-width: 46em;
+    list-style-type: none;
 
-  &:before {
-    background-color: $color-2;
-    content: '';
-    margin-left: -1px;
-    position: absolute;
-    top: 0;
-    left: 2em;
-    width: 2px;
-    height: 100%;
-  }
+    &:before {
+        background-color: $color-2;
+        content: '';
+        margin-left: -1px;
+        position: absolute;
+        top: 0;
+        left: 2em;
+        width: 2px;
+        height: 100%;
+    }
 }
 
 .timelineEvent {
-  position: relative;
+    position: relative;
 
-  &:hover {
-    .timelineEventIcon {
-      transform: rotate(-45deg);
-      background-color: $color-3;
-      box-shadow: 0 0 16px 8px #FFF;
-    }
+    &:hover {
+        .timelineEventIcon {
+            transform: rotate(-45deg);
+            background-color: $color-3;
+            box-shadow: 0 0 16px 8px #fff;
+        }
 
-    .timelineEventThumbnail {
-      box-shadow: inset 0 0 0 0 $color-3;
+        .timelineEventThumbnail {
+            box-shadow: inset 0 0 0 0 $color-3;
+        }
     }
-  }
 }
 
 .timelineEventCopy {
-  padding: 0;
-  position: relative;
-  top: -0.25em;
-  left: 2em;
-  width: 95%;
+    padding: 0;
+    position: relative;
+    top: -0.25em;
+    left: 2em;
+    width: 95%;
 
-  h3 {
-    font-size: 1.75em;
-  }
+    h3 {
+        font-size: 1.75em;
+    }
 
-  h4 {
-    font-size: 1.2em;
-    margin-bottom: 1.2em;
-  }
+    h4 {
+        font-size: 1.2em;
+        margin-bottom: 1.2em;
+    }
 
-  strong {
-    font-weight: 700;
-  }
+    strong {
+        font-weight: 700;
+    }
 
-  p:not(.timelineEventThumbnail) {
-    padding-bottom: 1.2em;
-  }
+    p:not(.timelineEventThumbnail) {
+        padding-bottom: 1.2em;
+    }
 }
 
 .timelineEventIcon {
-  transition: all .5s ease;
-  transform: rotate(45deg);
-  background-color: $color-1;
-  outline: 5px solid $color-2;
-  display: block;
-  margin: 0.25em 0.25em 0.25em -1.75em;
-  position: absolute;
-  top: 0;
-  left: 1em;
-  width: .5em;
-  height: .5em;
+    transition: all 0.5s ease;
+    transform: rotate(45deg);
+    background-color: $color-1;
+    outline: 5px solid $color-2;
+    display: block;
+    margin: 0.25em 0.25em 0.25em -1.75em;
+    position: absolute;
+    top: 0;
+    left: 1em;
+    width: 0.5em;
+    height: 0.5em;
 }
 
 .timelineEventThumbnail {
-  transition: box-shadow 0.5s ease-in 0.1s;
-  color: $color-2;
-  font-size: 0.75em;
-  margin-top: 1em;
-  margin-bottom: 2.5em;
-  margin-left: 0.25em;
-  background-color: $color-4;
-  border-radius: 16px;
-  box-shadow: inset 0 0 0 0 #ef795a;
-  display: inline-block;
-  padding: 0.25em 1em 0.2em 1em;
+    transition: box-shadow 0.5s ease-in 0.1s;
+    color: $color-2;
+    font-size: 0.75em;
+    margin-top: 1em;
+    margin-bottom: 2.5em;
+    margin-left: 0.25em;
+    background-color: $color-4;
+    border-radius: 16px;
+    box-shadow: inset 0 0 0 0 #ef795a;
+    display: inline-block;
+    padding: 0.25em 1em 0.2em 1em;
 }

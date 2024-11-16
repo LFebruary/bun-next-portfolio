@@ -1,4 +1,4 @@
-import { ProjectLink } from ".";
+import { ProjectLink } from '.';
 
 export interface Project {
     name: string;

@@ -1,9 +1,9 @@
-import CoolText from "@/components/cool-text";
-import ProjectCard from "@/components/project-card";
-import { Project } from "@/interfaces";
-import Grid from "@mui/material/Grid";
-import { FC, useCallback, useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
+import CoolText from '@/components/cool-text';
+import ProjectCard from '@/components/project-card';
+import { Project } from '@/interfaces';
+import Grid from '@mui/material/Grid';
+import { FC, useCallback, useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 const ProjectsSection: FC<{ projects: Project[] }> = ({ projects }) => {
     const [inViewState, setInViewState] = useState(false);
@@ -53,15 +53,15 @@ const ProjectsSection: FC<{ projects: Project[] }> = ({ projects }) => {
 
     return (
         <>
-            <CoolText
-                text="Personal Projects"
-                forcedHoverState={inViewState}
-            />
+            <CoolText text="Personal Projects" forcedHoverState={inViewState} />
             <div style={{ marginTop: 32, marginInline: 32 }} ref={ref}>
                 <Grid container spacing={2}>
                     {projects.map((project, index) => (
                         <Grid key={index} item lg={4} md={6} xs={12}>
-                            <ProjectCard project={project} maxDescriptionHeight={maxDescriptionHeight} />
+                            <ProjectCard
+                                project={project}
+                                maxDescriptionHeight={maxDescriptionHeight}
+                            />
                         </Grid>
                     ))}
                 </Grid>

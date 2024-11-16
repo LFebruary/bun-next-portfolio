@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import DefaultLayout from "@/components/layouts/default-layout";
-import withAuth from "@/components/with-auth";
-import projects from "@/data/projects.data";
-import Typography from "@mui/material/Typography";
+import DefaultLayout from '@/components/layouts/default-layout';
+import withAuth from '@/components/with-auth';
+import projects from '@/data/projects.data';
+import Typography from '@mui/material/Typography';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 const projectColumns: GridColDef[] = [
@@ -26,9 +26,7 @@ const projectRows = projects.map((project) => {
 function ProtectedPage() {
     return (
         <DefaultLayout>
-            <Typography variant="h3">
-                Admin
-            </Typography>
+            <Typography variant="h3">Admin</Typography>
             <DataGrid
                 rows={projectRows}
                 columns={projectColumns}

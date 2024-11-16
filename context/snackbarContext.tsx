@@ -19,7 +19,11 @@ const SnackbarContext = createContext<SnackbarContextType | undefined>(undefined
 export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
     const [snackbar, setSnackbar] = useState<SnackbarState | undefined>(undefined);
 
-    const showSnackbar = (message: string, autoHideDuration: number = 5000, severity: AlertColor = 'success') => {
+    const showSnackbar = (
+        message: string,
+        autoHideDuration: number = 5000,
+        severity: AlertColor = 'success'
+    ) => {
         setSnackbar({ open: true, message, autoHideDuration, severity });
     };
 

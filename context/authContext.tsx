@@ -1,9 +1,5 @@
 import { createContext, useState, useContext, useEffect, ReactElement, FC } from 'react';
-import {
-    onAuthStateChanged,
-    User,
-    Auth,
-} from 'firebase/auth';
+import { onAuthStateChanged, User, Auth } from 'firebase/auth';
 import CircularProgress from '@mui/material/CircularProgress';
 
 // Define the shape of the AuthContext
@@ -15,7 +11,12 @@ interface AuthContextType {
 }
 
 // Create the AuthContext with an initial value of null for user, true for loading, and an empty function for setUser
-const AuthContext = createContext<AuthContextType>({ user: undefined, loading: true, setUser: () => { }, setAuth: () => { } });
+const AuthContext = createContext<AuthContextType>({
+    user: undefined,
+    loading: true,
+    setUser: () => {},
+    setAuth: () => {},
+});
 
 // Custom hook to use the AuthContext
 export const useAuthContext = () => useContext(AuthContext);
@@ -50,7 +51,15 @@ export const AuthContextProvider: FC<{ children: ReactElement }> = ({ children }
 
 const FullPageLoader: FC = () => {
     return (
-        <div style={{ height: '100vh', width: '100vw', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div
+            style={{
+                height: '100vh',
+                width: '100vw',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+        >
             <CircularProgress />
         </div>
     );

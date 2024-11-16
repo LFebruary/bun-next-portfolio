@@ -1,4 +1,4 @@
-import { ProgrammingLanguage } from "./programmingLanguage.interface";
+import { ProgrammingLanguage } from './programmingLanguage.interface';
 
 export interface WorkExperience {
     startDate: Date;

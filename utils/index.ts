@@ -1,5 +1,3 @@
-import DateFormatter from "./dateFormatter.util";
+import DateFormatter from './dateFormatter.util';
 
-export {
-    DateFormatter
-}
+export { DateFormatter };

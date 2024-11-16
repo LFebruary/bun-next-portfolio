@@ -1,4 +1,4 @@
-import { ProjectLinkType } from "@/enums";
+import { ProjectLinkType } from '@/enums';
 
 export interface ProjectLink {
     link: string;
