@@ -1,32 +1,22 @@
-import DefaultLayout from "@/components/layouts/default-layout"
-import { useAuthContext } from "@/context/authContext"
-import { useSnackbar } from "@/context/snackbarContext"
-import signIn from "@/firebase/auth/signIn"
-import generateFBApp from "@/firebase/config"
-import LoadingButton from "@mui/lab/LoadingButton"
-import Card from "@mui/material/Card"
-import CardActions from "@mui/material/CardActions"
-import CardContent from "@mui/material/CardContent"
-import TextField from "@mui/material/TextField"
-import Typography from "@mui/material/Typography"
-import { getAuth, Auth } from "firebase/auth"
-import { GetStaticProps, InferGetStaticPropsType } from "next"
-import { useRouter } from "next/router"
-import {FormEvent, useCallback, useEffect, useState} from "react"
+import DefaultLayout from '@/components/layouts/default-layout';
+import { useAuthContext } from '@/context/authContext';
+import { useSnackbar } from '@/context/snackbarContext';
+import signIn from '@/firebase/auth/signIn';
+import LoadingButton from '@mui/lab/LoadingButton';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { useRouter } from 'next/router';
+import { FormEvent, useCallback, useState } from 'react';
 
-export default function Admin({
-    auth,
-  }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Admin() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
-    const { user, setUser, setAuth } = useAuthContext();
-    const [_, setSuccessfulLogin] = useState(false);
+    const { user, setUser } = useAuthContext();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const { showSnackbar } = useSnackbar();
-
-    useEffect(() => {
-        setAuth(auth);
-      },[auth]);
 
     useCallback(async () => {
         if (user) {
@@ -39,7 +29,7 @@ export default function Admin({
 
         setLoading(true);
 
-        const formData = new FormData(event.currentTarget)
+        const formData = new FormData(event.currentTarget);
         const email = formData.get('username')?.toString();
         const password = formData.get('password')?.toString();
 
@@ -55,14 +45,12 @@ export default function Admin({
 
         if (response.result && !response.error) {
             showSnackbar('Login successful', undefined, 'success');
-            setSuccessfulLogin(true);
             setUser(response?.result?.user);
             await router.push('/admin');
         } else {
             setErrorMessage('Invalid credentials. Please try again.');
             showSnackbar('Login failed', undefined, 'error');
         }
-
     }
 
     return (
@@ -75,7 +63,8 @@ export default function Admin({
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                }}>
+                }}
+            >
                 <Card sx={{ maxWidth: 512 }} variant="outlined">
                     <CardContent>
                         <Typography variant="h5" component="div" marginBlockEnd={2}>
@@ -85,19 +74,21 @@ export default function Admin({
                             fullWidth
                             name="username"
                             label="Username"
-                            type='email'
+                            type="email"
                             variant="outlined"
                             error={!!errorMessage}
-                            margin="normal" />
+                            margin="normal"
+                        />
                         <TextField
                             fullWidth
                             name="password"
                             label="Password"
-                            type='password'
+                            type="password"
                             variant="outlined"
                             margin="normal"
                             error={!!errorMessage}
-                            helperText={errorMessage} />
+                            helperText={errorMessage}
+                        />
                     </CardContent>
                     <CardActions sx={{ justifyContent: 'center', paddingBottom: 2 }}>
                         <LoadingButton loading={loading} variant="outlined" type="submit">
@@ -107,14 +98,5 @@ export default function Admin({
                 </Card>
             </form>
         </DefaultLayout>
-    )
+    );
 }
-
-export const getStaticProps = (async (_: any) => {
-    const firebaseApp = generateFBApp();
-    const auth = getAuth(firebaseApp);
-    return { props: { auth } };
-  }) satisfies GetStaticProps<{
-    auth: Auth,
-  }>
-  

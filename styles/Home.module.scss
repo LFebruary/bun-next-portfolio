@@ -47,7 +47,9 @@
     border-radius: 50%;
     filter: drop-shadow(0 0 4px currentColor); // Reduced shadow blur
     transform: translate3d(104em, 0, 0);
-    animation: fall var(--fall-duration) var(--fall-delay) linear infinite, tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
+    animation:
+        fall var(--fall-duration) var(--fall-delay) linear infinite,
+        tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
 
     @include sp-layout {
         animation: fall var(--fall-duration) var(--fall-delay) linear infinite;
@@ -55,7 +57,8 @@
 
     @for $i from 1 through $star-count {
         &:nth-child(#{$i}) {
-            --star-tail-length: #{random_range(300em, 500em) / 100}; // Reduced range for better performance
+            --star-tail-length: #{random_range(300em, 500em) /
+                100}; // Reduced range for better performance
             --top-offset: #{random_range(0vh, 10000vh) / 100};
             --fall-duration: #{random_range(12000, 24000s) / 1000};
             --fall-delay: #{random_range(0, 20000s) / 1000};
@@ -91,7 +94,6 @@
 }
 
 @keyframes tail-fade {
-
     0%,
     50% {
         width: var(--star-tail-length);

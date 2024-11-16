@@ -7,7 +7,11 @@ class FirestoreDataMigration<TPrevious extends FirestoreData, TNext extends Fire
     nextVersion: number;
     migration: (previousType: TPrevious) => TNext;
 
-    constructor(migration: (previousType: TPrevious) => TNext, previousVersion: number, nextVersion: number) {
+    constructor(
+        migration: (previousType: TPrevious) => TNext,
+        previousVersion: number,
+        nextVersion: number
+    ) {
         this.migration = migration;
         this.previousVersion = previousVersion;
         this.nextVersion = nextVersion;
@@ -16,11 +20,15 @@ class FirestoreDataMigration<TPrevious extends FirestoreData, TNext extends Fire
         const nextInstance = migration({ version: previousVersion } as TPrevious);
 
         if (previousInstance.version !== previousVersion) {
-            throw new Error(`TPrevious version (${previousInstance.version}) does not match the specified previousVersion (${previousVersion})`);
+            throw new Error(
+                `TPrevious version (${previousInstance.version}) does not match the specified previousVersion (${previousVersion})`
+            );
         }
 
         if (nextInstance.version !== nextVersion) {
-            throw new Error(`TNext version (${nextInstance.version}) does not match the specified nextVersion (${nextVersion})`);
+            throw new Error(
+                `TNext version (${nextInstance.version}) does not match the specified nextVersion (${nextVersion})`
+            );
         }
     }
 }

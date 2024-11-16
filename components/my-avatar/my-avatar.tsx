@@ -1,23 +1,24 @@
-import { Avatar } from "@mui/material";
-import { useState, FC } from "react";
-import thatsMe from "../../public/me.webp";
+import { Avatar } from '@mui/material';
+import { FC } from 'react';
+import thatsMe from '../../public/me.webp';
 import styles from './my-avatar.module.scss';
+
 interface MyAvatarProps {
-    isHoveringCallback?: ((hovered: boolean) => void) | undefined
+    isHoveringCallback?: ((hovered: boolean) => void) | undefined;
 }
 
 const MyAvatar: FC<MyAvatarProps> = (props: MyAvatarProps) => {
-    const [_, setIsHovered] = useState(false);
+    function onMouseEnter() {
+        if (props.isHoveringCallback) {
+            props.isHoveringCallback(true);
+        }
+    }
 
-    const onMouseEnter = () => {
-        setIsHovered(true);
-        props.isHoveringCallback && props.isHoveringCallback(true);
-    };
-
-    const onMouseLeave = () => {
-        setIsHovered(false);
-        props.isHoveringCallback && props.isHoveringCallback(false);
-    };
+    function onMouseLeave() {
+        if (props.isHoveringCallback) {
+            props.isHoveringCallback(false);
+        }
+    }
 
     return (
         <Avatar
@@ -25,9 +26,8 @@ const MyAvatar: FC<MyAvatarProps> = (props: MyAvatarProps) => {
             alt="Lyle february"
             src={thatsMe.src}
             onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}>
-        </Avatar>
-
+            onMouseLeave={onMouseLeave}
+        ></Avatar>
     );
 };
 

@@ -4,13 +4,17 @@ $defaultDimension: 192px;
 $focusedDimension: 256px;
 
 .avatar {
-    transition: width $shortDuration ease, height $shortDuration ease, transform $longDuration ease, box-shadow $shortDuration ease;
+    transition:
+        width $shortDuration ease,
+        height $shortDuration ease,
+        transform $longDuration ease,
+        box-shadow $shortDuration ease;
     box-shadow: none;
     height: $defaultDimension;
     width: $defaultDimension;
 
     &:hover {
-        box-shadow: 0 0 16px 4px #FFF;
+        box-shadow: 0 0 16px 4px #fff;
         height: $focusedDimension;
         width: $focusedDimension;
         animation: avatar-animation 500ms 100ms linear;
