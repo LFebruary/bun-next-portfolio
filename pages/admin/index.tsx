@@ -2,7 +2,7 @@
 
 import DefaultLayout from '@/components/layouts/default-layout';
 import withAuth from '@/components/with-auth';
-import projects from '@/data/projects.data';
+import personalProjects from '@/data/personalProjects.data';
 import Typography from '@mui/material/Typography';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
@@ -14,7 +14,7 @@ const projectColumns: GridColDef[] = [
 
 let id = 0;
 
-const projectRows = projects.map((project) => {
+const projectRows = personalProjects.map((project) => {
     id++;
     return {
         id: id,

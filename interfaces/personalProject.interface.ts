@@ -1,8 +1,8 @@
 import { ProjectLink } from '.';
 
-export interface Project {
+export interface PersonalProject {
     name: string;
     description: string;
-    links: ProjectLink[];
+    links?: ProjectLink | ProjectLink[];
     technologies: string[];
 }

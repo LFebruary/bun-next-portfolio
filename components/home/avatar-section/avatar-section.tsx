@@ -2,10 +2,10 @@ import CoolText from '@/components/cool-text';
 import MyAvatar from '@/components/my-avatar';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import { FC, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import styles from './avatar-section.module.scss';
 
-const AvatarSection: FC = () => {
+const AvatarSection: FC = memo(() => {
     const [avatarHovered, setIsAvatarHovered] = useState(false);
 
     return (
@@ -31,6 +31,8 @@ const AvatarSection: FC = () => {
             </div>
         </div>
     );
-};
+});
+
+AvatarSection.displayName = 'AvatarSection';
 
 export default AvatarSection;

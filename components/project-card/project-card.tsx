@@ -2,35 +2,15 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
-import GitHub from '@mui/icons-material/GitHub';
 import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { Project, ProjectLink } from '@/interfaces';
-import { FC, useCallback, useEffect, useState } from 'react';
-import { ProjectLinkType } from '@/enums';
+import { PersonalProject } from '@/interfaces';
+import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './project-card.module.scss';
 import { useInView } from 'react-intersection-observer';
+import ProjectLinkButton from './project-link-button';
 
-const ProjectLinkButton: FC<{ link: ProjectLink }> = ({ link }) => {
-    switch (link.linkType) {
-        case ProjectLinkType.github:
-            return (
-                <IconButton
-                    target="_blank"
-                    href={link.link}
-                    aria-label="Github repository"
-                    size="large"
-                >
-                    <GitHub />
-                </IconButton>
-            );
-        default:
-            return null;
-    }
-};
-
-const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({
+const ProjectCard: FC<{ project: PersonalProject; maxDescriptionHeight: number }> = ({
     project,
     maxDescriptionHeight,
 }) => {
@@ -50,6 +30,16 @@ const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({
             setSmallScreen(smallWidth);
         }
     }, [smallScreen]);
+
+    const projectLinks = useMemo(() => {
+        if (!project.links) return [];
+
+        const flattenedLinks = Array.isArray(project.links) ? project.links : [project.links];
+
+        return flattenedLinks.map((projectLink, index) => (
+            <ProjectLinkButton key={index} link={projectLink} name={project.name} />
+        ));
+    }, [project.links, project.name]);
 
     useEffect(() => {
         smallScreenListener();
@@ -87,22 +77,9 @@ const ProjectCard: FC<{ project: Project; maxDescriptionHeight: number }> = ({
                     ))}
                 </Grid>
             </CardContent>
-            <CardActions className={styles.projectCardActions}>
-                {project.links.map((projectLink, index) => (
-                    <ProjectLinkButton key={index} link={projectLink} />
-                ))}
-            </CardActions>
+            <CardActions className={styles.projectCardActions}>{...projectLinks}</CardActions>
         </Card>
     );
-    // if (githubLink) {
-    //     return (
-    //         <Link className={styles.customLink} href={githubLink.link} target="_blank">
-    //             {card}
-    //         </Link>
-    //     );
-    // } else {
-
-    // }
 };
 
 export default ProjectCard;

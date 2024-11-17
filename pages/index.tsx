@@ -1,8 +1,10 @@
 import Head from 'next/head';
-import projects from '@/data/projects.data';
+import personalProjects from '@/data/personalProjects.data';
 import workExperiences from '@/data/workExperiences.data';
-import { AvatarSection, ProjectsSection, WorkExperienceSection } from '@/components/home';
+import { AvatarSection, PersonalProjectsSection, WorkExperienceSection } from '@/components/home';
 import DefaultLayout from '@/components/layouts/default-layout';
+import WorkProjectsSection from '@/components/home/work-projects-section/work-projects-section';
+import workProjects from '@/data/workProjects.data';
 
 export default function Home() {
     return (
@@ -36,7 +38,8 @@ export default function Home() {
             <DefaultLayout>
                 <AvatarSection />
                 <WorkExperienceSection workExperiences={workExperiences} />
-                <ProjectsSection projects={projects} />
+                <PersonalProjectsSection projects={personalProjects} />
+                <WorkProjectsSection projects={workProjects} />
             </DefaultLayout>
         </>
     );

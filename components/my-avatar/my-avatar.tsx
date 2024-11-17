@@ -1,13 +1,10 @@
 import { Avatar } from '@mui/material';
-import React, { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import thatsMe from '../../public/me.webp';
 import styles from './my-avatar.module.scss';
+import MyAvatarProps from './my-avatar.props';
 
-interface MyAvatarProps {
-    isHoveringCallback?: (hovered: boolean) => void;
-}
-
-const MyAvatar: FC<MyAvatarProps> = React.memo(({ isHoveringCallback }) => {
+const MyAvatar: FC<MyAvatarProps> = memo(({ isHoveringCallback }) => {
     const onMouseEnter = useCallback(() => {
         isHoveringCallback?.(true);
     }, [isHoveringCallback]);

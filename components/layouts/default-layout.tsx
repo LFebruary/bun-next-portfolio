@@ -1,9 +1,10 @@
 import { Alert, Container, Snackbar } from '@mui/material';
 import styles from '@/styles/Home.module.scss';
-import { FC, ReactNode, useMemo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { useSnackbar } from '@/context/snackbarContext';
+import LayoutProps from './layout.props';
 
-const DefaultLayout: FC<{ children: ReactNode }> = ({ children }) => {
+const DefaultLayout: FC<LayoutProps> = memo(({ children }) => {
     const { snackbar, hideSnackbar } = useSnackbar();
 
     const stars = useMemo(() => {
@@ -31,6 +32,8 @@ const DefaultLayout: FC<{ children: ReactNode }> = ({ children }) => {
             )}
         </>
     );
-};
+});
+
+DefaultLayout.displayName = 'DefaultLayout';
 
 export default DefaultLayout;

@@ -1,5 +1,6 @@
 export enum ProjectLinkType {
     github,
     article,
-    product,
+    web,
+    googlePlay,
 }

@@ -1,17 +1,18 @@
 import CoolText from '@/components/cool-text';
 import ProjectCard from '@/components/project-card';
-import { Project } from '@/interfaces';
+import debounce from '@/utils/debounce';
 import Grid from '@mui/material/Grid';
-import { FC, useCallback, useEffect, useMemo, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import PersonalProjectsSectionProps from './personal-projects-section.props';
 
-const ProjectsSection: FC<{ projects: Project[] }> = ({ projects }) => {
+const PersonalProjectsSection: FC<PersonalProjectsSectionProps> = memo(({ projects }) => {
     const [inViewState, setInViewState] = useState(false);
     const [maxDescriptionHeight, setMaxDescriptionHeight] = useState<number>(0);
 
     const [ref] = useInView({
         onChange: setInViewState,
-        threshold: 0.6,
+        threshold: 0.5,
     });
 
     const calculateMaxDescriptionHeight = useCallback(() => {
@@ -31,9 +32,24 @@ const ProjectsSection: FC<{ projects: Project[] }> = ({ projects }) => {
         () =>
             debounce(() => {
                 calculateMaxDescriptionHeight();
-            }, 300), // Shortened debounce delay to make UI more responsive
+            }, 300),
         [calculateMaxDescriptionHeight]
     );
+
+    const projectsGrid = useMemo(() => {
+        return (
+            <Grid container spacing={2}>
+                {projects.map((project, index) => (
+                    <Grid key={index} item lg={4} md={6} xs={12}>
+                        <ProjectCard
+                            project={project}
+                            maxDescriptionHeight={maxDescriptionHeight}
+                        />
+                    </Grid>
+                ))}
+            </Grid>
+        );
+    }, [projects, maxDescriptionHeight]);
 
     useEffect(() => {
         debouncedCalculate();
@@ -47,28 +63,13 @@ const ProjectsSection: FC<{ projects: Project[] }> = ({ projects }) => {
     return (
         <>
             <CoolText text="Personal Projects" forcedHoverState={inViewState} />
-            <div style={{ marginTop: 32, marginInline: 32 }} ref={ref}>
-                <Grid container spacing={2}>
-                    {projects.map((project, index) => (
-                        <Grid key={index} item lg={4} md={6} xs={12}>
-                            <ProjectCard
-                                project={project}
-                                maxDescriptionHeight={maxDescriptionHeight}
-                            />
-                        </Grid>
-                    ))}
-                </Grid>
+            <div style={{ marginInline: 32, marginBlock: 32 }} ref={ref}>
+                {projectsGrid}
             </div>
         </>
     );
-};
+});
 
-function debounce<T extends (...args: unknown[]) => void>(func: T, delay: number): T {
-    let timeoutId: ReturnType<typeof setTimeout>;
-    return ((...args: Parameters<T>) => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => func(...args), delay);
-    }) as T;
-}
+PersonalProjectsSection.displayName = 'PersonalProjectsSection';
 
-export default ProjectsSection;
+export default PersonalProjectsSection;

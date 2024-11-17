@@ -1,7 +1,7 @@
 import { ProjectLinkType } from '@/enums';
-import { Project } from '@/interfaces';
+import { PersonalProject } from '@/interfaces';
 
-const projects: Project[] = [
+const personalProjects: PersonalProject[] = [
     {
         name: 'custom-logger',
         description:
@@ -9,8 +9,8 @@ const projects: Project[] = [
         technologies: ['Dart', 'Flutter', 'Firebase Crashlytics'],
         links: [
             {
-                link: 'https://github.com/LFebruary/custom-logger',
-                linkType: ProjectLinkType.github,
+                url: 'https://github.com/LFebruary/custom-logger',
+                type: ProjectLinkType.github,
             },
         ],
     },
@@ -21,8 +21,8 @@ const projects: Project[] = [
         technologies: ['JavaScript', 'Web'],
         links: [
             {
-                link: 'https://github.com/LFebruary/JSHelpers',
-                linkType: ProjectLinkType.github,
+                url: 'https://github.com/LFebruary/JSHelpers',
+                type: ProjectLinkType.github,
             },
         ],
     },
@@ -33,8 +33,8 @@ const projects: Project[] = [
         technologies: ['C#', 'Desktop', 'Avalonia', 'Serial', 'Socket'],
         links: [
             {
-                link: 'https://github.com/LFebruary/AvaloniaSerialToSocket',
-                linkType: ProjectLinkType.github,
+                url: 'https://github.com/LFebruary/AvaloniaSerialToSocket',
+                type: ProjectLinkType.github,
             },
         ],
     },
@@ -45,8 +45,8 @@ const projects: Project[] = [
         technologies: ['C#', 'Desktop', 'Avalonia'],
         links: [
             {
-                link: 'https://github.com/LFebruary/AvaloniaToolbox',
-                linkType: ProjectLinkType.github,
+                url: 'https://github.com/LFebruary/AvaloniaToolbox',
+                type: ProjectLinkType.github,
             },
         ],
     },
@@ -57,8 +57,8 @@ const projects: Project[] = [
         technologies: ['C#', 'Xamarin', 'Android'],
         links: [
             {
-                link: 'https://github.com/LFebruary/XamarinSocketClient',
-                linkType: ProjectLinkType.github,
+                url: 'https://github.com/LFebruary/XamarinSocketClient',
+                type: ProjectLinkType.github,
             },
         ],
     },
@@ -69,11 +69,11 @@ const projects: Project[] = [
         technologies: ['Typescript', 'Next.js', 'MUI', 'SCSS', 'Bun'],
         links: [
             {
-                link: 'https://github.com/LFebruary/bun-next-portfolio',
-                linkType: ProjectLinkType.github,
+                url: 'https://github.com/LFebruary/bun-next-portfolio',
+                type: ProjectLinkType.github,
             },
         ],
     },
 ];
 
-export default projects;
+export default personalProjects;

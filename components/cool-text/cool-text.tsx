@@ -1,13 +1,7 @@
 import theme from '@/constants/theme';
 import { Fade, Typography } from '@mui/material';
 import { FC, useCallback, useEffect, useState } from 'react';
-
-interface CoolTextProps {
-    text: string;
-    inline?: boolean;
-    caption?: string;
-    forcedHoverState?: boolean;
-}
+import CoolTextProps from './cool-text.props';
 
 const CoolText: FC<CoolTextProps> = (
     props: CoolTextProps = { text: '', inline: true, forcedHoverState: false }
@@ -75,7 +69,6 @@ const CoolText: FC<CoolTextProps> = (
                     display: props.inline ? 'inline' : 'block',
                     transition:
                         'transform .5s ease, text-shadow .5s ease, font-size .5s ease, font-weight .5s ease',
-                    // transform: isHovering ? 'rotate(-5deg)' : 'rotate(0deg)',
                     textShadow: isHovering ? `0 0 10px ${theme.palette.common.white}` : 'none',
                     fontWeight: isHovering ? 'bold' : 'normal',
                     fontSize: isHovering ? `${fontSize * 1.2}rem` : `${fontSize}rem`,
