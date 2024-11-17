@@ -1,34 +1,32 @@
 import { Avatar } from '@mui/material';
-import { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import thatsMe from '../../public/me.webp';
 import styles from './my-avatar.module.scss';
 
 interface MyAvatarProps {
-    isHoveringCallback?: ((hovered: boolean) => void) | undefined;
+    isHoveringCallback?: (hovered: boolean) => void;
 }
 
-const MyAvatar: FC<MyAvatarProps> = (props: MyAvatarProps) => {
-    function onMouseEnter() {
-        if (props.isHoveringCallback) {
-            props.isHoveringCallback(true);
-        }
-    }
+const MyAvatar: FC<MyAvatarProps> = React.memo(({ isHoveringCallback }) => {
+    const onMouseEnter = useCallback(() => {
+        isHoveringCallback?.(true);
+    }, [isHoveringCallback]);
 
-    function onMouseLeave() {
-        if (props.isHoveringCallback) {
-            props.isHoveringCallback(false);
-        }
-    }
+    const onMouseLeave = useCallback(() => {
+        isHoveringCallback?.(false);
+    }, [isHoveringCallback]);
 
     return (
         <Avatar
             className={styles.avatar}
-            alt="Lyle february"
+            alt="Lyle February"
             src={thatsMe.src}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-        ></Avatar>
+        />
     );
-};
+});
+
+MyAvatar.displayName = 'MyAvatar';
 
 export default MyAvatar;

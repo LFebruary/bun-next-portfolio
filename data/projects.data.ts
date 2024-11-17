@@ -62,6 +62,18 @@ const projects: Project[] = [
             },
         ],
     },
+    {
+        name: 'This',
+        description:
+            'A portfolio built on Next.js with Typescript. A lot of the components were built on top of MUI with a lot of custom SCSS styling. This is deployed via GitHub actions to Vercel.',
+        technologies: ['Typescript', 'Next.js', 'MUI', 'SCSS', 'Bun'],
+        links: [
+            {
+                link: 'https://github.com/LFebruary/bun-next-portfolio',
+                linkType: ProjectLinkType.github,
+            },
+        ],
+    },
 ];
 
 export default projects;
