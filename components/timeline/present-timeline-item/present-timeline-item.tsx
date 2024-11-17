@@ -8,15 +8,23 @@ import {
     TimelineContent,
 } from '@mui/lab';
 import { Typography } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC, memo, useMemo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-const PresentTimelineItem: FC = () => {
+const PresentTimelineItem: FC = memo(() => {
     const [inViewState, setInViewState] = useState(false);
 
     const [ref] = useInView({
         onChange: setInViewState,
     });
+
+    const headingColor = useMemo(() => {
+        return inViewState ? theme.palette.common.white : undefined;
+    }, [inViewState]);
+
+    const headingShadow = useMemo(() => {
+        return inViewState ? `0 0 10px ${theme.palette.common.white}` : undefined;
+    }, [inViewState]);
 
     return (
         <TimelineItem ref={ref} sx={{ minHeight: 32 }}>
@@ -27,10 +35,8 @@ const PresentTimelineItem: FC = () => {
                         paddingTop: -2.5,
                         marginInline: 0.5,
                         fontWeight: 900,
-                        color: inViewState ? theme.palette.common.white : undefined,
-                        textShadow: inViewState
-                            ? `0 0 10px ${theme.palette.common.white}`
-                            : undefined,
+                        color: headingColor,
+                        textShadow: headingShadow,
                     }}
                 >
                     Present
@@ -43,6 +49,8 @@ const PresentTimelineItem: FC = () => {
             <TimelineContent></TimelineContent>
         </TimelineItem>
     );
-};
+});
+
+PresentTimelineItem.displayName = 'PresentTimelineItem';
 
 export default PresentTimelineItem;

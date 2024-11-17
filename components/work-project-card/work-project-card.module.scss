@@ -1,0 +1,31 @@
+$shortDuration: 0.3s;
+
+.customLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.projectCard {
+    transition: box-shadow $shortDuration ease;
+
+    &:hover {
+        box-shadow: 0 0 8px 2px #fff;
+    }
+
+    &.forcedHover {
+        box-shadow: 0 0 8px 2px #fff;
+    }
+}
+
+.projectCardContent {
+    padding-block-end: 2px;
+}
+
+.projectDescription {
+    font-size: 14px;
+    min-height: 128px;
+}
+
+.projectCardActions {
+    padding-block-start: 0;
+}
