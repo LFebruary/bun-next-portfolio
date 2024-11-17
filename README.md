@@ -1,34 +1,100 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# bun-next-portfolio
+
+This is a personal portfolio website built with **Next.js** and styled with **Material-UI (MUI)**. The project aims to showcase your web development skills, highlight various personal and work-related projects, and provide an interactive experience using animations, dynamic components, and integrations with Firebase and other web technologies.
+
+## Features
+
+- **Responsive Design**: Built to work on all screen sizes, optimized for both desktop and mobile views.
+- **Smooth Animations**: Use of `react-transition-group` and custom animations to enhance user experience.
+- **Project Showcases**: A section dedicated to personal and work-related projects.
+- **Interactive Components**: Hover effects, tooltips, and transitions with `MUI` and custom components like `CoolText`.
+- **Code Quality**: Linting with ESLint and formatting using Prettier to ensure a clean and maintainable codebase.
+- **Deployment Ready**: Ready for deployment on platforms like Vercel or Netlify with minimal configuration.
 
 ## Getting Started
 
-First, run the development server:
+To get this project up and running locally, follow these steps:
+
+### 1. Clone the Repository
 
 ```bash
-bun dev # YES WE USE BUN AROUND THESE PARTS
+git clone https://github.com/yourusername/bun-next-portfolio.git
+cd bun-next-portfolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Since this project uses **Bun** as the package manager, make sure you have **Bun** installed on your machine. If not, install it from [Bun's official website](https://bun.sh/).
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Then, run:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+bun install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This will install all the required dependencies as listed in the `package.json` file.
 
-## Learn More
+### 3. Development Mode
 
-To learn more about Next.js, take a look at the following resources:
+To run the project in development mode, use:
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+bun run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+This will start the Next.js development server and you can view the app at `http://localhost:3000`.
 
-## Deploy on Vercel
+### 4. Build and Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To build the project for production, run:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+bun run build
+```
+
+Once the build is complete, start the project in production mode:
+
+```bash
+bun run start
+```
+
+### 5. Linting and Formatting
+
+To lint the code and check for style issues, use:
+
+```bash
+bun run lint
+```
+
+To format the code with Prettier, run:
+
+```bash
+bun run format
+```
+
+To check the code formatting:
+
+```bash
+bun run format:check
+```
+
+### 6. Contribution
+
+This repository is for viewing purposes only. Contributions are not accepted at this time.
+
+## Technologies Used
+
+- **Next.js**: The React framework used to build the application.
+- **Material-UI (MUI)**: A popular React UI framework for consistent styling and components.
+- **React**: A JavaScript library for building user interfaces.
+- **Firebase**: Backend services like authentication, Firestore, and more.
+- **Moment.js**: A library for handling and manipulating dates.
+- **Bun**: A fast JavaScript runtime used as the package manager.
+- **TypeScript**: A typed superset of JavaScript for better development experience and code quality.
+- **Prettier and ESLint**: Code quality tools for maintaining clean and consistent code.
+
+## License
+
+This project is licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License**. You may view the project but not distribute, remix, or use it for commercial purposes.
+
+For more details, see the [LICENSE](LICENSE) file.
