@@ -5,6 +5,12 @@ import Typography from '@mui/material/Typography';
 import { FC, memo, useState } from 'react';
 import styles from './avatar-section.module.scss';
 
+/**
+ * AvatarSection component displays an avatar along with the user's name and a caption when hovered.
+ * It uses CoolText for displaying the name with dynamic hover effects and MyAvatar for the avatar image.
+ *
+ * @returns {JSX.Element} A section containing an avatar, name, and an optional caption on hover.
+ */
 const AvatarSection: FC = memo(() => {
     const [avatarHovered, setIsAvatarHovered] = useState(false);
 

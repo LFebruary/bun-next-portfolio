@@ -1,7 +1,5 @@
 import DefaultLayout from '@/components/layouts/default-layout';
 import { useAuthContext } from '@/context/authContext';
-import { useSnackbar } from '@/context/snackbarContext';
-import signIn from '@/firebase/auth/signIn';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -14,9 +12,8 @@ import { FormEvent, useCallback, useState } from 'react';
 export default function Admin() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
-    const { user, setUser } = useAuthContext();
+    const { user } = useAuthContext();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const { showSnackbar } = useSnackbar();
 
     useCallback(async () => {
         if (user) {
@@ -39,18 +36,16 @@ export default function Admin() {
             return;
         }
 
-        const response = await signIn(email, password);
-
         setLoading(false);
 
-        if (response.result && !response.error) {
-            showSnackbar('Login successful', undefined, 'success');
-            setUser(response?.result?.user);
-            await router.push('/admin');
-        } else {
-            setErrorMessage('Invalid credentials. Please try again.');
-            showSnackbar('Login failed', undefined, 'error');
-        }
+        // if (response.result && !response.error) {
+        //     showSnackbar('Login successful', undefined, 'success');
+        //     setUser(response?.result?.user);
+        //     await router.push('/admin');
+        // } else {
+        //     setErrorMessage('Invalid credentials. Please try again.');
+        //     showSnackbar('Login failed', undefined, 'error');
+        // }
     }
 
     return (

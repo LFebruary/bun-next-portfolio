@@ -40,7 +40,7 @@ export const AuthContextProvider: FC<{ children: ReactElement }> = ({ children }
 
         // Cleanup subscription on unmount
         return () => unsubscribe();
-    }, []);
+    }, [auth]);
 
     return (
         <AuthContext.Provider value={{ user, loading, setUser, setAuth }}>

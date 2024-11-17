@@ -17,11 +17,22 @@ const WorkExperienceTimeline = dynamic(
     { ssr: false }
 );
 
+/**
+ * WorkExperienceSection component displays the user's work experience in a timeline format.
+ * The layout adapts based on the screen size, showing a mobile-friendly version of the timeline
+ * for smaller screens and a full version for larger screens. It also triggers hover effects
+ * for the section title when the section comes into view.
+ *
+ * @param {WorkExperienceSectionProps} props - The props containing the list of work experiences.
+ *
+ * @returns {JSX.Element} A section containing a work experience timeline that adapts to the screen size.
+ */
 const WorkExperienceSection: FC<WorkExperienceSectionProps> = memo(({ workExperiences }) => {
     const { ref, inView } = useInView({
         threshold: 0.4,
     });
 
+    // Custom hook to check if the screen size matches the mobile viewport (max width: 768px)
     const isMobile = useMediaQuery('(max-width: 768px)');
 
     return (

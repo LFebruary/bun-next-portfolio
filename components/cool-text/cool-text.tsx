@@ -3,12 +3,28 @@ import { Fade, Typography } from '@mui/material';
 import { FC, useCallback, useEffect, useState } from 'react';
 import CoolTextProps from './cool-text.props';
 
+/**
+ * CoolText component is a styled text component that has interactive hover effects,
+ * dynamic font size changes, and optionally displays a caption on hover.
+ *
+ * @param {CoolTextProps} props - The props to configure the behavior and appearance of the component.
+ *
+ * @returns {JSX.Element} A div containing a Typography component with hover effects and optional caption.
+ */
 const CoolText: FC<CoolTextProps> = (
-    props: CoolTextProps = { text: '', inline: true, forcedHoverState: false }
+    props: CoolTextProps = {
+        text: '',
+        inline: true,
+        forcedHoverState: false,
+    }
 ) => {
     const [isHovering, setIsHovered] = useState(false);
     const [smallScreen, setSmallScreen] = useState(false);
 
+    /**
+     * Determines if the screen width is small (below 769px).
+     * This listener triggers on window resize.
+     */
     const smallScreenListener = useCallback(() => {
         const smallWidth = window.screen.width < 769;
         if (smallScreen !== smallWidth) {
@@ -31,10 +47,16 @@ const CoolText: FC<CoolTextProps> = (
         }
     }, [props.forcedHoverState]);
 
+    /**
+     * Handler for mouse enter event. Activates hover effect.
+     */
     const onMouseEnter = () => {
         setIsHovered(props.forcedHoverState || true);
     };
 
+    /**
+     * Handler for mouse leave event. Deactivates hover effect.
+     */
     const onMouseLeave = () => {
         setIsHovered(props.forcedHoverState || false);
     };

@@ -6,6 +6,15 @@ import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import PersonalProjectsSectionProps from './personal-projects-section.props';
 
+/**
+ * PersonalProjectsSection component displays a list of personal projects with hover effects.
+ * It calculates the maximum description height for uniform project card layout, uses debouncing
+ * for resize events, and triggers hover effects based on the visibility of the section in the viewport.
+ *
+ * @param {PersonalProjectsSectionProps} props - The props containing the list of personal projects.
+ *
+ * @returns {JSX.Element} A section containing a list of project cards with dynamic layout adjustments.
+ */
 const PersonalProjectsSection: FC<PersonalProjectsSectionProps> = memo(({ projects }) => {
     const [inViewState, setInViewState] = useState(false);
     const [maxDescriptionHeight, setMaxDescriptionHeight] = useState<number>(0);
@@ -15,6 +24,10 @@ const PersonalProjectsSection: FC<PersonalProjectsSectionProps> = memo(({ projec
         threshold: 0.5,
     });
 
+    /**
+     * Calculates the maximum description height across all project descriptions
+     * to ensure all project cards align correctly.
+     */
     const calculateMaxDescriptionHeight = useCallback(() => {
         if (projects.length > 0) {
             const maxHeight = projects.reduce((maxHeight, project) => {
@@ -28,6 +41,10 @@ const PersonalProjectsSection: FC<PersonalProjectsSectionProps> = memo(({ projec
         }
     }, [projects]);
 
+    /**
+     * Debounced version of the calculateMaxDescriptionHeight function to optimize performance
+     * during window resize events. It delays the execution by 300ms.
+     */
     const debouncedCalculate = useMemo(
         () =>
             debounce(() => {
@@ -36,6 +53,10 @@ const PersonalProjectsSection: FC<PersonalProjectsSectionProps> = memo(({ projec
         [calculateMaxDescriptionHeight]
     );
 
+    /**
+     * Memoized Grid layout for project cards to avoid unnecessary re-renders.
+     * It maps over the projects array and renders each ProjectCard component inside a Grid item.
+     */
     const projectsGrid = useMemo(() => {
         return (
             <Grid container spacing={2}>
