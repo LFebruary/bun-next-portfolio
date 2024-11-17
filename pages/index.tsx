@@ -4,7 +4,6 @@ import workExperiences from '@/data/workExperiences.data';
 import { AvatarSection, PersonalProjectsSection, WorkExperienceSection } from '@/components/home';
 import DefaultLayout from '@/components/layouts/default-layout';
 import WorkProjectsSection from '@/components/home/work-projects-section/work-projects-section';
-import workProjects from '@/data/workProjects.data';
 
 export default function Home() {
     return (
@@ -39,7 +38,7 @@ export default function Home() {
                 <AvatarSection />
                 <WorkExperienceSection workExperiences={workExperiences} />
                 <PersonalProjectsSection projects={personalProjects} />
-                <WorkProjectsSection projects={workProjects} />
+                <WorkProjectsSection projects={[]} />
             </DefaultLayout>
         </>
     );
