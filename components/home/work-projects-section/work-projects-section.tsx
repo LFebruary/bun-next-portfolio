@@ -3,6 +3,7 @@ import WorkProjectCard from '@/components/work-project-card';
 import { WorkProject } from '@/interfaces/workProject.interface';
 import debounce from '@/utils/debounce';
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
@@ -64,7 +65,11 @@ const WorkProjectsSection: FC<{ projects: WorkProject[] }> = memo(({ projects })
         <>
             <CoolText text="Work Projects" forcedHoverState={inViewState} />
             <div style={{ marginTop: 32, marginInline: 32 }} ref={ref}>
-                <Grid container spacing={2}>
+                <Typography variant="h6" component="div" sx={{ fontStyle: 'italic' }}>
+                    Still need to confirm some legalities with previous employers before listing
+                    projects here. But should be confirmed soon.
+                </Typography>
+                {/* <Grid container spacing={2}>
                     {projects.map((project, index) => (
                         <Grid key={index} item lg={4} md={6} xs={12}>
                             <WorkProjectCard
@@ -74,7 +79,7 @@ const WorkProjectsSection: FC<{ projects: WorkProject[] }> = memo(({ projects })
                             />
                         </Grid>
                     ))}
-                </Grid>
+                </Grid> */}
             </div>
         </>
     );
