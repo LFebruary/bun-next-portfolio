@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fruktur:ital@0;1&display=swap');
+
 @mixin sp-layout {
     @media screen and (max-width: 750px) {
         @content;
@@ -116,4 +118,66 @@
     50% {
         opacity: 0.6;
     }
+}
+
+.logo {
+    position: fixed; /* Stays in the same spot even when scrolling */
+    top: 16px; /* Aligns to the top */
+    left: 16px; /* Aligns to the left */
+    z-index: 1000;
+    opacity: 0.5;
+    transition: all ease-in-out 0.25s;
+    background: transparent;
+
+    &:hover {
+        left: 64px;
+        opacity: 1;
+        scale: 1.25;
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)); /* White glowing effect */
+
+        @media (max-width: 770px) {
+            top: 60px;
+            left: 60px;
+        }
+
+        @media (max-width: 480px) {
+            left: 24px;
+            top: 24px;
+        }
+    }
+}
+
+.logoSubText {
+    position: fixed !important; /* Stays in the same spot even when scrolling */
+    top: 128px;
+    left: 16px;
+    z-index: 1000 !important;
+    transition:
+        transform 0.5s ease,
+        text-shadow 0.5s ease,
+        font-size 0.5s ease,
+        font-weight 0.5s ease,
+        opacity 0.5s ease;
+    text-shadow: 0 0 10px #fff;
+    font-weight: 400;
+    font-size: 1.25rem;
+    opacity: 0;
+    font-family: 'Fruktur', sans-serif;
+    font-style: italic;
+
+    @media (max-width: 770px) {
+        top: 140px;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+        left: initial;
+        right: 16px;
+        top: 16px;
+        font-size: 1rem;
+    }
+}
+
+.visible {
+    opacity: 1;
 }
