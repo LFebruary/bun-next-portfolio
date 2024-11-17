@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Fruktur:ital@0;1&display=swap');
+@font-face {
+    font-family: 'Fruktur';
+    src: url('/fonts/Fruktur-Italic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 400;
+}
 
 @mixin sp-layout {
     @media screen and (max-width: 750px) {
