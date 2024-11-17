@@ -31,6 +31,19 @@ const WorkExperienceCard: FC<WorkExperienceCardProps> = ({
     if (current && shadow) classes += 'present';
     else if (shadow) classes += ' applyShadow';
 
+    if (languages) {
+        languages.sort((a, b) => {
+            if (a.languageName.toLowerCase() === 'misc') return 1;
+            if (b.languageName.toLowerCase() === 'misc') return -1;
+            return a.languageName.localeCompare(b.languageName);
+        });
+        for (const language of languages) {
+            if (language.frameworks) {
+                language.frameworks.sort((a, b) => a.localeCompare(b));
+            }
+        }
+    }
+
     return (
         <Card
             key={companyName.replace(' ', '')}
@@ -51,15 +64,17 @@ const WorkExperienceCard: FC<WorkExperienceCardProps> = ({
                         {companyDescription}
                     </Typography>
                 </div>
-                <div style={{ marginBlock: 0.5, marginBlockStart: 2 }}>
+                <div style={{ marginBlock: 0.5, marginBlockStart: 1 }}>
                     {languages &&
                         languages.map((language, index) => {
-                            return (
+                            return language.languageName.length > 0 &&
+                                language.frameworks &&
+                                language.frameworks.length > 0 ? (
                                 <Fragment key={index}>
                                     <Typography
                                         variant="caption"
                                         component="div"
-                                        sx={{ paddingTop: 1, marginInline: 0.5, fontWeight: 900 }}
+                                        sx={{ paddingTop: 0.5, marginInline: 0.5, fontWeight: 900 }}
                                     >
                                         {language.languageName}
                                     </Typography>
@@ -80,10 +95,36 @@ const WorkExperienceCard: FC<WorkExperienceCardProps> = ({
                                                     size="small"
                                                     key={framework}
                                                     label={framework}
-                                                    sx={{ margin: 0.25, marginBlockEnd: 0.75 }} // Adjust margin as needed
+                                                    sx={{ margin: 0.25, marginBlockEnd: 0.5 }} // Adjust margin as needed
                                                 />
                                             );
                                         })}
+                                    </div>
+                                </Fragment>
+                            ) : (
+                                <Fragment key={index}>
+                                    <Typography
+                                        variant="caption"
+                                        component="div"
+                                        sx={{ paddingTop: 0.5, marginInline: 0.5, fontWeight: 900 }}
+                                    ></Typography>
+                                    <div
+                                        key={language.languageName}
+                                        style={{
+                                            display: 'flex',
+                                            flexWrap: 'wrap',
+                                            flexDirection: 'row',
+                                            justifyContent: justifyContent,
+                                            alignItems: 'center',
+                                            marginInline: 4,
+                                        }}
+                                    >
+                                        <Chip
+                                            size="small"
+                                            key={language.languageName}
+                                            label={language.languageName}
+                                            sx={{ margin: 0.25, marginBlockEnd: 0.5 }} // Adjust margin as needed
+                                        />
                                     </div>
                                 </Fragment>
                             );

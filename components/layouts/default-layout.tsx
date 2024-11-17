@@ -1,19 +1,19 @@
 import { Alert, Container, Snackbar } from '@mui/material';
 import styles from '@/styles/Home.module.scss';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useMemo } from 'react';
 import { useSnackbar } from '@/context/snackbarContext';
 
 const DefaultLayout: FC<{ children: ReactNode }> = ({ children }) => {
     const { snackbar, hideSnackbar } = useSnackbar();
 
+    const stars = useMemo(() => {
+        return [...Array(40)].map((_, i) => <div key={i} className={styles.star}></div>);
+    }, []);
+
     return (
         <>
             <div>
-                <div className={styles.stars}>
-                    {[...Array(40)].map((_, i) => (
-                        <div key={i} className={styles.star}></div>
-                    ))}
-                </div>
+                <div className={styles.stars}>{stars}</div>
                 <main className={styles.styledBackground}>
                     <Container maxWidth="lg">{children}</Container>
                 </main>

@@ -1,5 +1,4 @@
 import theme from '@/constants/theme';
-import { AuthContextProvider } from '@/context/authContext';
 import { SnackbarProvider } from '@/context/snackbarContext';
 import '@/styles/globals.scss';
 import { CssBaseline, ThemeProvider } from '@mui/material';
@@ -12,9 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <SnackbarProvider>
-                    <AuthContextProvider>
-                        <Component {...pageProps} />
-                    </AuthContextProvider>
+                    <Component {...pageProps} />
                 </SnackbarProvider>
             </ThemeProvider>
         </AppCacheProvider>

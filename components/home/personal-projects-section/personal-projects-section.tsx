@@ -2,45 +2,38 @@ import CoolText from '@/components/cool-text';
 import ProjectCard from '@/components/project-card';
 import { Project } from '@/interfaces';
 import Grid from '@mui/material/Grid';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 const ProjectsSection: FC<{ projects: Project[] }> = ({ projects }) => {
     const [inViewState, setInViewState] = useState(false);
     const [maxDescriptionHeight, setMaxDescriptionHeight] = useState<number>(0);
+
     const [ref] = useInView({
         onChange: setInViewState,
         threshold: 0.6,
     });
 
-    // Debounce function to delay execution until after resizing stops
-    const debounce = (func: () => void, delay: number) => {
-        let timeoutId: NodeJS.Timeout;
-        return () => {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(func, delay);
-        };
-    };
-
     const calculateMaxDescriptionHeight = useCallback(() => {
         if (projects.length > 0) {
-            // Calculate max height of all descriptions
             const maxHeight = projects.reduce((maxHeight, project) => {
                 const descriptionElement = document.getElementById(`description-${project.name}`);
-                if (descriptionElement) {
-                    const descriptionHeight = descriptionElement.clientHeight;
-                    return descriptionHeight > maxHeight ? descriptionHeight : maxHeight;
-                }
-                return maxHeight;
+                return descriptionElement
+                    ? Math.max(maxHeight, descriptionElement.clientHeight)
+                    : maxHeight;
             }, 0);
 
-            // Set max height state
             setMaxDescriptionHeight(maxHeight);
         }
     }, [projects]);
 
-    // Wrap the calculation in a debounced function
-    const debouncedCalculate = debounce(calculateMaxDescriptionHeight, 1000);
+    const debouncedCalculate = useMemo(
+        () =>
+            debounce(() => {
+                calculateMaxDescriptionHeight();
+            }, 300), // Shortened debounce delay to make UI more responsive
+        [calculateMaxDescriptionHeight]
+    );
 
     useEffect(() => {
         debouncedCalculate();
@@ -49,7 +42,7 @@ const ProjectsSection: FC<{ projects: Project[] }> = ({ projects }) => {
         return () => {
             window.removeEventListener('resize', debouncedCalculate);
         };
-    }, [projects, debouncedCalculate]);
+    }, [debouncedCalculate]);
 
     return (
         <>
@@ -69,5 +62,13 @@ const ProjectsSection: FC<{ projects: Project[] }> = ({ projects }) => {
         </>
     );
 };
+
+function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T {
+    let timeoutId: NodeJS.Timeout;
+    return ((...args: Parameters<T>) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func(...args), delay);
+    }) as T;
+}
 
 export default ProjectsSection;

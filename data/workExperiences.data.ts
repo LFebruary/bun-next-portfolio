@@ -8,15 +8,27 @@ const workExperiences: WorkExperience[] = [
         languages: [
             {
                 languageName: 'C#',
-                frameworks: ['WPF', 'Avalonia (Linux)', 'Xamarin', 'Ranorex'],
+                frameworks: ['.NET WPF', 'Avalonia (Linux)', 'Xamarin', 'Ranorex', 'Class Library'],
             },
             {
                 languageName: 'Kotlin',
-                frameworks: ['Native Android'],
+                frameworks: ['Native Android', 'MVVM', 'Retrofit', 'OkHttp'],
             },
             {
                 languageName: 'Dart',
-                frameworks: ['Flutter Web'],
+                frameworks: ['Flutter Web', 'Dio'],
+            },
+            {
+                languageName: 'Clarion',
+                frameworks: ['Clarion', 'NetTalk'],
+            },
+            {
+                languageName: 'Version control',
+                frameworks: ['Git', 'SVN', 'TortoiseSVN'],
+            },
+            {
+                languageName: 'Misc',
+                frameworks: ['MySQL', 'UX & UI design', 'Trello', 'ZXing (Barcodes + QR)'],
             },
         ],
         companyDescription:
@@ -29,15 +41,23 @@ const workExperiences: WorkExperience[] = [
         languages: [
             {
                 languageName: 'C#',
-                frameworks: ['.NET MVC', '.NET API', 'Blazor'],
+                frameworks: ['.NET MVC', '.NET API', 'Blazor', 'Class Library'],
             },
             {
                 languageName: 'Dart',
-                frameworks: ['Flutter Mobile'],
+                frameworks: ['Flutter Mobile', 'Riverpod', 'Bloc'],
             },
             {
                 languageName: 'JavaScript',
-                frameworks: ['jQuery', 'AJAX'],
+                frameworks: ['jQuery', 'AJAX', 'React Native'],
+            },
+            {
+                languageName: 'Testing',
+                frameworks: ['Unit testing', 'xUnit', 'flutter_test'],
+            },
+            {
+                languageName: 'Misc',
+                frameworks: ['CSS', 'HTML', 'SQL', 'Firebase', 'Azure', 'Git'],
             },
         ],
         companyDescription:
@@ -49,11 +69,19 @@ const workExperiences: WorkExperience[] = [
         languages: [
             {
                 languageName: 'C#',
-                frameworks: ['.NET API', 'NUnit'],
+                frameworks: ['.NET API', 'Class Library'],
             },
             {
                 languageName: 'Typescript',
                 frameworks: ['Angular'],
+            },
+            {
+                languageName: 'Testing',
+                frameworks: ['Unit testing', 'Integration testing', 'nUnit', 'Jasmine'],
+            },
+            {
+                languageName: 'Misc',
+                frameworks: ['SCSS', 'HTML', 'SQL', 'Azure', 'Git'],
             },
         ],
         companyDescription:
