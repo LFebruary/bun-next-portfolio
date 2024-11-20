@@ -1,11 +1,11 @@
 import { Avatar } from '@mui/material';
 import { FC, memo, useCallback, useMemo } from 'react';
-import thatsMe from '../../public/me.webp';
-import styles from './my-avatar.module.scss';
-import MyAvatarProps from './my-avatar.props';
+import styles from './cool-avatar.module.scss';
+import CoolAvatarProps from './cool-avatar.props';
+import dynamic from 'next/dynamic';
 
-const MyAvatar: FC<MyAvatarProps> = memo(
-    ({ isHoveringCallback, sx, disableHoverResize, disableHoverAnimation }) => {
+const CoolAvatar: FC<CoolAvatarProps> = memo(
+    ({ isHoveringCallback, sx, disableHoverResize, disableHoverAnimation, alt, src }) => {
         const onMouseEnter = useCallback(() => {
             isHoveringCallback?.(true);
         }, [isHoveringCallback]);
@@ -30,8 +30,8 @@ const MyAvatar: FC<MyAvatarProps> = memo(
         return (
             <Avatar
                 className={className}
-                alt="Lyle February"
-                src={thatsMe.src}
+                alt={alt}
+                src={src}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 sx={sx}
@@ -40,6 +40,6 @@ const MyAvatar: FC<MyAvatarProps> = memo(
     }
 );
 
-MyAvatar.displayName = 'MyAvatar';
+CoolAvatar.displayName = 'CoolAvatar';
 
-export default MyAvatar;
+export default CoolAvatar;

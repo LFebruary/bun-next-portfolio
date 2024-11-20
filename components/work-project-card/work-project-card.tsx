@@ -5,10 +5,12 @@ import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import styles from './work-project-card.module.scss';
+import styles from './Work-project-card.module.scss';
 import { useInView } from 'react-intersection-observer';
-import ProjectLinkButton from '../project-card/project-link-button';
 import WorkProjectCardProps from './work-project-card.props';
+import dynamic from 'next/dynamic';
+
+const ProjectLinkButton = dynamic(() => import('@/components/project-card/project-link-button'));
 
 const WorkProjectCard: FC<WorkProjectCardProps> = memo(
     ({ project, maxDescriptionHeight, maxTechSectionHeight }) => {

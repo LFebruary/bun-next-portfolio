@@ -1,10 +1,12 @@
-import CoolText from '@/components/cool-text';
-import ProjectCard from '@/components/project-card';
 import debounce from '@/utils/debounce';
 import Grid from '@mui/material/Grid';
 import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import PersonalProjectsSectionProps from './personal-projects-section.props';
+import dynamic from 'next/dynamic';
+
+const CoolText = dynamic(() => import('@/components/cool-text'));
+const ProjectCard = dynamic(() => import('@/components/project-card'));
 
 /**
  * PersonalProjectsSection component displays a list of personal projects with hover effects.

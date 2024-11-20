@@ -1,12 +1,14 @@
-import DefaultLayout from '@/components/layouts/default-layout';
-import { Card, CardContent, CardHeader, Link, Stack, Typography } from '@mui/material';
+import { Card, CardContent, CardHeader, Link, Stack, Typography, useTheme } from '@mui/material';
 import Head from 'next/head';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import theme from '@/constants/theme';
-import MyAvatar from '@/components/my-avatar';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { GetStaticProps } from 'next';
+import thatsMe from '@/public/me.webp';
+import dynamic from 'next/dynamic';
+
+const CoolAvatar = dynamic(() => import('@/components/cool-avatar'));
+const DefaultLayout = dynamic(() => import('@/components/layouts/default-layout'));
 
 interface ContactInfo {
     name: string;
@@ -71,7 +73,7 @@ export const getStaticProps: GetStaticProps<ContactPageProps> = async () => {
 
 export default function Contact({ contactInfo }: ContactPageProps) {
     const isMobile = useMediaQuery('(max-width: 768px)');
-
+    const theme = useTheme();
     return (
         <>
             <Head>
@@ -118,7 +120,9 @@ export default function Contact({ contactInfo }: ContactPageProps) {
                 >
                     <CardHeader
                         avatar={
-                            <MyAvatar
+                            <CoolAvatar
+                                src={thatsMe.src}
+                                alt="Lyle February"
                                 disableHoverResize={true}
                                 disableHoverAnimation={true}
                                 sx={{

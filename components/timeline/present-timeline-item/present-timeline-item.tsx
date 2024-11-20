@@ -1,4 +1,3 @@
-import theme from '@/constants/theme';
 import {
     TimelineItem,
     TimelineOppositeContent,
@@ -7,12 +6,13 @@ import {
     TimelineConnector,
     TimelineContent,
 } from '@mui/lab';
-import { Typography } from '@mui/material';
+import { Typography, useTheme } from '@mui/material';
 import { FC, memo, useMemo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 const PresentTimelineItem: FC = memo(() => {
     const [inViewState, setInViewState] = useState(false);
+    const theme = useTheme();
 
     const [ref] = useInView({
         onChange: setInViewState,

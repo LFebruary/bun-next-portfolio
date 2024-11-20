@@ -8,14 +8,14 @@ import { PersonalProject } from '@/interfaces';
 import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './project-card.module.scss';
 import { useInView } from 'react-intersection-observer';
-import ProjectLinkButton from './project-link-button';
+import dynamic from 'next/dynamic';
+
+const ProjectLinkButton = dynamic(() => import('@/components/project-card/project-link-button'));
 
 const ProjectCard: FC<{ project: PersonalProject; maxDescriptionHeight: number }> = ({
     project,
     maxDescriptionHeight,
 }) => {
-    // const githubLink = project.links.find((link) => link.linkType === ProjectLinkType.github);
-
     const [inViewState, setInViewState] = useState(false);
     const [smallScreen, setSmallScreen] = useState(false);
 

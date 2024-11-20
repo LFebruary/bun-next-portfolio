@@ -1,11 +1,13 @@
-import GitHub from '@mui/icons-material/GitHub';
-import ShopIcon from '@mui/icons-material/Shop';
-import ArticleIcon from '@mui/icons-material/Article';
-import LanguageIcon from '@mui/icons-material/Language';
 import IconButton from '@mui/material/IconButton';
 import { ProjectLinkType } from '@/enums';
 import { FC, memo, useMemo } from 'react';
 import ProjectLinkButtonProps from './project-link-button.props';
+import dynamic from 'next/dynamic';
+
+const ArticleIcon = dynamic(() => import('@mui/icons-material/Article'));
+const GitHubIcon = dynamic(() => import('@mui/icons-material/GitHub'));
+const LanguageIcon = dynamic(() => import('@mui/icons-material/Language'));
+const ShopIcon = dynamic(() => import('@mui/icons-material/Shop'));
 
 const ProjectLinkButton: FC<ProjectLinkButtonProps> = memo(({ name, link }) => {
     const label = useMemo(() => {
@@ -41,7 +43,7 @@ const ProjectLinkButton: FC<ProjectLinkButtonProps> = memo(({ name, link }) => {
     const icon = useMemo(() => {
         switch (link.type) {
             case ProjectLinkType.github:
-                return <GitHub />;
+                return <GitHubIcon />;
             case ProjectLinkType.article:
                 return <ArticleIcon />;
             case ProjectLinkType.googlePlay:
