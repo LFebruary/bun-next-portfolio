@@ -13,7 +13,11 @@
 
 .styledBackground {
     z-index: 5;
-    backdrop-filter: blur(12px);
+
+    &.blur {
+        backdrop-filter: blur(12px);
+    }
+
     padding-bottom: 32px;
     padding-top: 32px;
 }
