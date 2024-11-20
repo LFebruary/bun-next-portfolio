@@ -1,8 +1,10 @@
-import CoolText from '@/components/cool-text';
 import { WorkProject } from '@/interfaces/workProject.interface';
 import Typography from '@mui/material/Typography';
+import dynamic from 'next/dynamic';
 import { FC, memo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+
+const CoolText = dynamic(() => import('@/components/cool-text'));
 
 const WorkProjectsSection: FC<{ projects: WorkProject[] }> = memo(({ projects }) => {
     const [inViewState, setInViewState] = useState(false);

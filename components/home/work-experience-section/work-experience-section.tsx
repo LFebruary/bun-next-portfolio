@@ -1,9 +1,10 @@
 import dynamic from 'next/dynamic';
 import { FC, memo } from 'react';
 import { useInView } from 'react-intersection-observer';
-import CoolText from '@/components/cool-text';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import WorkExperienceSectionProps from './work-experience-section.props';
+
+const CoolText = dynamic(() => import('@/components/cool-text'));
 
 const MobileTimeline = dynamic(
     () => import('@/components/timeline/mobile/timeline/mobile-timeline'),

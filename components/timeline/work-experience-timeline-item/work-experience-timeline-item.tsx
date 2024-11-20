@@ -1,4 +1,3 @@
-import theme from '@/constants/theme';
 import { useInView } from 'react-intersection-observer';
 import { DateFormatter } from '@/utils';
 import WorkExperienceCard from '@/components/work-experience-card';
@@ -12,10 +11,12 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineContent from '@mui/lab/TimelineContent';
 import WorkExperienceTimelineItemProps from './work-experience-timeline-item.props';
+import { useTheme } from '@mui/material';
 
 const WorkExperienceTimelineItem: FC<WorkExperienceTimelineItemProps> = memo(
     ({ index, endDate, startDate, companyDescription, companyName, languages }) => {
         const [inViewState, setInViewState] = useState(false);
+        const theme = useTheme();
 
         const justify = useMemo(() => {
             return index === 0 ? 'flex-start' : index % 2 == 0 ? 'flex-start' : 'flex-end';

@@ -1,9 +1,19 @@
 import Head from 'next/head';
 import personalProjects from '@/data/personalProjects.data';
 import workExperiences from '@/data/workExperiences.data';
-import { AvatarSection, PersonalProjectsSection, WorkExperienceSection } from '@/components/home';
 import DefaultLayout from '@/components/layouts/default-layout';
-import WorkProjectsSection from '@/components/home/work-projects-section/work-projects-section';
+import dynamic from 'next/dynamic';
+
+const AvatarSection = dynamic(() => import('@/components/home/avatar-section/avatar-section'));
+const WorkExperienceSection = dynamic(
+    () => import('@/components/home/work-experience-section/work-experience-section')
+);
+const PersonalProjectsSection = dynamic(
+    () => import('@/components/home/personal-projects-section/personal-projects-section')
+);
+const WorkProjectsSection = dynamic(
+    () => import('@/components/home/work-projects-section/work-projects-section')
+);
 
 export default function Home() {
     return (
