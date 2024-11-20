@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Contact {
+  id              Int                   @id @default(autoincrement())
+  name            String
+  email           String
+  companyName     String?
+  status          ContactSecurityStatus
+  ContactMessage  ContactMessage[]
+}
+
+model ContactMessage {
+  id          Int                       @id @default(autoincrement())
+  contactId   Int
+  message     String
+  contact     Contact                   @relation(fields: [contactId], references: [id])
+  status      ContactMessageStatus
+}
+
+enum ContactSecurityStatus {
+  PENDING_VERIFICATION
+  VERIFIED
+  FLAGGED
+}
+
+enum ContactMessageStatus {
+  PENDING_VERIFICATION
+  PENDING
+  ACTIONED
+  IGNORED
+}

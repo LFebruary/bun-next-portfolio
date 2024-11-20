@@ -10,14 +10,23 @@ $focusedDimension: 256px;
         transform $longDuration ease,
         box-shadow $shortDuration ease;
     box-shadow: none;
-    height: $defaultDimension;
-    width: $defaultDimension;
+
+    &.hoverResize {
+        height: $defaultDimension;
+        width: $defaultDimension;
+    }
 
     &:hover {
         box-shadow: 0 0 16px 4px #fff;
-        height: $focusedDimension;
-        width: $focusedDimension;
-        animation: avatar-animation 500ms 100ms linear;
+
+        &.hoverResize {
+            height: $focusedDimension;
+            width: $focusedDimension;
+        }
+
+        .animate {
+            animation: avatar-animation 500ms 100ms linear;
+        }
     }
 }
 

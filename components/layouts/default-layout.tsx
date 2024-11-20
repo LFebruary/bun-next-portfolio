@@ -7,7 +7,7 @@ import Image from 'next/image';
 import logoCropped from '../../public/logo/png/logo-no-background.png';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
-const DefaultLayout: FC<LayoutProps> = memo(({ children }) => {
+const DefaultLayout: FC<LayoutProps> = memo(({ children, removeBackgroundBlur }) => {
     const { snackbar, hideSnackbar } = useSnackbar();
     const [hovered, setHovered] = useState<boolean>(false);
 
@@ -40,11 +40,19 @@ const DefaultLayout: FC<LayoutProps> = memo(({ children }) => {
         return isMobile ? 70 : 100;
     }, [isMobile]);
 
+    const backgroundClassName = useMemo(() => {
+        let backgroundClassCurrent = styles.styledBackground;
+        if (!removeBackgroundBlur) {
+            backgroundClassCurrent += ` ${styles.blur}`;
+        }
+        return backgroundClassCurrent;
+    }, [removeBackgroundBlur]);
+
     return (
         <>
             <div>
                 <div className={styles.stars}>{stars}</div>
-                <main className={styles.styledBackground}>
+                <main className={backgroundClassName}>
                     <Container maxWidth="lg">{children}</Container>
                     <Image
                         onMouseEnter={onMouseEnter}
