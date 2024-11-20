@@ -20,6 +20,10 @@
 
     padding-bottom: 32px;
     padding-top: 32px;
+
+    &.paused {
+        animation-play-state: paused;
+    }
 }
 
 @function random_range($min, $max) {
