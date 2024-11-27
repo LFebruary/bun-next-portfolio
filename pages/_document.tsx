@@ -4,6 +4,7 @@ import {
     DocumentHeadTagsProps,
     documentGetInitialProps,
 } from '@mui/material-nextjs/v14-pagesRouter';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export default function Document(props: DocumentHeadTagsProps) {
     return (
@@ -14,6 +15,7 @@ export default function Document(props: DocumentHeadTagsProps) {
             <body>
                 <Main />
                 <NextScript />
+                <SpeedInsights />
             </body>
         </Html>
     );
