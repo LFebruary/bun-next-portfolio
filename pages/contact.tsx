@@ -140,6 +140,9 @@ export default function Contact({ contactInfo }: ContactPageProps) {
                     />
                     <CardContent>
                         <Stack spacing={2} direction="column" alignItems="center">
+                            <Typography variant="h5">
+                                *Still very much a work in progress
+                            </Typography>
                             {/* <Link
                                 href={`mailto:${contactInfo.email}`}
                                 underline="hover"
@@ -153,7 +156,6 @@ export default function Contact({ contactInfo }: ContactPageProps) {
                                 <EmailIcon sx={{ color: theme.palette.common.white }} />{' '}
                                 {contactInfo.email}
                             </Link> */}
-
                             <Link
                                 href={contactInfo.linkedin}
                                 target="_blank"
@@ -168,7 +170,6 @@ export default function Contact({ contactInfo }: ContactPageProps) {
                             >
                                 <LinkedInIcon /> LinkedIn
                             </Link>
-
                             <Link
                                 href={contactInfo.github}
                                 target="_blank"
@@ -183,7 +184,6 @@ export default function Contact({ contactInfo }: ContactPageProps) {
                             >
                                 <GitHubIcon /> GitHub
                             </Link>
-
                             <Link
                                 href={contactInfo.stackoverflow}
                                 target="_blank"
