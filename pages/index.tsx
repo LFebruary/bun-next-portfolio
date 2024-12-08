@@ -11,9 +11,6 @@ const WorkExperienceSection = dynamic(
 const PersonalProjectsSection = dynamic(
     () => import('@/components/home/personal-projects-section/personal-projects-section')
 );
-const WorkProjectsSection = dynamic(
-    () => import('@/components/home/work-projects-section/work-projects-section')
-);
 
 export default function Home() {
     return (
@@ -48,7 +45,6 @@ export default function Home() {
                 <AvatarSection />
                 <WorkExperienceSection workExperiences={workExperiences} />
                 <PersonalProjectsSection projects={personalProjects} />
-                <WorkProjectsSection projects={[]} />
             </DefaultLayout>
         </>
     );

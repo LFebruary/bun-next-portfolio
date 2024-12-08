@@ -160,7 +160,12 @@
     }
 }
 
+a:visited > .logoSubText {
+    color: #fff;
+}
+
 .logoSubText {
+    text-decoration: none;
     position: fixed !important; /* Stays in the same spot even when scrolling */
     top: 128px;
     left: 16px;

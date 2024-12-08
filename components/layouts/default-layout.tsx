@@ -6,6 +6,7 @@ import LayoutProps from './layout.props';
 import Image from 'next/image';
 import logoCropped from '../../public/logo/png/logo-no-background.png';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import Link from 'next/link';
 
 const DefaultLayout: FC<LayoutProps> = memo(({ children, removeBackgroundBlur }) => {
     const { snackbar, hideSnackbar } = useSnackbar();
@@ -54,23 +55,25 @@ const DefaultLayout: FC<LayoutProps> = memo(({ children, removeBackgroundBlur })
                 <div className={styles.stars}>{stars}</div>
                 <main className={backgroundClassName}>
                     <Container maxWidth="lg">{children}</Container>
-                    <Image
-                        onMouseEnter={onMouseEnter}
-                        onMouseLeave={onMouseLeave}
-                        width={imageDimensions}
-                        height={imageDimensions}
-                        className={styles.logo}
-                        src={logoCropped.src}
-                        alt="Website Logo"
-                        id="logo"
-                    ></Image>
-                    <Typography
-                        onMouseEnter={onMouseEnterText}
-                        onMouseLeave={onMouseLeaveText}
-                        className={`${styles.logoSubText} ${hovered ? styles.visible : ''}`}
-                    >
-                        Developer extraordinaire
-                    </Typography>
+                    <Link href={'/'}>
+                        <Image
+                            onMouseEnter={onMouseEnter}
+                            onMouseLeave={onMouseLeave}
+                            width={imageDimensions}
+                            height={imageDimensions}
+                            className={styles.logo}
+                            src={logoCropped.src}
+                            alt="Website Logo"
+                            id="logo"
+                        ></Image>
+                        <Typography
+                            onMouseEnter={onMouseEnterText}
+                            onMouseLeave={onMouseLeaveText}
+                            className={`${styles.logoSubText} ${hovered ? styles.visible : ''}`}
+                        >
+                            Developer extraordinaire
+                        </Typography>
+                    </Link>
                 </main>
             </div>
             {snackbar && (

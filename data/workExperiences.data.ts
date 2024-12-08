@@ -77,7 +77,7 @@ const workExperiences: WorkExperience[] = [
             },
             {
                 languageName: 'Testing',
-                frameworks: ['Unit testing', 'Integration testing', 'nUnit', 'Jasmine'],
+                frameworks: ['Unit testing', 'nUnit'],
             },
             {
                 languageName: 'Misc',
