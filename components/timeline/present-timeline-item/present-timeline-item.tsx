@@ -1,14 +1,15 @@
+"use client";
 import {
+    TimelineConnector,
+    TimelineContent,
+    TimelineDot,
     TimelineItem,
     TimelineOppositeContent,
     TimelineSeparator,
-    TimelineDot,
-    TimelineConnector,
-    TimelineContent,
-} from '@mui/lab';
-import { Typography, useTheme } from '@mui/material';
-import { FC, memo, useMemo, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
+} from "@mui/lab";
+import { Typography, useTheme } from "@mui/material";
+import { FC, memo, useMemo, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 const PresentTimelineItem: FC = memo(() => {
     const [inViewState, setInViewState] = useState(false);
@@ -20,24 +21,26 @@ const PresentTimelineItem: FC = memo(() => {
 
     const headingColor = useMemo(() => {
         return inViewState ? theme.palette.common.white : undefined;
-    }, [inViewState]);
+    }, [inViewState, theme.palette.common.white]);
 
     const headingShadow = useMemo(() => {
-        return inViewState ? `0 0 10px ${theme.palette.common.white}` : undefined;
-    }, [inViewState]);
+        return inViewState
+            ? `0 0 10px ${theme.palette.common.white}`
+            : undefined;
+    }, [inViewState, theme.palette.common.white]);
 
     return (
         <TimelineItem ref={ref} sx={{ minHeight: 32 }}>
             <TimelineOppositeContent color="textSecondary">
                 <Typography
-                    variant="h6"
                     sx={{
-                        paddingTop: -2.5,
-                        marginInline: 0.5,
-                        fontWeight: 900,
                         color: headingColor,
+                        fontWeight: 900,
+                        marginInline: 0.5,
+                        paddingTop: -2.5,
                         textShadow: headingShadow,
                     }}
+                    variant="h6"
                 >
                     Present
                 </Typography>
@@ -51,6 +54,6 @@ const PresentTimelineItem: FC = memo(() => {
     );
 });
 
-PresentTimelineItem.displayName = 'PresentTimelineItem';
+PresentTimelineItem.displayName = "PresentTimelineItem";
 
 export default PresentTimelineItem;

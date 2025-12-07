@@ -1,4 +1,4 @@
-import { WorkExperience } from '@/interfaces';
+import { WorkExperience } from "@/interfaces";
 
 export default interface WorkExperienceSectionProps {
     workExperiences: WorkExperience[];

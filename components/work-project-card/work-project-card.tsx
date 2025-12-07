@@ -1,16 +1,19 @@
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Chip from '@mui/material/Chip';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import { FC, memo, useCallback, useEffect, useState } from 'react';
-import styles from './Work-project-card.module.scss';
-import { useInView } from 'react-intersection-observer';
-import WorkProjectCardProps from './work-project-card.props';
-import dynamic from 'next/dynamic';
+"use client";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Chip from "@mui/material/Chip";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import dynamic from "next/dynamic";
+import { FC, memo, useCallback, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import styles from "./Work-project-card.module.scss";
+import WorkProjectCardProps from "./work-project-card.props";
 
-const ProjectLinkButton = dynamic(() => import('@/components/project-card/project-link-button'));
+const ProjectLinkButton = dynamic(
+    () => import("@/components/project-link-button/project-link-button"),
+);
 
 const WorkProjectCard: FC<WorkProjectCardProps> = memo(
     ({ project, maxDescriptionHeight, maxTechSectionHeight }) => {
@@ -31,41 +34,45 @@ const WorkProjectCard: FC<WorkProjectCardProps> = memo(
 
         useEffect(() => {
             smallScreenListener();
-            window.addEventListener('resize', smallScreenListener);
+            window.addEventListener("resize", smallScreenListener);
 
             return () => {
-                window.removeEventListener('resize', smallScreenListener);
+                window.removeEventListener("resize", smallScreenListener);
             };
         }, [smallScreenListener]);
 
         return (
             <Card
+                className={`${styles.projectCard} ${inViewState && smallScreen ? styles.forcedHover : ""}`}
                 ref={ref}
-                className={`${styles.projectCard} ${inViewState && smallScreen ? styles.forcedHover : ''}`}
                 variant="outlined"
             >
                 <CardContent className={styles.projectCardContent}>
-                    <Typography variant="h5" component="div">
+                    <Typography component="div" variant="h5">
                         {project.name}
                     </Typography>
                     <Typography
-                        id={`description-${project.name}`}
                         className={styles.projectDescription}
-                        style={{ minHeight: maxDescriptionHeight }}
                         color="text.secondary"
                         gutterBottom
+                        id={`description-${project.name}`}
+                        style={{ minHeight: maxDescriptionHeight }}
                     >
                         {project.description}
                     </Typography>
                     <Grid
-                        id={`technologies-${project.name}`}
                         container
+                        id={`technologies-${project.name}`}
                         spacing={0.5}
                         style={{ minHeight: maxTechSectionHeight }}
                     >
                         {project.technologies.map((technology, index) => (
-                            <Grid key={index} item>
-                                <Chip size="small" label={technology} variant="outlined" />
+                            <Grid key={index} size={{ xs: "auto" }}>
+                                <Chip
+                                    label={technology}
+                                    size="small"
+                                    variant="outlined"
+                                />
                             </Grid>
                         ))}
                     </Grid>
@@ -76,20 +83,23 @@ const WorkProjectCard: FC<WorkProjectCardProps> = memo(
                             project.links.map((link, index) => (
                                 <ProjectLinkButton
                                     key={`project-link-${index}`}
-                                    name={project.name}
                                     link={link}
+                                    name={project.name}
                                 />
                             ))
                         ) : (
-                            <ProjectLinkButton name={project.name} link={project.links} />
+                            <ProjectLinkButton
+                                link={project.links}
+                                name={project.name}
+                            />
                         )}
                     </CardActions>
                 )}
             </Card>
         );
-    }
+    },
 );
 
-WorkProjectCard.displayName = 'WorkProjectCard';
+WorkProjectCard.displayName = "WorkProjectCard";
 
 export default WorkProjectCard;

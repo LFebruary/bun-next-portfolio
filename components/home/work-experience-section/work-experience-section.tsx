@@ -1,21 +1,26 @@
-import dynamic from 'next/dynamic';
-import { FC, memo } from 'react';
-import { useInView } from 'react-intersection-observer';
-import useMediaQuery from '@/hooks/useMediaQuery';
-import WorkExperienceSectionProps from './work-experience-section.props';
+"use client";
 
-const CoolText = dynamic(() => import('@/components/cool-text'));
+import { useMediaQuery } from "@mui/material";
+import dynamic from "next/dynamic";
+import { FC, memo } from "react";
+import { useInView } from "react-intersection-observer";
+import WorkExperienceSectionProps from "./work-experience-section.props";
+
+const CoolText = dynamic(() => import("@/components/cool-text/cool-text"));
 
 const MobileTimeline = dynamic(
-    () => import('@/components/timeline/mobile/timeline/mobile-timeline'),
+    () => import("@/components/timeline/mobile/timeline/mobile-timeline"),
     {
         ssr: false,
-    }
+    },
 );
 
 const WorkExperienceTimeline = dynamic(
-    () => import('@/components/timeline/work-experience-timeline'),
-    { ssr: false }
+    () =>
+        import(
+            "@/components/timeline/work-experience-timeline/work-experience-timeline"
+        ),
+    { ssr: false },
 );
 
 /**
@@ -28,28 +33,30 @@ const WorkExperienceTimeline = dynamic(
  *
  * @returns {JSX.Element} A section containing a work experience timeline that adapts to the screen size.
  */
-const WorkExperienceSection: FC<WorkExperienceSectionProps> = memo(({ workExperiences }) => {
-    const { ref, inView } = useInView({
-        threshold: 0.4,
-    });
+const WorkExperienceSection: FC<WorkExperienceSectionProps> = memo(
+    ({ workExperiences }) => {
+        const { ref, inView } = useInView({
+            threshold: 0.4,
+        });
 
-    // Custom hook to check if the screen size matches the mobile viewport (max width: 768px)
-    const isMobile = useMediaQuery('(max-width: 768px)');
+        // Custom hook to check if the screen size matches the mobile viewport (max width: 768px)
+        const isMobile = useMediaQuery("(max-width: 768px)");
 
-    return (
-        <section style={{ marginInline: 32 }}>
-            <CoolText text="Work experience" forcedHoverState={inView} />
-            <div ref={ref}>
-                {isMobile ? (
-                    <MobileTimeline experiences={workExperiences} />
-                ) : (
-                    <WorkExperienceTimeline experiences={workExperiences} />
-                )}
-            </div>
-        </section>
-    );
-});
+        return (
+            <section style={{ marginInline: 32 }}>
+                <CoolText forcedHoverState={inView} text="Work experience" />
+                <div ref={ref}>
+                    {isMobile ? (
+                        <MobileTimeline experiences={workExperiences} />
+                    ) : (
+                        <WorkExperienceTimeline experiences={workExperiences} />
+                    )}
+                </div>
+            </section>
+        );
+    },
+);
 
-WorkExperienceSection.displayName = 'WorkExperienceSection';
+WorkExperienceSection.displayName = "WorkExperienceSection";
 
 export default WorkExperienceSection;

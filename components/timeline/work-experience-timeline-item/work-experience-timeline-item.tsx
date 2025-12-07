@@ -1,25 +1,37 @@
-import { useInView } from 'react-intersection-observer';
-import { DateFormatter } from '@/utils';
-import WorkExperienceCard from '@/components/work-experience-card';
-import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
-import { FC, memo, useMemo, useState } from 'react';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineDot from '@mui/lab/TimelineDot';
-import TimelineContent from '@mui/lab/TimelineContent';
-import WorkExperienceTimelineItemProps from './work-experience-timeline-item.props';
-import { useTheme } from '@mui/material';
+"use client";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import { useTheme } from "@mui/material";
+import Fade from "@mui/material/Fade";
+import Typography from "@mui/material/Typography";
+import { FC, memo, useMemo, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import DateFormatter from "../../../utils/dateFormatter.util";
+import WorkExperienceCard from "../../work-experience-card/work-experience-card";
+import WorkExperienceTimelineItemProps from "./work-experience-timeline-item.props";
 
 const WorkExperienceTimelineItem: FC<WorkExperienceTimelineItemProps> = memo(
-    ({ index, endDate, startDate, companyDescription, companyName, languages }) => {
+    ({
+        index,
+        endDate,
+        startDate,
+        companyDescription,
+        companyName,
+        languages,
+    }) => {
         const [inViewState, setInViewState] = useState(false);
         const theme = useTheme();
 
         const justify = useMemo(() => {
-            return index === 0 ? 'flex-start' : index % 2 == 0 ? 'flex-start' : 'flex-end';
+            return index === 0
+                ? "flex-start"
+                : index % 2 == 0
+                  ? "flex-start"
+                  : "flex-end";
         }, [index]);
 
         const current = useMemo(() => {
@@ -28,18 +40,20 @@ const WorkExperienceTimelineItem: FC<WorkExperienceTimelineItemProps> = memo(
 
         const headingColor = useMemo(() => {
             return inViewState ? theme.palette.common.white : undefined;
-        }, [inViewState]);
+        }, [inViewState, theme.palette.common.white]);
 
         const headingShadow = useMemo(() => {
-            return inViewState ? `0 0 10px ${theme.palette.common.white}` : undefined;
-        }, [inViewState]);
+            return inViewState
+                ? `0 0 10px ${theme.palette.common.white}`
+                : undefined;
+        }, [inViewState, theme.palette.common.white]);
 
         const timelineConnectorClass = useMemo(() => {
-            return current ? 'timeline-connector-present' : undefined;
+            return current ? "timeline-connector-present" : undefined;
         }, [current]);
 
         const timelineDotColor = useMemo(() => {
-            return current ? 'info' : undefined;
+            return current ? "info" : undefined;
         }, [current]);
 
         const [ref] = useInView({
@@ -51,21 +65,25 @@ const WorkExperienceTimelineItem: FC<WorkExperienceTimelineItemProps> = memo(
             <TimelineItem ref={ref} sx={{ minHeight: 32 }}>
                 <TimelineOppositeContent
                     color="textSecondary"
-                    sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-end",
+                    }}
                 >
                     <Fade in={inViewState} timeout={750}>
                         <span>Started</span>
                     </Fade>
                     <Typography
-                        variant="h6"
                         sx={{
+                            color: headingColor,
+                            fontWeight: 900,
                             marginBottom: -0.5,
                             marginInline: 0.5,
-                            fontWeight: 900,
-                            transition: 'all 1s ease',
-                            color: headingColor,
                             textShadow: headingShadow,
+                            transition: "all 1s ease",
                         }}
+                        variant="h6"
                     >
                         {DateFormatter.formatDate(startDate)}
                     </Typography>
@@ -76,21 +94,21 @@ const WorkExperienceTimelineItem: FC<WorkExperienceTimelineItemProps> = memo(
                 </TimelineSeparator>
                 <TimelineContent>
                     <WorkExperienceCard
-                        margin
-                        startDate={startDate}
-                        endDate={endDate}
                         companyDescription={companyDescription}
                         companyName={companyName}
-                        languages={languages}
+                        endDate={endDate}
                         justifyContent={justify}
+                        languages={languages}
+                        margin
                         shadow={inViewState}
+                        startDate={startDate}
                     />
                 </TimelineContent>
             </TimelineItem>
         );
-    }
+    },
 );
 
-WorkExperienceTimelineItem.displayName = 'WorkExperienceTimelineItem';
+WorkExperienceTimelineItem.displayName = "WorkExperienceTimelineItem";
 
 export default WorkExperienceTimelineItem;

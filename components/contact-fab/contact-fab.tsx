@@ -1,10 +1,10 @@
-import Fab from '@mui/material/Fab';
-import { FC } from 'react';
-import ContactPageIcon from '@mui/icons-material/ContactPage';
+import ContactPageIcon from "@mui/icons-material/ContactPage";
+import Fab from "@mui/material/Fab";
+import { FC } from "react";
 
 const ContactFab: FC<{ href: string }> = ({ href }) => {
     return (
-        <Fab color="primary" aria-label="contact" href={href}>
+        <Fab aria-label="contact" color="primary" href={href}>
             <ContactPageIcon />
         </Fab>
     );

@@ -1,10 +1,11 @@
-import { SxProps, Theme } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Chip from '@mui/material/Chip';
-import Typography from '@mui/material/Typography';
-import { FC, Fragment, memo, useMemo } from 'react';
-import WorkExperienceCardProps from './work-experience-card.props';
+"use client";
+import { SxProps, Theme } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
+import { FC, Fragment, memo, useMemo } from "react";
+import WorkExperienceCardProps from "./work-experience-card.props";
 
 const WorkExperienceCard: FC<WorkExperienceCardProps> = memo(
     ({
@@ -20,18 +21,18 @@ const WorkExperienceCard: FC<WorkExperienceCardProps> = memo(
     }) => {
         const classes = useMemo(() => {
             const current = !endDate;
-            let classes = '';
+            let classes = "";
 
-            if (current && shadow) classes += 'present';
-            else if (shadow) classes += ' applyShadow';
+            if (current && shadow) classes += "present";
+            else if (shadow) classes += " applyShadow";
 
             return classes;
         }, [shadow, endDate]);
 
         if (languages) {
             languages.sort((a, b) => {
-                if (a.languageName.toLowerCase() === 'misc') return 1;
-                if (b.languageName.toLowerCase() === 'misc') return -1;
+                if (a.languageName.toLowerCase() === "misc") return 1;
+                if (b.languageName.toLowerCase() === "misc") return -1;
                 return a.languageName.localeCompare(b.languageName);
             });
             for (const language of languages) {
@@ -43,9 +44,9 @@ const WorkExperienceCard: FC<WorkExperienceCardProps> = memo(
 
         const cardSxProps: SxProps<Theme> = useMemo(() => {
             return {
-                minWidth: 275,
                 marginBlock: margin ? 2 : undefined,
                 maxWidth: maxWidth ? 256 : undefined,
+                minWidth: 275,
             };
         }, [margin, maxWidth]);
 
@@ -58,34 +59,37 @@ const WorkExperienceCard: FC<WorkExperienceCardProps> = memo(
                     language.frameworks.length > 0 ? (
                     <Fragment key={index}>
                         <Typography
-                            variant="caption"
                             component="div"
                             sx={{
-                                paddingTop: 0.5,
-                                marginInline: 0.5,
                                 fontWeight: 900,
+                                marginInline: 0.5,
+                                paddingTop: 0.5,
                             }}
+                            variant="caption"
                         >
                             {language.languageName}
                         </Typography>
                         <div
                             key={language.languageName}
                             style={{
-                                display: 'flex',
-                                flexWrap: 'wrap',
-                                flexDirection: 'row',
+                                alignItems: "center",
+                                display: "flex",
+                                flexDirection: "row",
+                                flexWrap: "wrap",
                                 justifyContent: justifyContent,
-                                alignItems: 'center',
                                 marginInline: 4,
                             }}
                         >
                             {language.frameworks.map((framework) => {
                                 return (
                                     <Chip
-                                        size="small"
                                         key={framework}
                                         label={framework}
-                                        sx={{ margin: 0.25, marginBlockEnd: 0.5 }}
+                                        size="small"
+                                        sx={{
+                                            margin: 0.25,
+                                            marginBlockEnd: 0.5,
+                                        }}
                                     />
                                 );
                             })}
@@ -94,29 +98,29 @@ const WorkExperienceCard: FC<WorkExperienceCardProps> = memo(
                 ) : (
                     <Fragment key={index}>
                         <Typography
-                            variant="caption"
                             component="div"
                             sx={{
-                                paddingTop: 0.5,
-                                marginInline: 0.5,
                                 fontWeight: 900,
+                                marginInline: 0.5,
+                                paddingTop: 0.5,
                             }}
+                            variant="caption"
                         ></Typography>
                         <div
                             key={language.languageName}
                             style={{
-                                display: 'flex',
-                                flexWrap: 'wrap',
-                                flexDirection: 'row',
+                                alignItems: "center",
+                                display: "flex",
+                                flexDirection: "row",
+                                flexWrap: "wrap",
                                 justifyContent: justifyContent,
-                                alignItems: 'center',
                                 marginInline: 4,
                             }}
                         >
                             <Chip
-                                size="small"
                                 key={language.languageName}
                                 label={language.languageName}
+                                size="small"
                                 sx={{ margin: 0.25, marginBlockEnd: 0.5 }}
                             />
                         </div>
@@ -131,17 +135,17 @@ const WorkExperienceCard: FC<WorkExperienceCardProps> = memo(
 
         return (
             <Card
-                key={companyName.replace(' ', '')}
                 className={classes}
+                key={companyName.replace(" ", "")}
                 sx={cardSxProps}
                 variant="outlined"
             >
                 <CardContent>
                     <div style={{ minHeight: companyDetailsMinHeight }}>
-                        <Typography variant="h5" component="div">
+                        <Typography component="div" variant="h5">
                             {companyName}
                         </Typography>
-                        <Typography variant="body1" component="div">
+                        <Typography component="div" variant="body1">
                             {companyDescription}
                         </Typography>
                     </div>
@@ -151,9 +155,9 @@ const WorkExperienceCard: FC<WorkExperienceCardProps> = memo(
                 </CardContent>
             </Card>
         );
-    }
+    },
 );
 
-WorkExperienceCard.displayName = 'WorkExperienceCard';
+WorkExperienceCard.displayName = "WorkExperienceCard";
 
 export default WorkExperienceCard;

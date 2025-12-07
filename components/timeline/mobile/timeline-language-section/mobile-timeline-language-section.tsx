@@ -1,6 +1,6 @@
-import Chip from '@mui/material/Chip';
-import Typography from '@mui/material/Typography';
-import { FC, memo, useMemo } from 'react';
+import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
+import { FC, memo, useMemo } from "react";
 
 const MobileTimelineLanguageSection: FC<{
     languageName: string;
@@ -10,9 +10,9 @@ const MobileTimelineLanguageSection: FC<{
         if (frameworks) {
             return frameworks.map((framework) => (
                 <Chip
-                    size="small"
                     key={framework}
                     label={framework}
+                    size="small"
                     sx={{ margin: 0.25, marginBlockEnd: 0.75 }}
                 />
             ));
@@ -21,8 +21,8 @@ const MobileTimelineLanguageSection: FC<{
         return [
             <Chip
                 key={`${languageName}-chip`}
-                size="small"
                 label={languageName}
+                size="small"
                 sx={{ margin: 0.25, marginBlockEnd: 0.75 }}
             />,
         ];
@@ -31,19 +31,19 @@ const MobileTimelineLanguageSection: FC<{
     return (
         <div>
             <Typography
-                variant="caption"
                 component="div"
-                sx={{ paddingTop: 1, marginInline: 0.5, fontWeight: 900 }}
+                sx={{ fontWeight: 900, marginInline: 0.5, paddingTop: 1 }}
+                variant="caption"
             >
                 {languageName}
             </Typography>
             <div
                 style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    flexDirection: 'row',
-                    justifyContent: 'start',
-                    alignItems: 'center',
+                    alignItems: "center",
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    justifyContent: "start",
                     marginInline: 4,
                 }}
             >
@@ -53,6 +53,6 @@ const MobileTimelineLanguageSection: FC<{
     );
 });
 
-MobileTimelineLanguageSection.displayName = 'LanguageSection';
+MobileTimelineLanguageSection.displayName = "LanguageSection";
 
 export default MobileTimelineLanguageSection;
