@@ -1,94 +1,107 @@
-import { WorkExperience } from '@/interfaces/workExperience.interface';
+import { WorkExperience } from "@/interfaces/workExperience.interface";
 
 const workExperiences: WorkExperience[] = [
     {
-        startDate: new Date(2020, 6, 1),
+        companyDescription:
+            "Farsoft develops and supports information systems for the fresh produce industry, focusing largely on international fruit exports.",
+        companyName: "Farsoft Solutions",
         endDate: new Date(2022, 5, 31),
-        companyName: 'Farsoft Solutions',
         languages: [
             {
-                languageName: 'C#',
-                frameworks: ['.NET WPF', 'Avalonia (Linux)', 'Xamarin', 'Ranorex', 'Class Library'],
+                frameworks: [
+                    ".NET WPF",
+                    "Avalonia (Linux)",
+                    "Xamarin",
+                    "Ranorex",
+                    "Class Library",
+                ],
+                languageName: "C#",
             },
             {
-                languageName: 'Kotlin',
-                frameworks: ['Native Android', 'MVVM', 'Retrofit', 'OkHttp'],
+                frameworks: ["Native Android", "MVVM", "Retrofit", "OkHttp"],
+                languageName: "Kotlin",
             },
             {
-                languageName: 'Dart',
-                frameworks: ['Flutter Web', 'Dio'],
+                frameworks: ["Flutter Web", "Dio"],
+                languageName: "Dart",
             },
             {
-                languageName: 'Clarion',
-                frameworks: ['Clarion', 'NetTalk'],
+                frameworks: ["Clarion", "NetTalk"],
+                languageName: "Clarion",
             },
             {
-                languageName: 'Version control',
-                frameworks: ['Git', 'SVN', 'TortoiseSVN'],
+                frameworks: ["Git", "SVN", "TortoiseSVN"],
+                languageName: "Version control",
             },
             {
-                languageName: 'Misc',
-                frameworks: ['MySQL', 'UX & UI design', 'Trello', 'ZXing (Barcodes + QR)'],
+                frameworks: [
+                    "MySQL",
+                    "UX & UI design",
+                    "Trello",
+                    "ZXing (Barcodes + QR)",
+                ],
+                languageName: "Misc",
             },
         ],
-        companyDescription:
-            'Farsoft develops and supports information systems for the fresh produce industry, focusing largely on international fruit exports.',
+        startDate: new Date(2020, 6, 1),
     },
     {
-        startDate: new Date(2022, 5, 1),
+        companyDescription:
+            "Mediclinic Southern Africa operates a range of multi-disciplinary acute care private hospitals in South Africa and Namibia and focuses on providing value to our patients through safe, quality care in a patient friendly environment.",
+        companyName: "Mediclinic",
         endDate: new Date(2024, 5, 31),
-        companyName: 'Mediclinic',
         languages: [
             {
-                languageName: 'C#',
-                frameworks: ['.NET MVC', '.NET API', 'Blazor', 'Class Library'],
+                frameworks: [".NET MVC", ".NET API", "Blazor", "Class Library"],
+                languageName: "C#",
             },
             {
-                languageName: 'Dart',
-                frameworks: ['Flutter Mobile', 'Riverpod', 'Bloc'],
+                frameworks: ["Flutter Mobile", "Riverpod", "Bloc"],
+                languageName: "Dart",
             },
             {
-                languageName: 'JavaScript',
-                frameworks: ['jQuery', 'AJAX', 'React Native'],
+                frameworks: ["jQuery", "AJAX", "React Native"],
+                languageName: "JavaScript",
             },
             {
-                languageName: 'Testing',
-                frameworks: ['Unit testing', 'xUnit', 'flutter_test'],
+                frameworks: ["Unit testing", "xUnit", "flutter_test"],
+                languageName: "Testing",
             },
             {
-                languageName: 'Misc',
-                frameworks: ['CSS', 'HTML', 'SQL', 'Firebase', 'Azure', 'Git'],
+                frameworks: ["CSS", "HTML", "SQL", "Firebase", "Azure", "Git"],
+                languageName: "Misc",
             },
         ],
-        companyDescription:
-            'Mediclinic Southern Africa operates a range of multi-disciplinary acute care private hospitals in South Africa and Namibia and focuses on providing value to our patients through safe, quality care in a patient friendly environment.',
+        startDate: new Date(2022, 5, 1),
     },
     {
-        startDate: new Date(2024, 5, 1),
-        companyName: 'DotDigital',
+        companyDescription:
+            "dotDigital Group PLC is a software-as-a-service technology company. The company provides software as an omnichannel service and managed services to digital marketing professionals.",
+        companyName: "DotDigital",
         languages: [
             {
-                languageName: 'C#',
-                frameworks: ['.NET API', 'Class Library'],
+                frameworks: [".NET API", "Class Library"],
+                languageName: "C#",
             },
             {
-                languageName: 'Typescript',
-                frameworks: ['Angular'],
+                frameworks: ["Angular"],
+                languageName: "Typescript",
             },
             {
-                languageName: 'Testing',
-                frameworks: ['Unit testing', 'nUnit'],
+                frameworks: ["Unit testing", "nUnit"],
+                languageName: "Testing",
             },
             {
-                languageName: 'Misc',
-                frameworks: ['SCSS', 'HTML', 'SQL', 'Azure', 'Git'],
+                frameworks: ["SCSS", "HTML", "SQL", "Azure", "Git"],
+                languageName: "Misc",
             },
         ],
-        companyDescription:
-            'dotDigital Group PLC is a software-as-a-service technology company. The company provides software as an omnichannel service and managed services to digital marketing professionals.',
+        startDate: new Date(2024, 5, 1),
     },
 ];
 
-workExperiences.sort((a, b) => b.startDate.getUTCFullYear() - a.startDate.getUTCFullYear());
+workExperiences.sort(
+    (a, b) => b.startDate.getUTCFullYear() - a.startDate.getUTCFullYear(),
+);
 
 export default workExperiences;

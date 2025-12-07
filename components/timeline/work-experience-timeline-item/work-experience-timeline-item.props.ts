@@ -1,5 +1,6 @@
-import { WorkExperience } from '@/interfaces';
+import { WorkExperience } from "@/interfaces";
 
-export default interface WorkExperienceTimelineItemProps extends WorkExperience {
+export default interface WorkExperienceTimelineItemProps
+    extends WorkExperience {
     index: number;
 }

@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from "moment";
 
 /**
  * A utility class for formatting dates using the Moment.js library.
@@ -17,5 +17,5 @@ export default class DateFormatter {
      * const formattedDate = DateFormatter.formatDate(new Date());
      * console.log(formattedDate); // Output: 'Nov 2024' (for example)
      */
-    static formatDate = (date: Date): string => moment(date).format('MMM YYYY');
+    static formatDate = (date: Date): string => moment(date).format("MMM YYYY");
 }

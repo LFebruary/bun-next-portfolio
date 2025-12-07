@@ -1,6 +1,15 @@
-import { Fade, Typography, useTheme } from '@mui/material';
-import { CSSProperties, FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
-import CoolTextProps from './cool-text.props';
+"use client";
+import { Fade, Typography, useTheme } from "@mui/material";
+import {
+    CSSProperties,
+    FC,
+    memo,
+    useCallback,
+    useEffect,
+    useMemo,
+    useState,
+} from "react";
+import CoolTextProps from "./cool-text.props";
 
 /**
  * CoolText component is a styled text component that has interactive hover effects,
@@ -13,10 +22,10 @@ import CoolTextProps from './cool-text.props';
 const CoolText: FC<CoolTextProps> = memo(
     (
         props: CoolTextProps = {
-            text: '',
-            inline: true,
             forcedHoverState: false,
-        }
+            inline: true,
+            text: "",
+        },
     ) => {
         const [isHovering, setIsHovering] = useState(false);
         const [smallScreen, setSmallScreen] = useState(false);
@@ -26,10 +35,12 @@ const CoolText: FC<CoolTextProps> = memo(
             () =>
                 !theme.typography.h2.fontSize
                     ? 16
-                    : typeof theme.typography.h2.fontSize === 'number'
+                    : typeof theme.typography.h2.fontSize === "number"
                       ? theme.typography.h2.fontSize
-                      : parseFloat(theme.typography.h2.fontSize.replace('rem', '')),
-            [theme.typography.h2.fontSize]
+                      : parseFloat(
+                            theme.typography.h2.fontSize.replace("rem", ""),
+                        ),
+            [theme.typography.h2.fontSize],
         );
 
         /**
@@ -45,10 +56,10 @@ const CoolText: FC<CoolTextProps> = memo(
 
         useEffect(() => {
             smallScreenListener();
-            window.addEventListener('resize', smallScreenListener);
+            window.addEventListener("resize", smallScreenListener);
 
             return () => {
-                window.removeEventListener('resize', smallScreenListener);
+                window.removeEventListener("resize", smallScreenListener);
             };
         }, [smallScreenListener]);
 
@@ -68,34 +79,42 @@ const CoolText: FC<CoolTextProps> = memo(
 
         const textStyles = useMemo(
             () => ({
-                display: props.inline ? 'inline' : 'block',
+                display: props.inline ? "inline" : "block",
+                fontSize: isHovering
+                    ? `${fontSize * 1.2}rem`
+                    : `${fontSize}rem`,
+                fontWeight: isHovering ? "bold" : "normal",
+                textShadow: isHovering
+                    ? `0 0 10px ${theme.palette.common.white}`
+                    : "none",
                 transition:
-                    'transform .5s ease, text-shadow .5s ease, font-size .5s ease, font-weight .5s ease',
-                textShadow: isHovering ? `0 0 10px ${theme.palette.common.white}` : 'none',
-                fontWeight: isHovering ? 'bold' : 'normal',
-                fontSize: isHovering ? `${fontSize * 1.2}rem` : `${fontSize}rem`,
+                    "transform .5s ease, text-shadow .5s ease, font-size .5s ease, font-weight .5s ease",
             }),
-            [isHovering, props.inline, theme.palette.common.white, fontSize]
+            [isHovering, props.inline, theme.palette.common.white, fontSize],
         );
 
         const containerStyles: CSSProperties = useMemo(
             () => ({
-                display: props.inline ? 'inline-flex' : 'flex',
-                flexDirection: 'column',
-                justifyContent: !props.inline ? 'center' : undefined,
-                alignItems: !props.inline ? 'center' : undefined,
+                alignItems: !props.inline ? "center" : undefined,
+                display: props.inline ? "inline-flex" : "flex",
+                flexDirection: "column",
+                justifyContent: !props.inline ? "center" : undefined,
+                transition: "width .5s ease",
                 width:
                     props.inline && isHovering
                         ? (smallScreen ? 25 : 40) * props.text.length
                         : undefined,
-                transition: 'width .5s ease',
             }),
-            [props.inline, isHovering, smallScreen, props.text.length]
+            [props.inline, isHovering, smallScreen, props.text.length],
         );
 
         return (
-            <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} style={containerStyles}>
-                <Typography variant="h2" sx={textStyles}>
+            <div
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+                style={containerStyles}
+            >
+                <Typography sx={textStyles} variant="h2">
                     {props.text}
                 </Typography>
                 {props.caption && isHovering && (
@@ -105,9 +124,9 @@ const CoolText: FC<CoolTextProps> = memo(
                 )}
             </div>
         );
-    }
+    },
 );
 
-CoolText.displayName = 'CoolText';
+CoolText.displayName = "CoolText";
 
 export default CoolText;

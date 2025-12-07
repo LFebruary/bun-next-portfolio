@@ -1,4 +1,4 @@
-import { WorkProject } from '@/interfaces/workProject.interface';
+import { WorkProject } from "@/interfaces/workProject.interface";
 
 export default interface WorkProjectCardProps {
     project: WorkProject;
