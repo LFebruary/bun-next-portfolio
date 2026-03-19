@@ -5,28 +5,28 @@ import WorkExperienceTimelineItem from "../work-experience-timeline-item/work-ex
 import WorkExperienceTimelineProps from "./work-experience-timeline.props";
 
 const WorkExperienceTimeline: FC<WorkExperienceTimelineProps> = memo(
-    ({ experiences }) => {
-        const timelineItems = useMemo(() => {
-            return experiences.map((workExperience, index) => (
-                <WorkExperienceTimelineItem
-                    companyDescription={workExperience.companyDescription}
-                    companyName={workExperience.companyName}
-                    endDate={workExperience.endDate}
-                    index={index}
-                    key={`${workExperience.companyName.replace(/\s+/g, "")}-${index}`}
-                    languages={workExperience.languages}
-                    startDate={workExperience.startDate}
-                />
-            ));
-        }, [experiences]);
+  ({ experiences }) => {
+    const timelineItems = useMemo(() => {
+      return experiences.map((workExperience, index) => (
+        <WorkExperienceTimelineItem
+          companyDescription={workExperience.companyDescription}
+          companyName={workExperience.companyName}
+          endDate={workExperience.endDate}
+          index={index}
+          key={`${workExperience.companyName.replace(/\s+/g, "")}-${index}`}
+          languages={workExperience.languages}
+          startDate={workExperience.startDate}
+        />
+      ));
+    }, [experiences]);
 
-        return (
-            <Timeline position="alternate-reverse">
-                <PresentTimelineItem key="present" />
-                {...timelineItems}
-            </Timeline>
-        );
-    },
+    return (
+      <Timeline position="alternate-reverse">
+        <PresentTimelineItem key="present" />
+        {...timelineItems}
+      </Timeline>
+    );
+  },
 );
 
 WorkExperienceTimeline.displayName = "WorkExperienceTimeline";

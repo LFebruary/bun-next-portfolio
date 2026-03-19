@@ -1,4 +1,4 @@
 export interface ProgrammingLanguage {
-    languageName: string;
-    frameworks?: string[];
+  languageName: string;
+  frameworks?: string[];
 }
