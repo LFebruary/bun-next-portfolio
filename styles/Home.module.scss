@@ -27,6 +27,12 @@
     }
 }
 
+// This is great. Simple, uses SCSS, but I foresee troubles as changes need to be made
+// Initial collection of stars before they fall look huddled together before they start falling.
+// 1. Need to find a way to spread out initial positions of stars
+// 2. Fade stars in from initial state before they start falling to prevent huddled look
+// 3. Could be the time to move to canvas or give three.js a go
+
 @function random_range($min, $max) {
     $rand: math.random();
     $random_range: $min + math.floor($rand * (($max - $min) + 1));
