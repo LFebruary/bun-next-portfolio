@@ -13,13 +13,13 @@
   "files": {
     "ignoreUnknown": true,
     "includes": [
-      "**/*.{js,jsx,ts,tsx}",
-      "!!*/**/out/**",
-      "!!*/**/build/**",
-      "!!*/**/.next/**",
-      "!!*/**/*.d.ts",
-      "!!*/**/*.lock",
-      "!!*.vscode/**"
+      "**/*.{js,jsx,mjs,ts,tsx,mts,cts,json,html}",
+      "!!out/**",
+      "!!build/**",
+      "!!.next/**",
+      "!!next-env.d.ts",
+      "!!.lock",
+      "!!.vscode/**"
     ]
   },
   "formatter": {
