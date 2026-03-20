@@ -11,62 +11,62 @@ const LanguageIcon = dynamic(() => import("@mui/icons-material/Language"));
 const ShopIcon = dynamic(() => import("@mui/icons-material/Shop"));
 
 const ProjectLinkButton: FC<ProjectLinkButtonProps> = memo(({ name, link }) => {
-    const label = useMemo(() => {
-        switch (link.type) {
-            case ProjectLinkType.github:
-                return `${name} - GitHub repository`;
-            case ProjectLinkType.article:
-                return `${name} - article`;
-            case ProjectLinkType.googlePlay:
-                return `${name} - Google Play listing`;
-            case ProjectLinkType.web:
-                return `${name} - Web link listing`;
-            default:
-                throw new Error("Invalid work project link type specified");
-        }
-    }, [name, link]);
+  const label = useMemo(() => {
+    switch (link.type) {
+      case ProjectLinkType.github:
+        return `${name} - GitHub repository`;
+      case ProjectLinkType.article:
+        return `${name} - article`;
+      case ProjectLinkType.googlePlay:
+        return `${name} - Google Play listing`;
+      case ProjectLinkType.web:
+        return `${name} - Web link listing`;
+      default:
+        throw new Error("Invalid work project link type specified");
+    }
+  }, [name, link]);
 
-    const tooltip = useMemo(() => {
-        switch (link.type) {
-            case ProjectLinkType.github:
-                return `View ${name} GitHub repository`;
-            case ProjectLinkType.article:
-                return `View ${name} article`;
-            case ProjectLinkType.googlePlay:
-                return `View ${name} on Google Play store`;
-            case ProjectLinkType.web:
-                return `Visit ${name} website`;
-            default:
-                throw new Error("Invalid work project link type specified");
-        }
-    }, [link.type, name]);
+  const tooltip = useMemo(() => {
+    switch (link.type) {
+      case ProjectLinkType.github:
+        return `View ${name} GitHub repository`;
+      case ProjectLinkType.article:
+        return `View ${name} article`;
+      case ProjectLinkType.googlePlay:
+        return `View ${name} on Google Play store`;
+      case ProjectLinkType.web:
+        return `Visit ${name} website`;
+      default:
+        throw new Error("Invalid work project link type specified");
+    }
+  }, [link.type, name]);
 
-    const icon = useMemo(() => {
-        switch (link.type) {
-            case ProjectLinkType.github:
-                return <GitHubIcon />;
-            case ProjectLinkType.article:
-                return <ArticleIcon />;
-            case ProjectLinkType.googlePlay:
-                return <ShopIcon />;
-            case ProjectLinkType.web:
-                return <LanguageIcon />;
-            default:
-                throw new Error("Invalid work project link type specified");
-        }
-    }, [link]);
+  const icon = useMemo(() => {
+    switch (link.type) {
+      case ProjectLinkType.github:
+        return <GitHubIcon />;
+      case ProjectLinkType.article:
+        return <ArticleIcon />;
+      case ProjectLinkType.googlePlay:
+        return <ShopIcon />;
+      case ProjectLinkType.web:
+        return <LanguageIcon />;
+      default:
+        throw new Error("Invalid work project link type specified");
+    }
+  }, [link]);
 
-    return (
-        <IconButton
-            aria-label={label}
-            href={link.url}
-            size="large"
-            target="_blank"
-            title={tooltip}
-        >
-            {icon}
-        </IconButton>
-    );
+  return (
+    <IconButton
+      aria-label={label}
+      href={link.url}
+      size="large"
+      target="_blank"
+      title={tooltip}
+    >
+      {icon}
+    </IconButton>
+  );
 });
 
 ProjectLinkButton.displayName = "ProjectLinkButton";

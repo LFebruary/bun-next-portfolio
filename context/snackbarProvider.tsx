@@ -2,9 +2,9 @@
 import { AlertColor } from "@mui/material";
 import { ReactNode, useCallback, useContext, useEffect, useState } from "react";
 import {
-    SnackbarContext,
-    SnackbarContextType,
-    SnackbarState,
+  SnackbarContext,
+  SnackbarContextType,
+  SnackbarState,
 } from "./snackbarContext";
 
 /**
@@ -16,53 +16,51 @@ import {
  * @returns {JSX.Element} - The wrapped children components with snackbar context.
  */
 export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
-    const [snackbar, setSnackbar] = useState<SnackbarState | undefined>(
-        undefined,
-    );
+  const [snackbar, setSnackbar] = useState<SnackbarState | undefined>(
+    undefined,
+  );
 
-    /**
-     * Show the snackbar with the specified message, severity, and auto-hide duration.
-     *
-     * @param message - The message to display in the snackbar.
-     * @param autoHideDuration - The time in milliseconds before the snackbar auto-hides.
-     * @param severity - The severity of the snackbar (e.g., success, error, etc.).
-     */
-    const showSnackbar = (
-        message: string,
-        autoHideDuration: number = 5000,
-        severity: AlertColor = "success",
-    ) => {
-        setSnackbar({ autoHideDuration, message, open: true, severity });
-    };
+  /**
+   * Show the snackbar with the specified message, severity, and auto-hide duration.
+   *
+   * @param message - The message to display in the snackbar.
+   * @param autoHideDuration - The time in milliseconds before the snackbar auto-hides.
+   * @param severity - The severity of the snackbar (e.g., success, error, etc.).
+   */
+  const showSnackbar = (
+    message: string,
+    autoHideDuration: number = 5000,
+    severity: AlertColor = "success",
+  ) => {
+    setSnackbar({ autoHideDuration, message, open: true, severity });
+  };
 
-    /**
-     * Hide the snackbar.
-     * This sets the snackbar to closed, and resets its state after a short delay.
-     */
-    const hideSnackbar = useCallback(() => {
-        if (snackbar) {
-            setSnackbar({ ...snackbar, open: false });
-            setTimeout(() => setSnackbar(undefined), 500);
-        }
-    }, [snackbar]);
+  /**
+   * Hide the snackbar.
+   * This sets the snackbar to closed, and resets its state after a short delay.
+   */
+  const hideSnackbar = useCallback(() => {
+    if (snackbar) {
+      setSnackbar({ ...snackbar, open: false });
+      setTimeout(() => setSnackbar(undefined), 500);
+    }
+  }, [snackbar]);
 
-    useEffect(() => {
-        if (snackbar && snackbar.open) {
-            const timer = setTimeout(() => {
-                hideSnackbar();
-            }, snackbar.autoHideDuration);
+  useEffect(() => {
+    if (snackbar && snackbar.open) {
+      const timer = setTimeout(() => {
+        hideSnackbar();
+      }, snackbar.autoHideDuration);
 
-            return () => clearTimeout(timer);
-        }
-    }, [snackbar, hideSnackbar]);
+      return () => clearTimeout(timer);
+    }
+  }, [snackbar, hideSnackbar]);
 
-    return (
-        <SnackbarContext.Provider
-            value={{ hideSnackbar, showSnackbar, snackbar }}
-        >
-            {children}
-        </SnackbarContext.Provider>
-    );
+  return (
+    <SnackbarContext.Provider value={{ hideSnackbar, showSnackbar, snackbar }}>
+      {children}
+    </SnackbarContext.Provider>
+  );
 };
 
 /**
@@ -74,9 +72,9 @@ export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
  * @throws {Error} - Throws an error if used outside of a SnackbarProvider.
  */
 export const useSnackbar = (): SnackbarContextType => {
-    const context = useContext(SnackbarContext);
-    if (!context) {
-        throw new Error("useSnackbar must be used within a SnackbarProvider");
-    }
-    return context;
+  const context = useContext(SnackbarContext);
+  if (!context) {
+    throw new Error("useSnackbar must be used within a SnackbarProvider");
+  }
+  return context;
 };

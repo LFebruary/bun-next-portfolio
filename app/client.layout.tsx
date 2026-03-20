@@ -2,9 +2,9 @@
 import { SnackbarProvider } from "../context/snackbarProvider";
 
 export default function ClientSideLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return <SnackbarProvider>{children}</SnackbarProvider>;
+  return <SnackbarProvider>{children}</SnackbarProvider>;
 }
