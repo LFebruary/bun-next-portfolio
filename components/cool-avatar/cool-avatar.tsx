@@ -5,46 +5,46 @@ import styles from "./cool-avatar.module.scss";
 import CoolAvatarProps from "./cool-avatar.props";
 
 const CoolAvatar: FC<CoolAvatarProps> = memo(
-    ({
-        isHoveringCallback,
-        sx,
-        disableHoverResize,
-        disableHoverAnimation,
-        alt,
-        src,
-    }) => {
-        const onMouseEnter = useCallback(() => {
-            isHoveringCallback?.(true);
-        }, [isHoveringCallback]);
+  ({
+    isHoveringCallback,
+    sx,
+    disableHoverResize,
+    disableHoverAnimation,
+    alt,
+    src,
+  }) => {
+    const onMouseEnter = useCallback(() => {
+      isHoveringCallback?.(true);
+    }, [isHoveringCallback]);
 
-        const onMouseLeave = useCallback(() => {
-            isHoveringCallback?.(false);
-        }, [isHoveringCallback]);
+    const onMouseLeave = useCallback(() => {
+      isHoveringCallback?.(false);
+    }, [isHoveringCallback]);
 
-        const className = useMemo(() => {
-            let avatarClass = styles.avatar;
-            if (!disableHoverResize) {
-                avatarClass += ` ${styles.hoverResize}`;
-            }
+    const className = useMemo(() => {
+      let avatarClass = styles.avatar;
+      if (!disableHoverResize) {
+        avatarClass += ` ${styles.hoverResize}`;
+      }
 
-            if (!disableHoverAnimation) {
-                avatarClass += ` ${styles.animate}`;
-            }
+      if (!disableHoverAnimation) {
+        avatarClass += ` ${styles.animate}`;
+      }
 
-            return avatarClass;
-        }, [disableHoverResize, disableHoverAnimation]);
+      return avatarClass;
+    }, [disableHoverResize, disableHoverAnimation]);
 
-        return (
-            <Avatar
-                alt={alt}
-                className={className}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-                src={src}
-                sx={sx}
-            />
-        );
-    },
+    return (
+      <Avatar
+        alt={alt}
+        className={className}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        src={src}
+        sx={sx}
+      />
+    );
+  },
 );
 
 CoolAvatar.displayName = "CoolAvatar";

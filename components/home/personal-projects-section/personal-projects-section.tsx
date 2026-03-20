@@ -8,7 +8,7 @@ import PersonalProjectsSectionProps from "./personal-projects-section.props";
 
 const CoolText = dynamic(() => import("@/components/cool-text/cool-text"));
 const ProjectCard = dynamic(
-    () => import("@/components/project-card/project-card"),
+  () => import("@/components/project-card/project-card"),
 );
 
 /**
@@ -21,87 +21,83 @@ const ProjectCard = dynamic(
  * @returns {JSX.Element} A section containing a list of project cards with dynamic layout adjustments.
  */
 const PersonalProjectsSection: FC<PersonalProjectsSectionProps> = memo(
-    ({ projects }) => {
-        const [inViewState, setInViewState] = useState(false);
-        const [maxDescriptionHeight, setMaxDescriptionHeight] =
-            useState<number>(0);
+  ({ projects }) => {
+    const [inViewState, setInViewState] = useState(false);
+    const [maxDescriptionHeight, setMaxDescriptionHeight] = useState<number>(0);
 
-        const [ref] = useInView({
-            onChange: setInViewState,
-            threshold: 0.5,
-        });
+    const [ref] = useInView({
+      onChange: setInViewState,
+      threshold: 0.5,
+    });
 
-        /**
-         * Calculates the maximum description height across all project descriptions
-         * to ensure all project cards align correctly.
-         */
-        const calculateMaxDescriptionHeight = useCallback(() => {
-            if (projects.length > 0) {
-                const maxHeight = projects.reduce((maxHeight, project) => {
-                    const descriptionElement = document.getElementById(
-                        `description-${project.name}`,
-                    );
-                    return descriptionElement
-                        ? Math.max(maxHeight, descriptionElement.clientHeight)
-                        : maxHeight;
-                }, 0);
+    /**
+     * Calculates the maximum description height across all project descriptions
+     * to ensure all project cards align correctly.
+     */
+    const calculateMaxDescriptionHeight = useCallback(() => {
+      if (projects.length > 0) {
+        const maxHeight = projects.reduce((maxHeight, project) => {
+          const descriptionElement = document.getElementById(
+            `description-${project.name}`,
+          );
+          return descriptionElement
+            ? Math.max(maxHeight, descriptionElement.clientHeight)
+            : maxHeight;
+        }, 0);
 
-                setMaxDescriptionHeight(maxHeight);
-            }
-        }, [projects]);
+        setMaxDescriptionHeight(maxHeight);
+      }
+    }, [projects]);
 
-        /**
-         * Debounced version of the calculateMaxDescriptionHeight function to optimize performance
-         * during window resize events. It delays the execution by 300ms.
-         */
-        const debouncedCalculate = useMemo(
-            () =>
-                debounce(() => {
-                    calculateMaxDescriptionHeight();
-                }, 300),
-            [calculateMaxDescriptionHeight],
-        );
+    /**
+     * Debounced version of the calculateMaxDescriptionHeight function to optimize performance
+     * during window resize events. It delays the execution by 300ms.
+     */
+    const debouncedCalculate = useMemo(
+      () =>
+        debounce(() => {
+          calculateMaxDescriptionHeight();
+        }, 300),
+      [calculateMaxDescriptionHeight],
+    );
 
-        /**
-         * Memoized Grid layout for project cards to avoid unnecessary re-renders.
-         * It maps over the projects array and renders each ProjectCard component inside a Grid item.
-         */
-        const projectsGrid = useMemo(() => {
-            return (
-                <Grid container spacing={2}>
-                    {projects.map((project, index) => (
-                        <Grid key={index} size={{ lg: 4, md: 6, xs: 12 }}>
-                            <ProjectCard
-                                maxDescriptionHeight={maxDescriptionHeight}
-                                project={project}
-                            />
-                        </Grid>
-                    ))}
-                </Grid>
-            );
-        }, [projects, maxDescriptionHeight]);
+    /**
+     * Memoized Grid layout for project cards to avoid unnecessary re-renders.
+     * It maps over the projects array and renders each ProjectCard component inside a Grid item.
+     */
+    const projectsGrid = useMemo(() => {
+      return (
+        <Grid container spacing={2}>
+          {projects.map((project, index) => (
+            <Grid key={index} size={{ lg: 4, md: 6, xs: 12 }}>
+              <ProjectCard
+                maxDescriptionHeight={maxDescriptionHeight}
+                project={project}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      );
+    }, [projects, maxDescriptionHeight]);
 
-        useEffect(() => {
-            debouncedCalculate();
-            window.addEventListener("resize", debouncedCalculate);
+    useEffect(() => {
+      debouncedCalculate();
+      window.addEventListener("resize", debouncedCalculate);
 
-            return () => {
-                window.removeEventListener("resize", debouncedCalculate);
-            };
-        }, [debouncedCalculate]);
+      return () => {
+        window.removeEventListener("resize", debouncedCalculate);
+      };
+    }, [debouncedCalculate]);
 
-        return (
-            <>
-                <CoolText
-                    forcedHoverState={inViewState}
-                    text="Personal Projects"
-                />
-                <div ref={ref} style={{ marginBlock: 32, marginInline: 32 }}>
-                    {projectsGrid}
-                </div>
-            </>
-        );
-    },
+    return (
+      <>
+        <CoolText forcedHoverState={inViewState} text="Personal Projects" />
+        <div ref={ref} style={{ marginBlock: 32, marginInline: 32 }}>
+          {projectsGrid}
+        </div>
+      </>
+    );
+  },
 );
 
 PersonalProjectsSection.displayName = "PersonalProjectsSection";
