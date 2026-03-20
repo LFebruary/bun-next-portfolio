@@ -10,13 +10,36 @@
         },
         "enabled": true
     },
-    "files": { "ignoreUnknown": true },
+    "files": {
+        "ignoreUnknown": true,
+        "includes": [
+            "!!.next/**",
+            "!!out/**",
+            "!!build/**",
+            "!!next-env.d.ts",
+            "!!.next/**",
+            "!!out/**",
+            "!!build/**",
+            "!!next-env.d.ts",
+            "!!.next/**",
+            "!!out/**",
+            "!!build/**",
+            "!!next-env.d.ts",
+            "!!.lock",
+            "!!.vscode/**"
+        ]
+    },
     "formatter": {
         "enabled": true,
         "indentStyle": "space",
         "indentWidth": 4
     },
-    "javascript": { "formatter": { "quoteStyle": "double" }, "globals": [] },
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "double"
+        },
+        "globals": []
+    },
     "linter": {
         "enabled": true,
         "includes": [
@@ -37,8 +60,12 @@
             "!!.vscode/**"
         ],
         "rules": {
-            "complexity": { "noUselessTypeConstraint": "error" },
-            "correctness": { "noUnusedVariables": "error" },
+            "complexity": {
+                "noUselessTypeConstraint": "error"
+            },
+            "correctness": {
+                "noUnusedVariables": "error"
+            },
             "performance": {
                 "noImgElement": "warn",
                 "noUnwantedPolyfillio": "warn",
@@ -222,7 +249,9 @@
                     "security": {
                         "noDangerouslySetInnerHtmlWithChildren": "error"
                     },
-                    "style": { "noHeadElement": "warn" },
+                    "style": {
+                        "noHeadElement": "warn"
+                    },
                     "suspicious": {
                         "noCommentText": "error",
                         "noDocumentImportInPage": "error",
@@ -235,13 +264,17 @@
         },
         {
             "includes": ["**/*.ts", "**/*.tsx"],
-            "javascript": { "globals": [] }
+            "javascript": {
+                "globals": []
+            }
         },
         {
             "includes": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
             "linter": {
                 "rules": {
-                    "complexity": { "noArguments": "error" },
+                    "complexity": {
+                        "noArguments": "error"
+                    },
                     "correctness": {
                         "noConstAssign": "off",
                         "noGlobalObjectCalls": "off",
@@ -252,7 +285,9 @@
                         "noUnreachable": "off",
                         "noUnreachableSuper": "off"
                     },
-                    "style": { "useConst": "error" },
+                    "style": {
+                        "useConst": "error"
+                    },
                     "suspicious": {
                         "noClassAssign": "off",
                         "noDuplicateClassMembers": "off",
@@ -270,5 +305,9 @@
             }
         }
     ],
-    "vcs": { "clientKind": "git", "enabled": true, "useIgnoreFile": true }
+    "vcs": {
+        "clientKind": "git",
+        "enabled": true,
+        "useIgnoreFile": true
+    }
 }
