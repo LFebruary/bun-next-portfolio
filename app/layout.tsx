@@ -18,12 +18,12 @@ export const metadata: Metadata = {
     "TypeScript",
     "Flutter",
   ],
-  title: SITE_NAME,
   openGraph: {
     description: `Discover Lyle February's portfolio, a Full Stack Developer with expertise in C#, TypeScript, and Flutter. Explore his notable projects, including custom-logger, JSHelpers, AvaloniaSerialToSocket, AvaloniaToolbox, and XamarinSocketClient.`,
     title: SITE_NAME,
     type: "website",
   },
+  title: SITE_NAME,
   twitter: {
     description: `Discover Lyle February's portfolio, a Full Stack Developer with expertise in C#, TypeScript, and Flutter. Explore his notable projects, including custom-logger, JSHelpers, AvaloniaSerialToSocket, AvaloniaToolbox, and XamarinSocketClient.`,
     title: SITE_NAME,

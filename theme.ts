@@ -13,12 +13,12 @@ const font = Inter({
 
 const theme = createTheme({
   palette: {
+    background: {
+      default: THEME_COLORS.background,
+    },
     mode: "dark",
     primary: {
       main: THEME_COLORS.primary,
-    },
-    background: {
-      default: THEME_COLORS.background,
     },
   },
   typography: {
