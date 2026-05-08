@@ -1,0 +1,44 @@
+name: Version bump on merge to main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  version-bump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # Full history needed for versioning
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Check if version was already bumped
+        id: version-check
+        run: npx --yes tsx .github/scripts/check-version.ts
+
+      - name: Apply patch bump (default)
+        if: steps.version-check.outputs.changed == 'false'
+        run: |
+          npm version patch -m "chore: bump version to %s [skip ci]"
+
+      - name: Push version commit and tag
+        if: steps.version-check.outputs.changed == 'false'
+        run: |
+          git push
+          git push --tags
