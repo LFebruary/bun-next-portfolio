@@ -7,7 +7,12 @@ import { useInView } from "react-intersection-observer";
 import CoolText from "@/components/cool-text/cool-text";
 import MobileTimeline from "@/components/timeline/mobile/timeline/mobile-timeline";
 import WorkExperienceTimeline from "@/components/timeline/work-experience-timeline/work-experience-timeline";
-import WorkExperienceSectionProps from "./work-experience-section.props";
+
+import { WorkExperience } from "@/interfaces";
+
+interface WorkExperienceSectionProps {
+  workExperiences: WorkExperience[];
+}
 
 /**
  * WorkExperienceSection component displays the user's work experience in a timeline format.

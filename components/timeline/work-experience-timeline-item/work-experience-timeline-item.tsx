@@ -10,9 +10,13 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import { FC, memo, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { WorkExperience } from "@/interfaces";
 import DateFormatter from "../../../utils/dateFormatter.util";
 import WorkExperienceCard from "../../work-experience-card/work-experience-card";
-import WorkExperienceTimelineItemProps from "./work-experience-timeline-item.props";
+
+interface WorkExperienceTimelineItemProps extends WorkExperience {
+  index: number;
+}
 
 const WorkExperienceTimelineItem: FC<WorkExperienceTimelineItemProps> = memo(
   ({

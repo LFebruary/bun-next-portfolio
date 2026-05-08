@@ -3,7 +3,12 @@ import IconButton from "@mui/material/IconButton";
 import dynamic from "next/dynamic";
 import { FC, memo, useMemo } from "react";
 import { ProjectLinkType } from "@/enums";
-import ProjectLinkButtonProps from "./project-link-button.props";
+import { ProjectLink } from "@/interfaces";
+
+interface ProjectLinkButtonProps {
+  name: string;
+  link: ProjectLink;
+}
 
 const ArticleIcon = dynamic(() => import("@mui/icons-material/Article"));
 const GitHubIcon = dynamic(() => import("@mui/icons-material/GitHub"));

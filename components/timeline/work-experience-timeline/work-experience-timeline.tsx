@@ -1,8 +1,12 @@
 import Timeline from "@mui/lab/Timeline";
 import { FC, memo, useMemo } from "react";
+import { WorkExperience } from "@/interfaces";
 import PresentTimelineItem from "../present-timeline-item/present-timeline-item";
 import WorkExperienceTimelineItem from "../work-experience-timeline-item/work-experience-timeline-item";
-import WorkExperienceTimelineProps from "./work-experience-timeline.props";
+
+interface WorkExperienceTimelineProps {
+  experiences: WorkExperience[];
+}
 
 const WorkExperienceTimeline: FC<WorkExperienceTimelineProps> = memo(
   ({ experiences }) => {

@@ -5,7 +5,21 @@ import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import { FC, Fragment, memo, useMemo } from "react";
-import WorkExperienceCardProps from "./work-experience-card.props";
+import { WorkExperience } from "@/interfaces";
+
+interface WorkExperienceCardProps extends WorkExperience {
+  minHeight?: boolean;
+  margin?: boolean;
+  maxWidth?: boolean;
+  justifyContent:
+    | "center"
+    | "end"
+    | "flex-end"
+    | "flex-start"
+    | "start"
+    | undefined;
+  shadow?: boolean;
+}
 
 const WorkExperienceCard: FC<WorkExperienceCardProps> = memo(
   ({
