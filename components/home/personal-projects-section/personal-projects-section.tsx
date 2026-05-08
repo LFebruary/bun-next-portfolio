@@ -3,10 +3,10 @@ import Grid from "@mui/material/Grid";
 import dynamic from "next/dynamic";
 import { FC, memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import CoolText from "@/components/cool-text/cool-text";
 import debounce from "@/utils/debounce";
 import PersonalProjectsSectionProps from "./personal-projects-section.props";
 
-const CoolText = dynamic(() => import("@/components/cool-text/cool-text"));
 const ProjectCard = dynamic(
   () => import("@/components/project-card/project-card"),
 );
@@ -73,6 +73,14 @@ const PersonalProjectsSection: FC<PersonalProjectsSectionProps> = memo(
               <ProjectCard
                 maxDescriptionHeight={maxDescriptionHeight}
                 project={project}
+                typography={{
+                  body: {
+                    variant: "body1",
+                  },
+                  heading: {
+                    variant: "h2",
+                  },
+                }}
               />
             </Grid>
           ))}
@@ -91,7 +99,11 @@ const PersonalProjectsSection: FC<PersonalProjectsSectionProps> = memo(
 
     return (
       <>
-        <CoolText forcedHoverState={inViewState} text="Personal Projects" />
+        <CoolText
+          forcedHoverState={inViewState}
+          text="Personal Projects"
+          variant="h1"
+        />
         <div ref={ref} style={{ marginBlock: 32, marginInline: 32 }}>
           {projectsGrid}
         </div>

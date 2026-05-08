@@ -1,4 +1,5 @@
 "use client";
+import { TypographyVariant } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -8,17 +9,22 @@ import Typography from "@mui/material/Typography";
 import dynamic from "next/dynamic";
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import ProjectLinkButton from "@/components/project-link-button/project-link-button";
 import { PersonalProject } from "@/interfaces";
 import styles from "./project-card.module.scss";
 
-const ProjectLinkButton = dynamic(
-  () => import("@/components/project-link-button/project-link-button"),
-);
-
 const ProjectCard: FC<{
+  typography: {
+    body: {
+      variant: TypographyVariant;
+    };
+    heading: {
+      variant: TypographyVariant;
+    };
+  };
   project: PersonalProject;
   maxDescriptionHeight: number;
-}> = ({ project, maxDescriptionHeight }) => {
+}> = ({ project, maxDescriptionHeight, typography }) => {
   const [inViewState, setInViewState] = useState(false);
   const [smallScreen, setSmallScreen] = useState(false);
 
@@ -62,15 +68,20 @@ const ProjectCard: FC<{
       variant="outlined"
     >
       <CardContent className={styles.projectCardContent}>
-        <Typography component="div" variant="h5">
+        <Typography
+          component="div"
+          sx={{ fontSize: 24, fontWeight: 400, marginBlockEnd: 1 }}
+          variant={typography.heading.variant}
+        >
           {project.name}
         </Typography>
         <Typography
           className={styles.projectDescription}
-          color="text.secondary"
+          color="textSecondary"
           gutterBottom
           id={`description-${project.name}`}
           style={{ minHeight: maxDescriptionHeight }}
+          variant={typography.body.variant}
         >
           {project.description}
         </Typography>

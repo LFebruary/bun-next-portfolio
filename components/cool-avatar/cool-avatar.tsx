@@ -45,7 +45,7 @@ const CoolAvatar: FC<CoolAvatarProps> = memo(
           alt={alt}
           fill
           priority={priority}
-          sizes="(max-width: 768px) 384px, 512px"
+          sizes="(max-width: 768px) 192px, 256px"
           src={src}
           style={{ objectFit: "cover" }}
         />

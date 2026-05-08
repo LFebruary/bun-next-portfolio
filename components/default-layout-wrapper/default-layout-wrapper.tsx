@@ -73,12 +73,19 @@ const DefaultLayoutWrapper: FC<DefaultLayoutWrapperProps> = memo(
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 src={logoCropped.src}
+                style={{
+                  marginBlockStart: 8,
+                  marginInlineStart: 8,
+                }}
                 width={imageDimensions}
               ></Image>
               <Typography
                 className={`${styles.logoSubText} ${hovered ? styles.visible : ""}`}
                 onMouseEnter={onMouseEnterText}
                 onMouseLeave={onMouseLeaveText}
+                sx={{
+                  marginBlockStart: 1,
+                }}
               >
                 Developer extraordinaire
               </Typography>

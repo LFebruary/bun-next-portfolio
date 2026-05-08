@@ -4,24 +4,10 @@ import { useMediaQuery } from "@mui/material";
 import dynamic from "next/dynamic";
 import { FC, memo } from "react";
 import { useInView } from "react-intersection-observer";
+import CoolText from "@/components/cool-text/cool-text";
+import MobileTimeline from "@/components/timeline/mobile/timeline/mobile-timeline";
+import WorkExperienceTimeline from "@/components/timeline/work-experience-timeline/work-experience-timeline";
 import WorkExperienceSectionProps from "./work-experience-section.props";
-
-const CoolText = dynamic(() => import("@/components/cool-text/cool-text"));
-
-const MobileTimeline = dynamic(
-  () => import("@/components/timeline/mobile/timeline/mobile-timeline"),
-  {
-    ssr: false,
-  },
-);
-
-const WorkExperienceTimeline = dynamic(
-  () =>
-    import(
-      "@/components/timeline/work-experience-timeline/work-experience-timeline"
-    ),
-  { ssr: false },
-);
 
 /**
  * WorkExperienceSection component displays the user's work experience in a timeline format.
@@ -44,7 +30,11 @@ const WorkExperienceSection: FC<WorkExperienceSectionProps> = memo(
 
     return (
       <section style={{ marginInline: 32 }}>
-        <CoolText forcedHoverState={inView} text="Work experience" />
+        <CoolText
+          forcedHoverState={inView}
+          text="Work experience"
+          variant="h1"
+        />
         <div ref={ref}>
           {isMobile ? (
             <MobileTimeline experiences={workExperiences} />

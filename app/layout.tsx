@@ -6,9 +6,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { env } from "process";
+import { SITE_NAME } from "../constants/SHARED";
 import theme from "../theme";
 import ClientSideLayout from "./client.layout";
-import { SITE_NAME } from "../constants/SHARED";
 
 export const metadata: Metadata = {
   keywords: [
