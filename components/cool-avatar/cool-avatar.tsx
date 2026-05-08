@@ -1,5 +1,6 @@
 "use client";
 import { Avatar } from "@mui/material";
+import Image from "next/image";
 import { FC, memo, useCallback, useMemo } from "react";
 import styles from "./cool-avatar.module.scss";
 import CoolAvatarProps from "./cool-avatar.props";
@@ -7,11 +8,11 @@ import CoolAvatarProps from "./cool-avatar.props";
 const CoolAvatar: FC<CoolAvatarProps> = memo(
   ({
     isHoveringCallback,
-    sx,
     disableHoverResize,
     disableHoverAnimation,
-    alt,
-    src,
+    alt = "",
+    src = "",
+    priority = false,
   }) => {
     const onMouseEnter = useCallback(() => {
       isHoveringCallback?.(true);
@@ -35,14 +36,20 @@ const CoolAvatar: FC<CoolAvatarProps> = memo(
     }, [disableHoverResize, disableHoverAnimation]);
 
     return (
-      <Avatar
-        alt={alt}
+      <div
         className={className}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        src={src}
-        sx={sx}
-      />
+      >
+        <Image
+          alt={alt}
+          fill
+          priority={priority}
+          sizes="(max-width: 768px) 384px, 512px"
+          src={src}
+          style={{ objectFit: "cover" }}
+        />
+      </div>
     );
   },
 );

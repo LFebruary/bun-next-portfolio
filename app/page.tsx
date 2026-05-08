@@ -2,10 +2,8 @@ import dynamic from "next/dynamic";
 import personalProjects from "@/data/personalProjects.data";
 import workExperiences from "@/data/workExperiences.data";
 import DefaultLayoutWrapper from "../components/default-layout-wrapper/default-layout-wrapper";
+import AvatarSection from "../components/home/avatar-section/avatar-section";
 
-const AvatarSection = dynamic(
-  () => import("@/components/home/avatar-section/avatar-section"),
-);
 const WorkExperienceSection = dynamic(
   () =>
     import("@/components/home/work-experience-section/work-experience-section"),
