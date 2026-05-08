@@ -1,5 +1,5 @@
 "use client";
-import { Fade, Typography, useTheme } from "@mui/material";
+import { Fade, Typography, TypographyVariant, useTheme } from "@mui/material";
 import {
   CSSProperties,
   FC,
@@ -25,6 +25,7 @@ const CoolText: FC<CoolTextProps> = memo(
       forcedHoverState: false,
       inline: true,
       text: "",
+      variant: "h2",
     },
   ) => {
     const [isHovering, setIsHovering] = useState(false);
@@ -110,7 +111,7 @@ const CoolText: FC<CoolTextProps> = memo(
         onMouseLeave={onMouseLeave}
         style={containerStyles}
       >
-        <Typography sx={textStyles} variant="h2">
+        <Typography sx={textStyles} variant={props.variant}>
           {props.text}
         </Typography>
         {props.caption && isHovering && (

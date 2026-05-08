@@ -8,10 +8,13 @@ import {
   TimelineSeparator,
 } from "@mui/lab";
 import { Typography, useTheme } from "@mui/material";
+import { TypographyVariant } from "@mui/material/styles";
 import { FC, memo, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-const PresentTimelineItem: FC = memo(() => {
+const PresentTimelineItem: FC<{
+  variant: TypographyVariant;
+}> = memo(({ variant }) => {
   const [inViewState, setInViewState] = useState(false);
   const theme = useTheme();
 
@@ -33,12 +36,13 @@ const PresentTimelineItem: FC = memo(() => {
         <Typography
           sx={{
             color: headingColor,
+            fontSize: 20,
             fontWeight: 900,
             marginInline: 0.5,
             paddingTop: -2.5,
             textShadow: headingShadow,
           }}
-          variant="h6"
+          variant={variant}
         >
           Present
         </Typography>

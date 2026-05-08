@@ -22,7 +22,7 @@ const WorkExperienceTimeline: FC<WorkExperienceTimelineProps> = memo(
 
     return (
       <Timeline position="alternate-reverse">
-        <PresentTimelineItem key="present" />
+        <PresentTimelineItem key="present" variant="h2" />
         {...timelineItems}
       </Timeline>
     );

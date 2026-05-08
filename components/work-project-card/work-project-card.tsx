@@ -53,7 +53,7 @@ const WorkProjectCard: FC<WorkProjectCardProps> = memo(
           </Typography>
           <Typography
             className={styles.projectDescription}
-            color="text.secondary"
+            color="textSecondary"
             gutterBottom
             id={`description-${project.name}`}
             style={{ minHeight: maxDescriptionHeight }}

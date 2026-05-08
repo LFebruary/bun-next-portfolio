@@ -1,13 +1,11 @@
 "use client";
 import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
-import dynamic from "next/dynamic";
 import { FC, memo, useState } from "react";
+import CoolText from "@/components/cool-text/cool-text";
 import thatsMe from "@/public/me.webp" with { type: "webp" };
 import CoolAvatar from "../../cool-avatar/cool-avatar";
 import styles from "./avatar-section.module.scss";
-
-const CoolText = dynamic(() => import("@/components/cool-text/cool-text"));
 
 /**
  * AvatarSection component displays an avatar along with the user's name and a caption when hovered.
@@ -38,12 +36,14 @@ const AvatarSection: FC = memo(() => {
           caption='Apparently means "island" or "from the island"'
           inline
           text="Lyle"
+          variant="body1"
         />{" "}
         &nbsp;
         <CoolText
           caption="Second best month of the year or something."
           inline
           text="February"
+          variant="body1"
         />
       </div>
     </div>

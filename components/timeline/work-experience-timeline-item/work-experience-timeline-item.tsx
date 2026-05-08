@@ -75,13 +75,14 @@ const WorkExperienceTimelineItem: FC<WorkExperienceTimelineItemProps> = memo(
           <Typography
             sx={{
               color: headingColor,
+              fontSize: 20,
               fontWeight: 900,
               marginBottom: -0.5,
               marginInline: 0.5,
               textShadow: headingShadow,
               transition: "all 1s ease",
             }}
-            variant="h6"
+            variant="h3"
           >
             {DateFormatter.formatDate(startDate)}
           </Typography>
