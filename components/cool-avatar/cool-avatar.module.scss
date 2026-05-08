@@ -4,6 +4,7 @@ $defaultDimension: 192px;
 $focusedDimension: 256px;
 
 .avatar {
+  border-radius: 50%;
     transition:
         width $shortDuration ease,
         height $shortDuration ease,
@@ -14,6 +15,8 @@ $focusedDimension: 256px;
     &.hoverResize {
         height: $defaultDimension;
         width: $defaultDimension;
+        position: relative;
+        overflow: hidden;
     }
 
     &:hover {
