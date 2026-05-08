@@ -9,7 +9,14 @@ import {
   useMemo,
   useState,
 } from "react";
-import CoolTextProps from "./cool-text.props";
+
+interface CoolTextProps {
+  text: string;
+  inline?: boolean;
+  caption?: string;
+  forcedHoverState?: boolean;
+  variant: TypographyVariant;
+}
 
 /**
  * CoolText component is a styled text component that has interactive hover effects,

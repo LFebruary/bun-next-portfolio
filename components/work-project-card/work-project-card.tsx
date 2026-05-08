@@ -8,8 +8,14 @@ import Typography from "@mui/material/Typography";
 import dynamic from "next/dynamic";
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { WorkProject } from "@/interfaces/workProject.interface";
 import styles from "./Work-project-card.module.scss";
-import WorkProjectCardProps from "./work-project-card.props";
+
+interface WorkProjectCardProps {
+  project: WorkProject;
+  maxDescriptionHeight: number;
+  maxTechSectionHeight: number;
+}
 
 const ProjectLinkButton = dynamic(
   () => import("@/components/project-link-button/project-link-button"),

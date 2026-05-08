@@ -1,9 +1,19 @@
 "use client";
-import { Avatar } from "@mui/material";
+import { Avatar, SxProps, Theme } from "@mui/material";
 import Image from "next/image";
-import { FC, memo, useCallback, useMemo } from "react";
+import { ComponentProps, FC, memo, useCallback, useMemo } from "react";
 import styles from "./cool-avatar.module.scss";
-import CoolAvatarProps from "./cool-avatar.props";
+
+type NextImageSource = ComponentProps<typeof Image>["src"];
+
+interface CoolAvatarProps {
+  isHoveringCallback?: (hovered: boolean) => void;
+  disableHoverResize?: boolean;
+  disableHoverAnimation?: boolean;
+  src?: NextImageSource;
+  alt?: string;
+  priority?: boolean;
+}
 
 const CoolAvatar: FC<CoolAvatarProps> = memo(
   ({

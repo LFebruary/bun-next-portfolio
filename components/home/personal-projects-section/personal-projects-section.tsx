@@ -4,8 +4,12 @@ import dynamic from "next/dynamic";
 import { FC, memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import CoolText from "@/components/cool-text/cool-text";
+import { PersonalProject } from "@/interfaces";
 import debounce from "@/utils/debounce";
-import PersonalProjectsSectionProps from "./personal-projects-section.props";
+
+interface PersonalProjectsSectionProps {
+  projects: PersonalProject[];
+}
 
 const ProjectCard = dynamic(
   () => import("@/components/project-card/project-card"),

@@ -1,7 +1,11 @@
 import { FC, memo, useMemo } from "react";
+import { WorkExperience } from "@/interfaces";
 import styles from "../mobile-timeline.module.scss";
 import MobileTimelineItem from "../timeline-item/mobile-timeline-item";
-import MobileTimelineProps from "./mobile-timeline.props";
+
+interface MobileTimelineProps {
+  experiences: WorkExperience[];
+}
 
 const EmptyTimelineItem = memo(() => (
   <li className={styles.timelineEvent}>

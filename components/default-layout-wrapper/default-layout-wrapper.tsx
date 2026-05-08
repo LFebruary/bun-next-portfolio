@@ -2,17 +2,23 @@
 import {
   Alert,
   Container,
+  Fab,
   Snackbar,
   Typography,
   useMediaQuery,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { FC, memo, useMemo, useState } from "react";
+import { FC, memo, ReactNode, useMemo, useState } from "react";
 import styles from "@/styles/Home.module.scss";
 import { useSnackbar } from "../../context/snackbarProvider";
 import logoCropped from "../../public/logo/png/logo-no-background.png";
-import DefaultLayoutWrapperProps from "./default-layout-wrapper.props";
+
+interface DefaultLayoutWrapperProps {
+  children: ReactNode;
+  fab?: typeof Fab;
+  removeBackgroundBlur?: boolean;
+}
 
 const DefaultLayoutWrapper: FC<DefaultLayoutWrapperProps> = memo(
   ({ children, removeBackgroundBlur }) => {
