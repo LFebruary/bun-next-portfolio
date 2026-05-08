@@ -3,13 +3,11 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import dynamic from "next/dynamic";
 import { FC, memo, useState } from "react";
-import thatsMe from "@/public/me.webp";
+import thatsMe from "@/public/me.webp" with { type: "webp" };
+import CoolAvatar from "../../cool-avatar/cool-avatar";
 import styles from "./avatar-section.module.scss";
 
 const CoolText = dynamic(() => import("@/components/cool-text/cool-text"));
-const CoolAvatar = dynamic(
-  () => import("@/components/cool-avatar/cool-avatar"),
-);
 
 /**
  * AvatarSection component displays an avatar along with the user's name and a caption when hovered.
@@ -25,7 +23,8 @@ const AvatarSection: FC = memo(() => {
       <CoolAvatar
         alt="Lyle February"
         isHoveringCallback={setIsAvatarHovered}
-        src={thatsMe.src}
+        priority
+        src={thatsMe}
       />
       {avatarHovered && (
         <Fade in={avatarHovered} style={{ paddingTop: 24 }} timeout={1500}>
