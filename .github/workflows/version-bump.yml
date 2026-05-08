@@ -34,7 +34,7 @@ jobs:
 
       - name: Check if version was already bumped
         id: version-check
-        run: npx --yes tsx .github/scripts/check-version.ts
+        run: npx tsx .github/scripts/check-version.ts
 
       - name: Apply patch bump (default)
         if: steps.version-check.outputs.changed == 'false'
