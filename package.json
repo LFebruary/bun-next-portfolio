@@ -33,5 +33,5 @@
     "lint:fix": "bunx biome lint --write",
     "start": "next start"
   },
-  "version": "0.1.9"
+  "version": "0.1.10"
 }
